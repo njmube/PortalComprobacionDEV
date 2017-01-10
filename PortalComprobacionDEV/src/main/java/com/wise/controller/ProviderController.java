@@ -14,6 +14,7 @@ import javax.xml.bind.JAXBException;
 import org.apache.axiom.attachments.ByteArrayDataSource;
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.databinding.ADBException;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,14 +67,15 @@ public class ProviderController extends BaseController{
 	@Autowired
 	private ProviderService providerService;
 
-	@RequestMapping(value= "/getConfDataForExpen.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/getConfDataForExpen.action", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getConfDataForExpen(HttpServletRequest request, HttpSession session) throws AxisFault {
 		LOGGER.info("Getting Conf Data For Expen");
 		String str = getCurrentUser();
-		String lifnr = String.format("%010d", Integer.parseInt(str));
+		String lifnr = StringUtils.leftPad(str, 10, "0");
+		//String lifnr = String.format("%010d", Integer.parseInt(str));
 		if(lifnr != null){
-			try{
+			try {
 				Y10_GET_CONF_DATA_FOR_EXPENResponse response = providerService.getConfDataForExpen(lifnr);
 				FullConfigDto fullConfigDto = new FullConfigDto();
 				for(Y10_STR_WBS_CONF_DOC_CLASSES doc : response.getIM_CONF_DATA().getEXPDOC_CONF().getItem()){
@@ -138,10 +140,11 @@ public class ProviderController extends BaseController{
 				LOGGER.error("Error Getting Conf Data For Expen: " + e.getMessage(), e);
 				return getModelMapError(e.getMessage());
 			}
+			
 		} else {
 			return getModelMapError("Error de sesión");
 		}
-
+		
 	}
 	
 	@RequestMapping(value = "/getExpenseStatement.action", method = RequestMethod.GET)
@@ -149,41 +152,46 @@ public class ProviderController extends BaseController{
 	public Map<String, Object> getExpenseStatement(HttpServletRequest request, HttpSession session, String cmbRazonSocial, String fechaIni, String fechaFin, String cmbEstado, String expenseid) throws AxisFault {
 		LOGGER.info("Getting Expenses Statement");
 		String str = getCurrentUser();
-		String lifnr = String.format("%010d", Integer.parseInt(str));
-		try {
-			List<ListExpenseDto> jsonResponse = new ArrayList<ListExpenseDto>();
-			Y10_GET_EXPENSE_STATEMENTResponse response = providerService.getExpenseStatement(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, lifnr, expenseid);
-			Y10_TT_WBS_EXP_STATEMENT header = response.getIM_EXP_STATEMENT();
-			Y10_STR_WBS_EXP_STATEMENT[] data = header.getItem();
-			if(data != null) {
-				for(Y10_STR_WBS_EXP_STATEMENT item : data) {
-					ListExpenseDto dto = new ListExpenseDto();
-					dto.setAppdmbtr(item.getAPPDMBTR().toString());
-					dto.setBldat(item.getBLDAT().toString());
-					dto.setBudat(item.getBUDAT().toString());
-					dto.setBukrs(item.getBUKRS().toString());
-					dto.setDeptcode(item.getDEPTCODE().toString());
-					dto.setDmbtr(item.getDMBTR().toString());
-					dto.setExpensedoc(item.getEXPENSEDOC().toString());
-					dto.setExpenseid(item.getEXPENSEID().toString());
-					dto.setLifnam(item.getLIFNAM().toString());
-					dto.setLifnr(item.getLIFNR().toString());
-					dto.setSaldo(item.getSALDO().toString());
-					dto.setStat_descr(item.getSTAT_DESCR().toString());
-					dto.setStatus(item.getSTATUS().toString());
-					dto.setSubdeptcode(item.getSUBDEPTCODE().toString());
-					dto.setWaers(item.getWAERS().toString());
-					jsonResponse.add(dto);
+		String lifnr = StringUtils.leftPad(str, 10, "0");
+		//String lifnr = String.format("%010d", Integer.parseInt(str));
+		if(lifnr != null){
+			try {
+				List<ListExpenseDto> jsonResponse = new ArrayList<ListExpenseDto>();
+				Y10_GET_EXPENSE_STATEMENTResponse response = providerService.getExpenseStatement(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, lifnr, expenseid);
+				Y10_TT_WBS_EXP_STATEMENT header = response.getIM_EXP_STATEMENT();
+				Y10_STR_WBS_EXP_STATEMENT[] data = header.getItem();
+				if(data != null) {
+					for(Y10_STR_WBS_EXP_STATEMENT item : data) {
+						ListExpenseDto dto = new ListExpenseDto();
+						dto.setAppdmbtr(item.getAPPDMBTR().toString());
+						dto.setBldat(item.getBLDAT().toString());
+						dto.setBudat(item.getBUDAT().toString());
+						dto.setBukrs(item.getBUKRS().toString());
+						dto.setDeptcode(item.getDEPTCODE().toString());
+						dto.setDmbtr(item.getDMBTR().toString());
+						dto.setExpensedoc(item.getEXPENSEDOC().toString());
+						dto.setExpenseid(item.getEXPENSEID().toString());
+						dto.setLifnam(item.getLIFNAM().toString());
+						dto.setLifnr(item.getLIFNR().toString());
+						dto.setSaldo(item.getSALDO().toString());
+						dto.setStat_descr(item.getSTAT_DESCR().toString());
+						dto.setStatus(item.getSTATUS().toString());
+						dto.setSubdeptcode(item.getSUBDEPTCODE().toString());
+						dto.setWaers(item.getWAERS().toString());
+						jsonResponse.add(dto);
+					}
+					return getResponseMap(jsonResponse);
+				} else {
+					return getModelMapSuccess("No se encontró información con los criterios seleccionados");
 				}
 				
-				return getResponseMap(jsonResponse);
-			} else {
-				return getModelMapSuccess("No se encontró información con los criterios seleccionados");
+			} catch (Exception e) {
+				LOGGER.error("Error Getting Expense Statement: " + e.getMessage(), e);
+				return getModelMapError(e.getMessage());
 			}
-		
-		} catch (Exception e) {
-			LOGGER.error("Error Getting Expense Statement: " + e.getMessage(), e);
-			return getModelMapError(e.getMessage());
+			
+		} else {
+			return getModelMapError("Error de sesión");
 		}
 	
 	}
@@ -234,63 +242,69 @@ public class ProviderController extends BaseController{
 	public Map<String, Object> searchDocumentId(HttpServletRequest request, HttpSession session, String cmbRazonSocial, String fechaIni, String fechaFin, String cmbEstado) throws AxisFault {
 		LOGGER.info("Getting Requests List");
 		String str = getCurrentUser();
-		String lifnr = String.format("%010d", Integer.parseInt(str));
-		try {
-			List<RequestDto> jsonResponse = new ArrayList<RequestDto>();
-			Y10_SEARCH_DOCUMENT_IDResponse response = providerService.searchDocumentId(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, lifnr);
-			Y10_TT_HEADER header = response.getIM_SEARCH_RESULT();
-			Y10_STR_HEADER[] data = header.getItem();
-			if(data != null) {
-				for(Y10_STR_HEADER item : data) {
-					RequestDto dto = new RequestDto();
-					dto.setAdmin(item.getADMIN().toString());
-					dto.setAedat(item.getAEDAT().toString());
-					dto.setApprdate(item.getAPPRDATE().toString());
-					dto.setApprover(item.getAPPROVER().toString());
-					dto.setBldat(item.getBLDAT().toString());
-					dto.setBudat(item.getBUDAT().toString());
-					dto.setBukrs(item.getBUKRS().toString());
-					dto.setBuktx(item.getBUKTX().toString());
-					dto.setDeptcode(item.getDEPTCODE().toString());
-					dto.setDeptkostl(item.getDEPTKOSTL().toString());
-					dto.setDeptxt(item.getDEPTXT().toString());
-					dto.setErdat(item.getERDAT().toString());
-					dto.setErnam(item.getERNAM().toString());
-					dto.setErzet(item.getERZET().toString());
-					dto.setExpensedoc(item.getEXPENSEDOC().toString());
-					dto.setExpensedocdes(item.getEXPENSEDOCDES().toString());
-					dto.setExpenseid(item.getEXPENSEID().toString());
-					dto.setExpind(item.getEXPIND().toString());
-					dto.setKursf(item.getKURSF().toString());
-					dto.setLifnam(item.getLIFNAM().toString());
-					dto.setLifnr(item.getLIFNR().toString());
-					dto.setNetamtexp(item.getNETAMTEXP().toString());
-					dto.setNetamtreq(item.getNETAMTREQ().toString());
-					dto.setPostdate(item.getPOSTDATE().toString());
-					dto.setPostedby(item.getPOSTEDBY().toString());
-					dto.setPreldoc(item.getPRELDOC().toString());
-					dto.setPrelgjahr(item.getPRELGJAHR().toString());
-					dto.setReqexpdat(item.getREQEXPDAT().toString());
-					dto.setReqind(item.getREQIND().toString());
-					dto.setStatus(item.getSTATUS().toString());
-					dto.setStat_descr(item.getSTAT_DESCR().toString());
-					dto.setSubdeptcode(item.getSUBDEPTCODE().toString());
-					dto.setSubdeptxt(item.getSUBDEPTXT().toString());
-					dto.setTcode(item.getTCODE().toString());
-					dto.setUserweb(item.getUSERWEB().toString());
-					dto.setWaers(item.getWAERS().toString());
-					dto.setWwert(item.getWWERT().toString());
-					jsonResponse.add(dto);
-					}
-			
-				return getResponseMap(jsonResponse);
-			} else {
-				return getModelMapSuccess("No se encontró información con los criterios seleccionados");
+		String lifnr = StringUtils.leftPad(str, 10, "0");
+		//String lifnr = String.format("%010d", Integer.parseInt(str));
+		if(lifnr != null){
+			try {
+				List<RequestDto> jsonResponse = new ArrayList<RequestDto>();
+				Y10_SEARCH_DOCUMENT_IDResponse response = providerService.searchDocumentId(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, lifnr);
+				Y10_TT_HEADER header = response.getIM_SEARCH_RESULT();
+				Y10_STR_HEADER[] data = header.getItem();
+				if(data != null) {
+					for(Y10_STR_HEADER item : data) {
+						RequestDto dto = new RequestDto();
+						dto.setAdmin(item.getADMIN().toString());
+						dto.setAedat(item.getAEDAT().toString());
+						dto.setApprdate(item.getAPPRDATE().toString());
+						dto.setApprover(item.getAPPROVER().toString());
+						dto.setBldat(item.getBLDAT().toString());
+						dto.setBudat(item.getBUDAT().toString());
+						dto.setBukrs(item.getBUKRS().toString());
+						dto.setBuktx(item.getBUKTX().toString());
+						dto.setDeptcode(item.getDEPTCODE().toString());
+						dto.setDeptkostl(item.getDEPTKOSTL().toString());
+						dto.setDeptxt(item.getDEPTXT().toString());
+						dto.setErdat(item.getERDAT().toString());
+						dto.setErnam(item.getERNAM().toString());
+						dto.setErzet(item.getERZET().toString());
+						dto.setExpensedoc(item.getEXPENSEDOC().toString());
+						dto.setExpensedocdes(item.getEXPENSEDOCDES().toString());
+						dto.setExpenseid(item.getEXPENSEID().toString());
+						dto.setExpind(item.getEXPIND().toString());
+						dto.setKursf(item.getKURSF().toString());
+						dto.setLifnam(item.getLIFNAM().toString());
+						dto.setLifnr(item.getLIFNR().toString());
+						dto.setNetamtexp(item.getNETAMTEXP().toString());
+						dto.setNetamtreq(item.getNETAMTREQ().toString());
+						dto.setPostdate(item.getPOSTDATE().toString());
+						dto.setPostedby(item.getPOSTEDBY().toString());
+						dto.setPreldoc(item.getPRELDOC().toString());
+						dto.setPrelgjahr(item.getPRELGJAHR().toString());
+						dto.setReqexpdat(item.getREQEXPDAT().toString());
+						dto.setReqind(item.getREQIND().toString());
+						dto.setStatus(item.getSTATUS().toString());
+						dto.setStat_descr(item.getSTAT_DESCR().toString());
+						dto.setSubdeptcode(item.getSUBDEPTCODE().toString());
+						dto.setSubdeptxt(item.getSUBDEPTXT().toString());
+						dto.setTcode(item.getTCODE().toString());
+						dto.setUserweb(item.getUSERWEB().toString());
+						dto.setWaers(item.getWAERS().toString());
+						dto.setWwert(item.getWWERT().toString());
+						jsonResponse.add(dto);
+						}
+				
+					return getResponseMap(jsonResponse);
+				} else {
+					return getModelMapSuccess("No se encontró información con los criterios seleccionados");
+				}
+				
+			} catch (Exception e) {
+				LOGGER.error("Error Getting Requests List: " + e.getMessage(), e);
+				return getModelMapError(e.getMessage());
 			}
-		
-		} catch (Exception e) {
-			LOGGER.error("Error Getting Requests List: " + e.getMessage(), e);
-			return getModelMapError(e.getMessage());
+			
+		} else {
+			return getModelMapError("Error de sesión");
 		}
 	
 	}
@@ -299,7 +313,9 @@ public class ProviderController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> getAccStatus(HttpServletRequest request, HttpSession session, String cmbRazonSocial) {
 		LOGGER.info("Getting Account Status");
-		String lifnr = getCurrentUser();
+		String str = getCurrentUser();
+		String lifnr = StringUtils.leftPad(str, 10, "0");
+		//String lifnr = String.format("%010d", Integer.parseInt(str));
 		Locale locale = RequestContextUtils.getLocale(request);
 		String bad = "";
 		if(lifnr != null) {
@@ -359,8 +375,9 @@ public class ProviderController extends BaseController{
 				return getModelMapError(e.getMessage());
 			}
 			
+		} else {
+			return getModelMapError("Error de sesión");
 		}
-		return getModelMapError("Error de sesión");
 	}
 	
 }

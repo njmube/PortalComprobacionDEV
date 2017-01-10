@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,8 @@ public class TravelController extends BaseController{
 		String good = "",bad = "";
 		wrapper.setContentType("text/html;charset=UTF-8");
 		String str = getCurrentUser();
-		String lifnr = String.format("%010d", Integer.parseInt(str));
+		String lifnr = StringUtils.leftPad(str, 10, "0");
+		//String lifnr = String.format("%010d", Integer.parseInt(str));
 		try {
 			Y10_SAVE_TRAVEL_DATAResponse response = travelService.saveTravelData(hdnRazonSocial, hdnTipoDocumento, requestDate, createdDate, comments, waers, deptcode, subdeptcode, createdBy, lifnr);
 			if(response != null) {
