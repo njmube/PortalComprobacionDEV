@@ -569,7 +569,8 @@ Ext.onReady(function(){
 					text: bundle.getMsg('label.addaccountingdata'),
 					type: 'button',
 					handler: showDatowContables,
-					width: 150
+					width: 150,
+					hidden: true
 				}]
 			});
 			Ext.getCmp('numcomprobacion').setValue(record.data.expenseid);
