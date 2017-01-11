@@ -131,10 +131,6 @@ public class ExpenseDao {
 		Y10_TT_ITEM_EXP y10TtItemExp = new Y10_TT_ITEM_EXP(); //Tipo Tabla Detalle Comprobación Gastos
 		Y10_TT_TEXT y10TtText = new Y10_TT_TEXT(); //Tipo Tabla Texto
 		
-		Y10_TT_EXPENACCO y10TtExpenacco = new Y10_TT_EXPENACCO(); //Tipo Tabla Datos Contables
-		Y10_TT_EXPENDIST y10TtExpendist = new Y10_TT_EXPENDIST(); //Tipo Tabla Distribución Costos
-		LVC_T_STYL lvcTStyl = new LVC_T_STYL(); //Control LVA: Tabla de estilos para celdas
-		
 		HeaderExpenseDto headerExpenseDto = expenseData.getHeaderExpenseDto();
 		
 		Char12 i_admin = new Char12();
@@ -155,25 +151,25 @@ public class ExpenseDao {
 		Char40 i_expensedocdes = new Char40();
 		Numeric10 i_expenseid = new Numeric10();
 		Char1 i_expind = new Char1();
-		Decimal95 i_Kursf = new Decimal95();
-		Char35 i_Lifnam = new Char35();
-		Char10 i_Lifnr = new Char10();
-		Curr132 i_Netamtexp = new Curr132();
-		Curr132 i_Netamtreq = new Curr132();
-		Date10 i_Postdate = new Date10();
-		Char12 i_Postedby = new Char12();
-		Char10 i_Preldoc = new Char10();
-		Numeric4 i_Prelgjahr = new Numeric4();
-		Date10 i_Reqexpdat = new Date10();
-		Char1 i_Reqind = new Char1();
-		Char20 i_Stat_descr = new Char20();
-		Char2 i_Status = new Char2();
-		Char10 i_Subdeptcode = new Char10();
-		Char40 i_Subdeptxt = new Char40();
-		Char20 i_Tcode = new Char20();
-		Char12 i_Userweb = new Char12();
-		Cuky5 i_Waers = new Cuky5();
-		Date10 i_Wwert = new Date10();
+		Decimal95 i_kursf = new Decimal95();
+		Char35 i_lifnam = new Char35();
+		Char10 i_lifnr = new Char10();
+		Curr132 i_netamtexp = new Curr132();
+		Curr132 i_netamtreq = new Curr132();
+		Date10 i_postdate = new Date10();
+		Char12 i_postedby = new Char12();
+		Char10 i_preldoc = new Char10();
+		Numeric4 i_prelgjahr = new Numeric4();
+		Date10 i_reqexpdat = new Date10();
+		Char1 i_reqind = new Char1();
+		Char20 i_stat_descr = new Char20();
+		Char2 i_status = new Char2();
+		Char10 i_subdeptcode = new Char10();
+		Char40 i_subdeptxt = new Char40();
+		Char20 i_tcode = new Char20();
+		Char12 i_userweb = new Char12();
+		Cuky5 i_waers = new Cuky5();
+		Date10 i_wwert = new Date10();
 
 		i_admin.setChar12(headerExpenseDto.getAdmin());
 		i_aedat.setDate10(headerExpenseDto.getAedat());
@@ -193,25 +189,25 @@ public class ExpenseDao {
 		i_expensedocdes.setChar40(headerExpenseDto.getExpensedocdes());
 		i_expenseid.setNumeric10(headerExpenseDto.getExpenseid());
 		i_expind.setChar1(headerExpenseDto.getExpind());
-		i_Kursf.setDecimal95(new BigDecimal(headerExpenseDto.getKursf()));
-		i_Lifnam.setChar35(headerExpenseDto.getLifnam());
-		i_Lifnr.setChar10(headerExpenseDto.getLifnr());
-		i_Netamtexp.setCurr132(new BigDecimal(headerExpenseDto.getNetamtexp()));
-		i_Netamtreq.setCurr132(new BigDecimal(headerExpenseDto.getNetamtreq()));
-		i_Postdate.setDate10(headerExpenseDto.getPostdate());
-		i_Postedby.setChar12(headerExpenseDto.getPostedby());
-		i_Preldoc.setChar10(headerExpenseDto.getPreldoc());
-		i_Prelgjahr.setNumeric4(headerExpenseDto.getPrelgjahr());
-		i_Reqexpdat.setDate10(headerExpenseDto.getReqexpdat());
-		i_Reqind.setChar1(headerExpenseDto.getReqind());
-		i_Stat_descr.setChar20(headerExpenseDto.getStat_descr());
-		i_Status.setChar2(headerExpenseDto.getStatus());
-		i_Subdeptcode.setChar10(headerExpenseDto.getSubdeptcode());
-		i_Subdeptxt.setChar40(headerExpenseDto.getSubdeptxt());
-		i_Tcode.setChar20(headerExpenseDto.getTcode());
-		i_Userweb.setChar12(headerExpenseDto.getUserweb());
-		i_Waers.setCuky5(headerExpenseDto.getWaers());
-		i_Wwert.setDate10(headerExpenseDto.getWwert());
+		i_kursf.setDecimal95(new BigDecimal(headerExpenseDto.getKursf()));
+		i_lifnam.setChar35(headerExpenseDto.getLifnam());
+		i_lifnr.setChar10(headerExpenseDto.getLifnr());
+		i_netamtexp.setCurr132(new BigDecimal(headerExpenseDto.getNetamtexp()));
+		i_netamtreq.setCurr132(new BigDecimal(headerExpenseDto.getNetamtreq()));
+		i_postdate.setDate10(headerExpenseDto.getPostdate());
+		i_postedby.setChar12(headerExpenseDto.getPostedby());
+		i_preldoc.setChar10(headerExpenseDto.getPreldoc());
+		i_prelgjahr.setNumeric4(headerExpenseDto.getPrelgjahr());
+		i_reqexpdat.setDate10(headerExpenseDto.getReqexpdat());
+		i_reqind.setChar1(headerExpenseDto.getReqind());
+		i_stat_descr.setChar20(headerExpenseDto.getStat_descr());
+		i_status.setChar2(headerExpenseDto.getStatus());
+		i_subdeptcode.setChar10(headerExpenseDto.getSubdeptcode());
+		i_subdeptxt.setChar40(headerExpenseDto.getSubdeptxt());
+		i_tcode.setChar20(headerExpenseDto.getTcode());
+		i_userweb.setChar12(headerExpenseDto.getUserweb());
+		i_waers.setCuky5(headerExpenseDto.getWaers());
+		i_wwert.setDate10(headerExpenseDto.getWwert());
 
 		y10StrHeader.setADMIN(i_admin);
 		y10StrHeader.setAEDAT(i_aedat);
@@ -231,58 +227,58 @@ public class ExpenseDao {
 		y10StrHeader.setEXPENSEDOCDES(i_expensedocdes);
 		y10StrHeader.setEXPENSEID(i_expenseid);
 		y10StrHeader.setEXPIND(i_expind);
-		y10StrHeader.setKURSF(i_Kursf);
-		y10StrHeader.setLIFNAM(i_Lifnam);
-		y10StrHeader.setLIFNR(i_Lifnr);
-		y10StrHeader.setNETAMTEXP(i_Netamtexp);
-		y10StrHeader.setNETAMTREQ(i_Netamtreq);
-		y10StrHeader.setPOSTDATE(i_Postdate);
-		y10StrHeader.setPOSTEDBY(i_Postedby);
-		y10StrHeader.setPRELDOC(i_Preldoc);
-		y10StrHeader.setPRELGJAHR(i_Prelgjahr);
-		y10StrHeader.setREQEXPDAT(i_Reqexpdat);
-		y10StrHeader.setREQIND(i_Reqind);
-		y10StrHeader.setSTAT_DESCR(i_Stat_descr);
-		y10StrHeader.setSTATUS(i_Status);
-		y10StrHeader.setSUBDEPTCODE(i_Subdeptcode);
-		y10StrHeader.setSUBDEPTXT(i_Subdeptxt);
-		y10StrHeader.setTCODE(i_Tcode);
-		y10StrHeader.setUSERWEB(i_Userweb);
-		y10StrHeader.setWAERS(i_Waers);
-		y10StrHeader.setWWERT(i_Wwert);
+		y10StrHeader.setKURSF(i_kursf);
+		y10StrHeader.setLIFNAM(i_lifnam);
+		y10StrHeader.setLIFNR(i_lifnr);
+		y10StrHeader.setNETAMTEXP(i_netamtexp);
+		y10StrHeader.setNETAMTREQ(i_netamtreq);
+		y10StrHeader.setPOSTDATE(i_postdate);
+		y10StrHeader.setPOSTEDBY(i_postedby);
+		y10StrHeader.setPRELDOC(i_preldoc);
+		y10StrHeader.setPRELGJAHR(i_prelgjahr);
+		y10StrHeader.setREQEXPDAT(i_reqexpdat);
+		y10StrHeader.setREQIND(i_reqind);
+		y10StrHeader.setSTAT_DESCR(i_stat_descr);
+		y10StrHeader.setSTATUS(i_status);
+		y10StrHeader.setSUBDEPTCODE(i_subdeptcode);
+		y10StrHeader.setSUBDEPTXT(i_subdeptxt);
+		y10StrHeader.setTCODE(i_tcode);
+		y10StrHeader.setUSERWEB(i_userweb);
+		y10StrHeader.setWAERS(i_waers);
+		y10StrHeader.setWWERT(i_wwert);
 
 		List<ItemDataExpenseDto> itemDataExpenseDtoList = expenseData.getItemDataExpenseDtoList();
 
 		for (ItemDataExpenseDto item : itemDataExpenseDtoList) {
 			Y10_STR_ITEM_EXP y10StrItemExp = new Y10_STR_ITEM_EXP(); //Detalle comprobación de gastos
 			
-			Curr132 i_Appramount=new Curr132();
-			Curr132 i_Available_dmbtr=new Curr132();
-			Date10 i_Bldat=new Date10();
-			Curr132 i_Budget_dmbtr=new Curr132();
-			Char4 i_Bukrs=new Char4();
-			Char1 i_Calctypebus=new Char1();
-			Char1 i_Calctypesat=new Char1();
-			Curr132 i_Deduamount=new Curr132();
-			Curr132 i_Dmbtr=new Curr132();
-			Quantum133 i_Expenquan=new Quantum133();
-			Char4 i_Expenseclass=new Char4();
-			Char50 i_Expenseclassdes=new Char50();
-			Numeric4 i_Expenseline=new Numeric4();
-			Numeric4 i_Expensetype=new Numeric4();
-			Char10 i_Hkont=new Char10();
-			Curr132 i_Hwbas=new Curr132();
-			Curr132 i_Hwste=new Curr132();
-			Char10 i_Kostl=new Char10();
-			Decimal95 i_kursf=new Decimal95();
-			Curr132 i_Limit_bus=new Curr132();
-			Curr132 i_Limit_sat=new Curr132();
-			Char2 i_Mwskz=new Char2();
-			functions.rfc.sap.document.sap_com.String i_Mwskz_xml=new functions.rfc.sap.document.sap_com.String();
-			Char1 i_Operflag=new Char1();
-			Char2 i_Paymet=new Char2();
-			Char4 i_Pdficon=new Char4();
-			Char1 i_Pdfins=new Char1();
+			Curr132 i_Appramount = new Curr132();
+			Curr132 i_Available_dmbtr = new Curr132();
+			Date10 i_Bldat = new Date10();
+			Curr132 i_Budget_dmbtr = new Curr132();
+			Char4 i_Bukrs = new Char4();
+			Char1 i_Calctypebus = new Char1();
+			Char1 i_Calctypesat = new Char1();
+			Curr132 i_Deduamount = new Curr132();
+			Curr132 i_Dmbtr = new Curr132();
+			Quantum133 i_Expenquan = new Quantum133();
+			Char4 i_Expenseclass = new Char4();
+			Char50 i_Expenseclassdes = new Char50();
+			Numeric4 i_Expenseline = new Numeric4();
+			Numeric4 i_Expensetype = new Numeric4();
+			Char10 i_Hkont = new Char10();
+			Curr132 i_Hwbas = new Curr132();
+			Curr132 i_Hwste = new Curr132();
+			Char10 i_Kostl = new Char10();
+			Decimal95 i_Kursf = new Decimal95();
+			Curr132 i_Limit_bus = new Curr132();
+			Curr132 i_Limit_sat = new Curr132();
+			Char2 i_Mwskz = new Char2();
+			functions.rfc.sap.document.sap_com.String i_Mwskz_xml = new functions.rfc.sap.document.sap_com.String();
+			Char1 i_Operflag = new Char1();
+			Char2 i_Paymet = new Char2();
+			Char4 i_Pdficon = new Char4();
+			Char1 i_Pdfins = new Char1();
 			
 			String pdfxstring = item.getPDFXSTRING();
 			if(pdfxstring == null || pdfxstring.length() == 0){
@@ -302,18 +298,18 @@ public class ExpenseDao {
 			DataSource dsXML = new ByteArrayDataSource(valueDecodedXML, "text/xml");
 			DataHandler i_Xmlxstring = new DataHandler(dsXML);
 			
-			Decimal52 i_Percent_bus=new Decimal52();
-			Decimal52 i_Percent_sat=new Decimal52();
-			Char16 i_Rfc=new Char16();
-			Char2 i_Rultypbus=new Char2();
-			Char2 i_Rultypsat=new Char2();
-			Unit3 i_Unit=new Unit3();
-			Char36 i_Uuid=new Char36();
-			//Cuky5 i_Waers=new Cuky5();
-			functions.rfc.sap.document.sap_com.String i_Waers_xml=new functions.rfc.sap.document.sap_com.String();
-			Curr132 i_Wrbtr=new Curr132();
-			Char4 i_Xmlicon=new Char4();
-			Char1 i_Xmlins=new Char1();
+			Decimal52 i_Percent_bus = new Decimal52();
+			Decimal52 i_Percent_sat = new Decimal52();
+			Char16 i_Rfc = new Char16();
+			Char2 i_Rultypbus = new Char2();
+			Char2 i_Rultypsat = new Char2();
+			Unit3 i_Unit = new Unit3();
+			Char36 i_Uuid = new Char36();
+			Cuky5 i_Waers = new Cuky5();
+			functions.rfc.sap.document.sap_com.String i_Waers_xml = new functions.rfc.sap.document.sap_com.String();
+			Curr132 i_Wrbtr = new Curr132();
+			Char4 i_Xmlicon = new Char4();
+			Char1 i_Xmlins = new Char1();
 			
 			i_Appramount.setCurr132(new BigDecimal(item.getAPPRAMOUNT() == null || item.getAPPRAMOUNT().length() == 0 ? "0.0" : item.getAPPRAMOUNT()));
 			i_Available_dmbtr.setCurr132(new BigDecimal(item.getAVAILABLE_DMBTR() == null || item.getAVAILABLE_DMBTR().length() == 0 ? "0.0" : item.getAVAILABLE_DMBTR()));
@@ -333,12 +329,12 @@ public class ExpenseDao {
 			i_Hwbas.setCurr132(new BigDecimal(item.getHWBAS() == null || item.getHWBAS().length() == 0 ? "0.0" : item.getHWBAS()));
 			i_Hwste.setCurr132(new BigDecimal(item.getHWSTE() == null || item.getHWSTE().length() == 0 ? "0.0" : item.getHWSTE()));
 			i_Kostl.setChar10(item.getKOSTL());
-			i_kursf.setDecimal95(new BigDecimal(item.getKURSF() == null || item.getKURSF().length() == 0 ? "0.0" : item.getKURSF()));
+			i_Kursf.setDecimal95(new BigDecimal(item.getKURSF() == null || item.getKURSF().length() == 0 ? "0.0" : item.getKURSF()));
 			i_Limit_bus.setCurr132(new BigDecimal(item.getLIMIT_BUS() == null || item.getLIMIT_BUS().length() == 0 ? "0.0" : item.getLIMIT_BUS()));
 			i_Limit_sat.setCurr132(new BigDecimal(item.getLIMIT_SAT() == null || item.getLIMIT_SAT().length() == 0 ? "0.0" : item.getLIMIT_SAT()));
 			i_Mwskz.setChar2(item.getMWSKZ() == null || item.getMWSKZ().length() == 0 ? "" : item.getMWSKZ());
 			i_Mwskz_xml.setString(item.getMwskz_xml());
-			i_Operflag.setChar1(item.getOPERFLAG());
+			i_Operflag.setChar1(item.getOPERFLAG() == null || item.getOPERFLAG().length() == 0 ? "" : item.getOPERFLAG());
 			i_Paymet.setChar2(item.getPAYMET());
 			i_Pdficon.setChar4(item.getPDFICON() == null || item.getPDFICON().length() == 0 ? "" : item.getPDFICON());
 			i_Pdfins.setChar1(item.getPDFINS() == null || item.getPDFINS().length() == 0 ? "" : item.getPDFINS());
@@ -355,97 +351,100 @@ public class ExpenseDao {
 			i_Xmlicon.setChar4(item.getXMLICON() == null || item.getXMLICON().length() == 0 ? "" : item.getXMLICON());
 			i_Xmlins.setChar1(item.getXMLINS() == null || item.getXMLINS().length() == 0 ? "" : item.getXMLINS());
 			
+			Y10_TT_EXPENACCO y10TtExpenacco = new Y10_TT_EXPENACCO(); //Tipo Tabla Datos Contables
 			List<AccDataDto> accDataDtoList = item.getACCDATA();
 			for (AccDataDto accData : accDataDtoList){
 				Y10_STR_EXPENACCO expenacco = new Y10_STR_EXPENACCO(); //Estructura Datos Contables
 				
-				Numeric4 i_Accolin = new Numeric4();
-				//Char4 i_Bukrs = new Char4();
-				Numeric10 i_Expenseid = new Numeric10();
-				//Numeric4 i_Expenseline = new Numeric4();
-				//Char10 i_Hkont = new Char10();
-				//Char2 i_Mwskz = new Char2();
-				Char50 i_Sgtxt = new Char50();
-				Char20 i_Txt20 = new Char20();
-				Curr132 i_Wmwst = new Curr132();
-				//Curr132 i_Wrbtr = new Curr132();
+				Numeric4 a_accolin = new Numeric4();
+				Char4 a_bukrs = new Char4();
+				Numeric10 a_expenseid = new Numeric10();
+				Numeric4 a_expenseline = new Numeric4();
+				Char10 a_hkont = new Char10();
+				Char2 a_mwskz = new Char2();
+				Char50 a_sgtxt = new Char50();
+				Char20 a_txt20 = new Char20();
+				Curr132 a_wmwst = new Curr132();
+				Curr132 a_wrbtr = new Curr132();
 
-				i_Accolin.setNumeric4(accData.getACCOLIN()== null || accData.getACCOLIN().length() == 0 ? "" : accData.getACCOLIN());
-				i_Bukrs.setChar4(accData.getBUKRS()== null || accData.getBUKRS().length() == 0 ? "" : accData.getBUKRS());
-				i_Expenseid.setNumeric10(accData.getEXPENSEID()== null || accData.getEXPENSEID().length() == 0 ? "" : accData.getEXPENSEID());
-				//i_Expenseline.setNumeric4(accData.getEXPENSELINE()== null || accData.getEXPENSELINE().length() == 0 ? "" : accData.getEXPENSELINE());
-				i_Expenseline.setNumeric4(item.getEXPENSELINE());
-				i_Hkont.setChar10(accData.getHKONT()== null || accData.getHKONT().length() == 0 ? "" : accData.getHKONT());
-				i_Mwskz.setChar2(accData.getMWSKZ()== null || accData.getMWSKZ().length() == 0 ? "" : accData.getMWSKZ());
-				i_Sgtxt.setChar50(accData.getSGTXT()== null || accData.getSGTXT().length() == 0 ? "" : accData.getSGTXT());
-				i_Txt20.setChar20(accData.getTXT20() == null || accData.getTXT20().length() == 0 ? "" : accData.getTXT20());
-				i_Wmwst.setCurr132(new BigDecimal(accData.getWMWST() == null || accData.getWMWST().length() == 0 ? "0.0" : accData.getWMWST()));
-				i_Wrbtr.setCurr132(new BigDecimal(accData.getWRBTR() == null || accData.getWRBTR().length() == 0 ? "0.0" : accData.getWRBTR()));
+				a_accolin.setNumeric4(accData.getACCOLIN()== null || accData.getACCOLIN().length() == 0 ? "" : accData.getACCOLIN());
+				a_bukrs.setChar4(accData.getBUKRS()== null || accData.getBUKRS().length() == 0 ? "" : accData.getBUKRS());
+				a_expenseid.setNumeric10(accData.getEXPENSEID()== null || accData.getEXPENSEID().length() == 0 ? "" : accData.getEXPENSEID());
+				a_expenseline.setNumeric4(accData.getEXPENSELINE()== null || accData.getEXPENSELINE().length() == 0 ? "" : accData.getEXPENSELINE());
+				a_hkont.setChar10(accData.getHKONT()== null || accData.getHKONT().length() == 0 ? "" : accData.getHKONT());
+				a_mwskz.setChar2(accData.getMWSKZ()== null || accData.getMWSKZ().length() == 0 ? "" : accData.getMWSKZ());
+				a_sgtxt.setChar50(accData.getSGTXT()== null || accData.getSGTXT().length() == 0 ? "" : accData.getSGTXT());
+				a_txt20.setChar20(accData.getTXT20() == null || accData.getTXT20().length() == 0 ? "" : accData.getTXT20());
+				a_wmwst.setCurr132(new BigDecimal(accData.getWMWST() == null || accData.getWMWST().length() == 0 ? "0.0" : accData.getWMWST()));
+				a_wrbtr.setCurr132(new BigDecimal(accData.getWRBTR() == null || accData.getWRBTR().length() == 0 ? "0.0" : accData.getWRBTR()));
 				
-				expenacco.setACCOLIN(i_Accolin);
-				expenacco.setBUKRS(i_Bukrs);
-				expenacco.setEXPENSEID(i_Expenseid);
+				expenacco.setACCOLIN(a_accolin);
+				expenacco.setBUKRS(a_bukrs);
+				expenacco.setEXPENSEID(a_expenseid);
+				//expenacco.setEXPENSELINE(a_expenseline);
 				expenacco.setEXPENSELINE(i_Expenseline);
-				expenacco.setHKONT(i_Hkont);
-				expenacco.setMWSKZ(i_Mwskz);
-				expenacco.setSGTXT(i_Sgtxt);
-				expenacco.setTXT20(i_Txt20);
-				expenacco.setWMWST(i_Wmwst);
-				expenacco.setWRBTR(i_Wrbtr);
+				expenacco.setHKONT(a_hkont);
+				expenacco.setMWSKZ(a_mwskz);
+				expenacco.setSGTXT(a_sgtxt);
+				expenacco.setTXT20(a_txt20);
+				expenacco.setWMWST(a_wmwst);
+				expenacco.setWRBTR(a_wrbtr);
 				
 				y10TtExpenacco.addItem(expenacco);
 			}
 			
+			Y10_TT_EXPENDIST y10TtExpendist = new Y10_TT_EXPENDIST(); //Tipo Tabla Distribución Costos
 			List<CostDistDto> costDistDtoList = item.getCOSTDIST();
 			for (CostDistDto costDist :  costDistDtoList){
 				Y10_STR_EXPENDIST expendist = new Y10_STR_EXPENDIST(); //Estructura Distribución Costos
 				
-				Curr132 i_Appdmbtr=new Curr132();
-				Decimal52 i_Cost_percent=new Decimal52();
-				Numeric4 i_Distlin=new Numeric4();
-				//Numeric4 i_Expenseline=new Numeric4();
-				//Char10 i_Kostl=new Char10();
-				//Char1 i_Operflag=new Char1();
+				Curr132 e_appdmbtr = new Curr132();
+				Decimal52 e_cost_percent = new Decimal52();
+				Numeric4 e_distlin = new Numeric4();
+				Numeric4 e_expenseline = new Numeric4();
+				Char10 e_kostl = new Char10();
+				Char1 e_operflag = new Char1();
 				
-				i_Appdmbtr.setCurr132(new BigDecimal(costDist.getAPPDMBTR()== null || costDist.getAPPDMBTR().length() == 0 ? "0.0" : costDist.getAPPDMBTR()));
-				i_Cost_percent.setDecimal52(new BigDecimal(costDist.getCOST_PERCENT()== null || costDist.getCOST_PERCENT().length() == 0 ? "0.0" : costDist.getCOST_PERCENT()));
-				i_Distlin.setNumeric4(costDist.getDISTLIN()== null || costDist.getDISTLIN().length() == 0 ? "0" : costDist.getDISTLIN());
-				//i_Expenseline.setNumeric4(costDist.getEXPENSELINE()== null || costDist.getEXPENSELINE().length() == 0 ? "0" : costDist.getEXPENSELINE());
-				i_Expenseline.setNumeric4(item.getEXPENSELINE());
-				i_Kostl.setChar10(costDist.getKOSTL()== null || costDist.getKOSTL().length() == 0 ? "" : costDist.getKOSTL());
-				i_Operflag.setChar1(costDist.getOPERFLAG()== null || costDist.getOPERFLAG().length() == 0 ? "" : costDist.getOPERFLAG());
+				e_appdmbtr.setCurr132(new BigDecimal(costDist.getAPPDMBTR()== null || costDist.getAPPDMBTR().length() == 0 ? "0.0" : costDist.getAPPDMBTR()));
+				e_cost_percent.setDecimal52(new BigDecimal(costDist.getCOST_PERCENT()== null || costDist.getCOST_PERCENT().length() == 0 ? "0.0" : costDist.getCOST_PERCENT()));
+				e_distlin.setNumeric4(costDist.getDISTLIN()== null || costDist.getDISTLIN().length() == 0 ? "0" : costDist.getDISTLIN());
+				e_expenseline.setNumeric4(costDist.getEXPENSELINE()== null || costDist.getEXPENSELINE().length() == 0 ? "0" : costDist.getEXPENSELINE());
+				e_kostl.setChar10(costDist.getKOSTL()== null || costDist.getKOSTL().length() == 0 ? "" : costDist.getKOSTL());
+				e_operflag.setChar1(costDist.getOPERFLAG()== null || costDist.getOPERFLAG().length() == 0 ? "" : costDist.getOPERFLAG());
 				
-				expendist.setAPPDMBTR(i_Appdmbtr);
-				expendist.setCOST_PERCENT(i_Cost_percent);
-				expendist.setDISTLIN(i_Distlin);
+				expendist.setAPPDMBTR(e_appdmbtr);
+				expendist.setCOST_PERCENT(e_cost_percent);
+				expendist.setDISTLIN(e_distlin);
+				//expendist.setEXPENSELINE(e_expenseline);
 				expendist.setEXPENSELINE(i_Expenseline);
-				expendist.setKOSTL(i_Kostl);
-				expendist.setOPERFLAG(i_Operflag);
+				expendist.setKOSTL(e_kostl);
+				expendist.setOPERFLAG(e_operflag);
 				
 				y10TtExpendist.addItem(expendist);
 			}
 			
+			LVC_T_STYL lvcTStyl = new LVC_T_STYL(); //Control LVA: Tabla de estilos para celdas
 			List<CellDto> cellDtoList = item.getCELL();
 			for (CellDto cellDto :  cellDtoList){
 				LVC_S_STYL lvcSStyl = new LVC_S_STYL(); //Control LVA: Nombre campo + estilos
 				
-				Char30 i_Fieldname=new Char30();
-				functions.rfc.sap.document.sap_com.Byte4 i_style=new functions.rfc.sap.document.sap_com.Byte4();
-				functions.rfc.sap.document.sap_com.Byte4 i_style2=new functions.rfc.sap.document.sap_com.Byte4();
-				functions.rfc.sap.document.sap_com.Byte4 i_style3=new functions.rfc.sap.document.sap_com.Byte4();
-				functions.rfc.sap.document.sap_com.Byte4 i_style4=new functions.rfc.sap.document.sap_com.Byte4();
+				Char30 l_fieldname=new Char30();
+				functions.rfc.sap.document.sap_com.Byte4 l_style=new functions.rfc.sap.document.sap_com.Byte4();
+				functions.rfc.sap.document.sap_com.Byte4 l_style2=new functions.rfc.sap.document.sap_com.Byte4();
+				functions.rfc.sap.document.sap_com.Byte4 l_style3=new functions.rfc.sap.document.sap_com.Byte4();
+				functions.rfc.sap.document.sap_com.Byte4 l_style4=new functions.rfc.sap.document.sap_com.Byte4();
 				
-				i_Fieldname.setChar30(cellDto.getFIELDNAME());
-				i_style.setByte4(new DataHandler(cellDto.getSTYLE() == null || cellDto.getSTYLE().length() == 0 ? "" : cellDto.getSTYLE(), null));
-				i_style2.setByte4(new DataHandler(cellDto.getSTYLE2() == null || cellDto.getSTYLE2().length() == 0 ? "" : cellDto.getSTYLE2(), null));
-				i_style3.setByte4(new DataHandler(cellDto.getSTYLE3() == null || cellDto.getSTYLE3().length() == 0 ? "" : cellDto.getSTYLE3(), null));
-				i_style4.setByte4(new DataHandler(cellDto.getSTYLE4() == null || cellDto.getSTYLE4().length() == 0 ? "" : cellDto.getSTYLE4(), null));
+				l_fieldname.setChar30(cellDto.getFIELDNAME());
+				l_style.setByte4(new DataHandler(cellDto.getSTYLE() == null || cellDto.getSTYLE().length() == 0 ? "" : cellDto.getSTYLE(), null));
+				l_style2.setByte4(new DataHandler(cellDto.getSTYLE2() == null || cellDto.getSTYLE2().length() == 0 ? "" : cellDto.getSTYLE2(), null));
+				l_style3.setByte4(new DataHandler(cellDto.getSTYLE3() == null || cellDto.getSTYLE3().length() == 0 ? "" : cellDto.getSTYLE3(), null));
+				l_style4.setByte4(new DataHandler(cellDto.getSTYLE4() == null || cellDto.getSTYLE4().length() == 0 ? "" : cellDto.getSTYLE4(), null));
 				
-				lvcSStyl.setFIELDNAME(i_Fieldname);
-				lvcSStyl.setSTYLE(i_style);
-				lvcSStyl.setSTYLE2(i_style2);
-				lvcSStyl.setSTYLE3(i_style3);
-				lvcSStyl.setSTYLE4(i_style4);
+				lvcSStyl.setFIELDNAME(l_fieldname);
+				lvcSStyl.setSTYLE(l_style);
+				lvcSStyl.setSTYLE2(l_style2);
+				lvcSStyl.setSTYLE3(l_style3);
+				lvcSStyl.setSTYLE4(l_style4);
 				
 				lvcTStyl.addItem(lvcSStyl);
 			}
@@ -471,7 +470,7 @@ public class ExpenseDao {
 			y10StrItemExp.setHWBAS(i_Hwbas);
 			y10StrItemExp.setHWSTE(i_Hwste);
 			y10StrItemExp.setKOSTL(i_Kostl);
-			y10StrItemExp.setKURSF(i_kursf);
+			y10StrItemExp.setKURSF(i_Kursf);
 			y10StrItemExp.setLIMIT_BUS(i_Limit_bus);
 			y10StrItemExp.setLIMIT_SAT(i_Limit_sat);
 			y10StrItemExp.setMWSKZ(i_Mwskz);
