@@ -1,6 +1,6 @@
 
 /**
- * Y10_SEARCH_DOCUMENT_IDResponse.java
+ * Y10_STR_USERWEB_RANG.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:34:40 IST)
@@ -11,45 +11,134 @@
             
 
             /**
-            *  Y10_SEARCH_DOCUMENT_IDResponse bean class
+            *  Y10_STR_USERWEB_RANG bean class
             */
             @SuppressWarnings({"unchecked","unused"})
         
-        public  class Y10_SEARCH_DOCUMENT_IDResponse
+        public  class Y10_STR_USERWEB_RANG
         implements org.apache.axis2.databinding.ADBBean{
-        
-                public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName(
-                "urn:sap-com:document:sap:rfc:functions",
-                "Y10_SEARCH_DOCUMENT_IDResponse",
-                "ns1");
-
+        /* This type was generated from the piece of schema that had
+                name = Y10_STR_USERWEB_RANG
+                Namespace URI = urn:sap-com:document:sap:rfc:functions
+                Namespace Prefix = ns1
+                */
             
 
                         /**
-                        * field for IM_SEARCH_RESULT
+                        * field for SIGN
                         */
 
                         
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS localIM_SEARCH_RESULT ;
+                                    protected functions.rfc.sap.document.sap_com.Char1 localSIGN ;
                                 
 
                            /**
                            * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS
+                           * @return functions.rfc.sap.document.sap_com.Char1
                            */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS getIM_SEARCH_RESULT(){
-                               return localIM_SEARCH_RESULT;
+                           public  functions.rfc.sap.document.sap_com.Char1 getSIGN(){
+                               return localSIGN;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param IM_SEARCH_RESULT
+                               * @param param SIGN
                                */
-                               public void setIM_SEARCH_RESULT(functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS param){
+                               public void setSIGN(functions.rfc.sap.document.sap_com.Char1 param){
                             
-                                            this.localIM_SEARCH_RESULT=param;
+                                            this.localSIGN=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for OPTION
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Char2 localOPTION ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Char2
+                           */
+                           public  functions.rfc.sap.document.sap_com.Char2 getOPTION(){
+                               return localOPTION;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param OPTION
+                               */
+                               public void setOPTION(functions.rfc.sap.document.sap_com.Char2 param){
+                            
+                                            this.localOPTION=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for LOW
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Char12 localLOW ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Char12
+                           */
+                           public  functions.rfc.sap.document.sap_com.Char12 getLOW(){
+                               return localLOW;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param LOW
+                               */
+                               public void setLOW(functions.rfc.sap.document.sap_com.Char12 param){
+                            
+                                            this.localLOW=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for HIGH
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Char12 localHIGH ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Char12
+                           */
+                           public  functions.rfc.sap.document.sap_com.Char12 getHIGH(){
+                               return localHIGH;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param HIGH
+                               */
+                               public void setHIGH(functions.rfc.sap.document.sap_com.Char12 param){
+                            
+                                            this.localHIGH=param;
                                     
 
                                }
@@ -70,8 +159,8 @@
 
         
                org.apache.axiom.om.OMDataSource dataSource =
-                       new org.apache.axis2.databinding.ADBDataSource(this,MY_QNAME);
-               return factory.createOMElement(dataSource,MY_QNAME);
+                       new org.apache.axis2.databinding.ADBDataSource(this,parentQName);
+               return factory.createOMElement(dataSource,parentQName);
             
         }
 
@@ -103,21 +192,39 @@
                    java.lang.String namespacePrefix = registerPrefix(xmlWriter,"urn:sap-com:document:sap:rfc:functions");
                    if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)){
                        writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                           namespacePrefix+":Y10_SEARCH_DOCUMENT_IDResponse",
+                           namespacePrefix+":Y10_STR_USERWEB_RANG",
                            xmlWriter);
                    } else {
                        writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                           "Y10_SEARCH_DOCUMENT_IDResponse",
+                           "Y10_STR_USERWEB_RANG",
                            xmlWriter);
                    }
 
                
                    }
                
-                                            if (localIM_SEARCH_RESULT==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("IM_SEARCH_RESULT cannot be null!!");
+                                            if (localSIGN==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("SIGN cannot be null!!");
                                             }
-                                           localIM_SEARCH_RESULT.serialize(new javax.xml.namespace.QName("","IM_SEARCH_RESULT"),
+                                           localSIGN.serialize(new javax.xml.namespace.QName("","SIGN"),
+                                               xmlWriter);
+                                        
+                                            if (localOPTION==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("OPTION cannot be null!!");
+                                            }
+                                           localOPTION.serialize(new javax.xml.namespace.QName("","OPTION"),
+                                               xmlWriter);
+                                        
+                                            if (localLOW==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("LOW cannot be null!!");
+                                            }
+                                           localLOW.serialize(new javax.xml.namespace.QName("","LOW"),
+                                               xmlWriter);
+                                        
+                                            if (localHIGH==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("HIGH cannot be null!!");
+                                            }
+                                           localHIGH.serialize(new javax.xml.namespace.QName("","HIGH"),
                                                xmlWriter);
                                         
                     xmlWriter.writeEndElement();
@@ -306,13 +413,40 @@
 
                 
                             elementList.add(new javax.xml.namespace.QName("",
-                                                                      "IM_SEARCH_RESULT"));
+                                                                      "SIGN"));
                             
                             
-                                    if (localIM_SEARCH_RESULT==null){
-                                         throw new org.apache.axis2.databinding.ADBException("IM_SEARCH_RESULT cannot be null!!");
+                                    if (localSIGN==null){
+                                         throw new org.apache.axis2.databinding.ADBException("SIGN cannot be null!!");
                                     }
-                                    elementList.add(localIM_SEARCH_RESULT);
+                                    elementList.add(localSIGN);
+                                
+                            elementList.add(new javax.xml.namespace.QName("",
+                                                                      "OPTION"));
+                            
+                            
+                                    if (localOPTION==null){
+                                         throw new org.apache.axis2.databinding.ADBException("OPTION cannot be null!!");
+                                    }
+                                    elementList.add(localOPTION);
+                                
+                            elementList.add(new javax.xml.namespace.QName("",
+                                                                      "LOW"));
+                            
+                            
+                                    if (localLOW==null){
+                                         throw new org.apache.axis2.databinding.ADBException("LOW cannot be null!!");
+                                    }
+                                    elementList.add(localLOW);
+                                
+                            elementList.add(new javax.xml.namespace.QName("",
+                                                                      "HIGH"));
+                            
+                            
+                                    if (localHIGH==null){
+                                         throw new org.apache.axis2.databinding.ADBException("HIGH cannot be null!!");
+                                    }
+                                    elementList.add(localHIGH);
                                 
 
                 return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
@@ -338,9 +472,9 @@
         * Postcondition: If this object is an element, the reader is positioned at its end element
         *                If this object is a complex type, the reader is positioned at the end element of its outer element
         */
-        public static Y10_SEARCH_DOCUMENT_IDResponse parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
-            Y10_SEARCH_DOCUMENT_IDResponse object =
-                new Y10_SEARCH_DOCUMENT_IDResponse();
+        public static Y10_STR_USERWEB_RANG parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
+            Y10_STR_USERWEB_RANG object =
+                new Y10_STR_USERWEB_RANG();
 
             int event;
             java.lang.String nillableValue = null;
@@ -364,10 +498,10 @@
 
                     java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":")+1);
                     
-                            if (!"Y10_SEARCH_DOCUMENT_IDResponse".equals(type)){
+                            if (!"Y10_STR_USERWEB_RANG".equals(type)){
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
-                                return (Y10_SEARCH_DOCUMENT_IDResponse)functions.rfc.sap.document.sap_com.ExtensionMapper.getTypeObject(
+                                return (Y10_STR_USERWEB_RANG)functions.rfc.sap.document.sap_com.ExtensionMapper.getTypeObject(
                                      nsUri,type,reader);
                               }
                         
@@ -392,9 +526,57 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","IM_SEARCH_RESULT").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","SIGN").equals(reader.getName())){
                                 
-                                                object.setIM_SEARCH_RESULT(functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS.Factory.parse(reader));
+                                                object.setSIGN(functions.rfc.sap.document.sap_com.Char1.Factory.parse(reader));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                else{
+                                    // A start element we are not expecting indicates an invalid parameter was passed
+                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                                }
+                            
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","OPTION").equals(reader.getName())){
+                                
+                                                object.setOPTION(functions.rfc.sap.document.sap_com.Char2.Factory.parse(reader));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                else{
+                                    // A start element we are not expecting indicates an invalid parameter was passed
+                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                                }
+                            
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","LOW").equals(reader.getName())){
+                                
+                                                object.setLOW(functions.rfc.sap.document.sap_com.Char12.Factory.parse(reader));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                else{
+                                    // A start element we are not expecting indicates an invalid parameter was passed
+                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                                }
+                            
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","HIGH").equals(reader.getName())){
+                                
+                                                object.setHIGH(functions.rfc.sap.document.sap_com.Char12.Factory.parse(reader));
                                               
                                         reader.next();
                                     

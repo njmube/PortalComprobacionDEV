@@ -53,7 +53,7 @@
                                                 this.localChar1=param;
                                             }
                                             else {
-                                            	this.localChar1=param;
+                                                throw new java.lang.RuntimeException();
                                             }
                                         
 

@@ -17,6 +17,7 @@ import functions.rfc.sap.document.sap_com.BUKRS_RAN;
 import functions.rfc.sap.document.sap_com.BUKRS_RAN_ITAB;
 import functions.rfc.sap.document.sap_com.Char1;
 import functions.rfc.sap.document.sap_com.Char10;
+import functions.rfc.sap.document.sap_com.Char12;
 import functions.rfc.sap.document.sap_com.Char2;
 import functions.rfc.sap.document.sap_com.Char4;
 import functions.rfc.sap.document.sap_com.Date10;
@@ -40,6 +41,7 @@ import functions.rfc.sap.document.sap_com.Y10_STR_RANGE_BLDAT;
 import functions.rfc.sap.document.sap_com.Y10_STR_RANGE_ERDAT;
 import functions.rfc.sap.document.sap_com.Y10_STR_RANGE_EXPENSEID;
 import functions.rfc.sap.document.sap_com.Y10_STR_RANGE_STATUS;
+import functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG;
 import functions.rfc.sap.document.sap_com.Y10_STR_WBS_EXPSTATMENT_PARAMS;
 import functions.rfc.sap.document.sap_com.Y10_STR_WBS_SEARCH_DOCUMENT;
 import functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BLDAT;
@@ -49,6 +51,7 @@ import functions.rfc.sap.document.sap_com.Y10_TT_RANGE_ERDAT;
 import functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEDOC;
 import functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEID;
 import functions.rfc.sap.document.sap_com.Y10_TT_RANGE_STATUS;
+import functions.rfc.sap.document.sap_com.Y10_TT_USERWEB_RAN_ITAB;
 import functions.rfc.sap.document.sap_com.ZWS_EXPENSE_UTILS_METHODSStub;
 import functions.rfc.sap.document.sap_com.ZWS_METHS_FOR_EXPMANStub;
 
@@ -299,6 +302,23 @@ public class ProviderDao {
 		lifnrRang.setHIGH(l_high);
 		lifreRanItab.addItem(lifnrRang);
 		y10StrWbsSearchDocument.setLIFNR_RAN(lifreRanItab);
+		
+		Y10_TT_USERWEB_RAN_ITAB y10TtUserwebRanItab = new Y10_TT_USERWEB_RAN_ITAB();
+		Y10_STR_USERWEB_RANG y10StrUserwebRang = new Y10_STR_USERWEB_RANG();
+		Char1 u_sign = new Char1();
+		Char2 u_option = new Char2();
+		Char12 u_low = new Char12();
+		Char12 u_high = new Char12();
+		u_sign.setChar1("I");
+		u_option.setChar2("EQ");
+		u_low.setChar12(lifnr);
+		u_high.setChar12(lifnr);
+		y10StrUserwebRang.setSIGN(u_sign);
+		y10StrUserwebRang.setOPTION(u_option);
+		y10StrUserwebRang.setLOW(u_low);
+		y10StrUserwebRang.setHIGH(u_high);
+		y10TtUserwebRanItab.addItem(y10StrUserwebRang);
+		y10StrWbsSearchDocument.setUSERWEB_RAN(y10TtUserwebRanItab);
 		
 		Y10_TT_RANGE_EXPENSEDOC expensedoc = new Y10_TT_RANGE_EXPENSEDOC();
 		y10StrWbsSearchDocument.setEXPENSEDOC_RAN(expensedoc);

@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
 public class BaseController {    
 
     @SuppressWarnings("rawtypes")
@@ -25,11 +22,6 @@ public class BaseController {
     	model.put("msg","Successful");
     	
     	return model;
-    }
-    
-    protected static String getCurrentUser() {
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	return auth.getName();
     }
 
 /**

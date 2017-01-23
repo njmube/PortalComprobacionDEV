@@ -1,6 +1,6 @@
 
 /**
- * Decimal52.java
+ * Y10_PASS_CHECKResponse.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:34:40 IST)
@@ -11,62 +11,91 @@
             
 
             /**
-            *  Decimal52 bean class
+            *  Y10_PASS_CHECKResponse bean class
             */
             @SuppressWarnings({"unchecked","unused"})
         
-        public  class Decimal52
+        public  class Y10_PASS_CHECKResponse
         implements org.apache.axis2.databinding.ADBBean{
         
                 public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName(
                 "urn:sap-com:document:sap:rfc:functions",
-                "decimal5.2",
+                "Y10_PASS_CHECKResponse",
                 "ns1");
 
             
 
                         /**
-                        * field for Decimal52
+                        * field for ES_LOGIN_DATA
                         */
 
                         
-                                    protected java.math.BigDecimal localDecimal52 ;
+                                    protected functions.rfc.sap.document.sap_com.Y10_STR_GW_LOGIN localES_LOGIN_DATA ;
                                 
 
                            /**
                            * Auto generated getter method
-                           * @return java.math.BigDecimal
+                           * @return functions.rfc.sap.document.sap_com.Y10_STR_GW_LOGIN
                            */
-                           public  java.math.BigDecimal getDecimal52(){
-                               return localDecimal52;
+                           public  functions.rfc.sap.document.sap_com.Y10_STR_GW_LOGIN getES_LOGIN_DATA(){
+                               return localES_LOGIN_DATA;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param Decimal52
+                               * @param param ES_LOGIN_DATA
                                */
-                               public void setDecimal52(java.math.BigDecimal param){
+                               public void setES_LOGIN_DATA(functions.rfc.sap.document.sap_com.Y10_STR_GW_LOGIN param){
                             
-                                            java.lang.String totalDigitsDecimal = org.apache.axis2.databinding.utils.ConverterUtil.convertToStandardDecimalNotation("5").toString();
-                                            if (org.apache.axis2.databinding.utils.ConverterUtil.compare(param, totalDigitsDecimal) > 0){
-                                                    this.localDecimal52=param;
-                                            }
-                                            else {
-                                                throw new java.lang.RuntimeException();
-                                            }
-                                        
+                                            this.localES_LOGIN_DATA=param;
+                                    
 
                                }
                             
 
-                            public java.lang.String toString(){
-                                
-                                        return localDecimal52.toString();
-                                    
-                            }
+                        /**
+                        * field for RETURN
+                        */
+
                         
+                                    protected functions.rfc.sap.document.sap_com.TABLE_OF_BAPIRET2 localRETURN ;
+                                
+                           /*  This tracker boolean wil be used to detect whether the user called the set method
+                          *   for this attribute. It will be used to determine whether to include this field
+                           *   in the serialized XML
+                           */
+                           protected boolean localRETURNTracker = false ;
+
+                           public boolean isRETURNSpecified(){
+                               return localRETURNTracker;
+                           }
+
+                           
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.TABLE_OF_BAPIRET2
+                           */
+                           public  functions.rfc.sap.document.sap_com.TABLE_OF_BAPIRET2 getRETURN(){
+                               return localRETURN;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param RETURN
+                               */
+                               public void setRETURN(functions.rfc.sap.document.sap_com.TABLE_OF_BAPIRET2 param){
+                            localRETURNTracker = param != null;
+                                   
+                                            this.localRETURN=param;
+                                    
+
+                               }
+                            
 
      
      
@@ -100,39 +129,47 @@
             throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException{
             
                 
-                //We can safely assume an element has only one type associated with it
-                
-                            java.lang.String namespace = parentQName.getNamespaceURI();
-                            java.lang.String _localName = parentQName.getLocalPart();
-                        
-                            writeStartElement(null, namespace, _localName, xmlWriter);
 
-                            // add the type details if this is used in a simple type
-                               if (serializeType){
-                                   java.lang.String namespacePrefix = registerPrefix(xmlWriter,"urn:sap-com:document:sap:rfc:functions");
-                                   if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)){
-                                       writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                                           namespacePrefix+":decimal5.2",
-                                           xmlWriter);
-                                   } else {
-                                       writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                                           "decimal5.2",
-                                           xmlWriter);
-                                   }
-                               }
-                            
-                                          if (localDecimal52==null){
-                                            
-                                                     throw new org.apache.axis2.databinding.ADBException("decimal5.2 cannot be null !!");
-                                                
-                                         }else{
-                                        
-                                                       xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localDecimal52));
-                                            
-                                         }
-                                    
-                            xmlWriter.writeEndElement();
-                    
+
+                java.lang.String prefix = null;
+                java.lang.String namespace = null;
+                
+
+                    prefix = parentQName.getPrefix();
+                    namespace = parentQName.getNamespaceURI();
+                    writeStartElement(prefix, namespace, parentQName.getLocalPart(), xmlWriter);
+                
+                  if (serializeType){
+               
+
+                   java.lang.String namespacePrefix = registerPrefix(xmlWriter,"urn:sap-com:document:sap:rfc:functions");
+                   if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)){
+                       writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
+                           namespacePrefix+":Y10_PASS_CHECKResponse",
+                           xmlWriter);
+                   } else {
+                       writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
+                           "Y10_PASS_CHECKResponse",
+                           xmlWriter);
+                   }
+
+               
+                   }
+               
+                                            if (localES_LOGIN_DATA==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("ES_LOGIN_DATA cannot be null!!");
+                                            }
+                                           localES_LOGIN_DATA.serialize(new javax.xml.namespace.QName("","ES_LOGIN_DATA"),
+                                               xmlWriter);
+                                         if (localRETURNTracker){
+                                            if (localRETURN==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("RETURN cannot be null!!");
+                                            }
+                                           localRETURN.serialize(new javax.xml.namespace.QName("","RETURN"),
+                                               xmlWriter);
+                                        }
+                    xmlWriter.writeEndElement();
+               
 
         }
 
@@ -312,14 +349,32 @@
 
 
         
+                 java.util.ArrayList elementList = new java.util.ArrayList();
+                 java.util.ArrayList attribList = new java.util.ArrayList();
+
                 
-                //We can safely assume an element has only one type associated with it
-                 return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(MY_QNAME,
-                            new java.lang.Object[]{
-                            org.apache.axis2.databinding.utils.reader.ADBXMLStreamReader.ELEMENT_TEXT,
-                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localDecimal52)
-                            },
-                            null);
+                            elementList.add(new javax.xml.namespace.QName("",
+                                                                      "ES_LOGIN_DATA"));
+                            
+                            
+                                    if (localES_LOGIN_DATA==null){
+                                         throw new org.apache.axis2.databinding.ADBException("ES_LOGIN_DATA cannot be null!!");
+                                    }
+                                    elementList.add(localES_LOGIN_DATA);
+                                 if (localRETURNTracker){
+                            elementList.add(new javax.xml.namespace.QName("",
+                                                                      "RETURN"));
+                            
+                            
+                                    if (localRETURN==null){
+                                         throw new org.apache.axis2.databinding.ADBException("RETURN cannot be null!!");
+                                    }
+                                    elementList.add(localRETURN);
+                                }
+
+                return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
+            
+            
 
         }
 
@@ -332,29 +387,6 @@
 
         
         
-                public static Decimal52 fromString(java.lang.String value,
-                                                    java.lang.String namespaceURI){
-                    Decimal52 returnValue = new  Decimal52();
-                    
-                            returnValue.setDecimal52(
-                                org.apache.axis2.databinding.utils.ConverterUtil.convertToDecimal(value));
-                        
-
-                    return returnValue;
-                }
-
-                public static Decimal52 fromString(javax.xml.stream.XMLStreamReader xmlStreamReader,
-                                                                    java.lang.String content) {
-                    if (content.indexOf(":") > -1){
-                        java.lang.String prefix = content.substring(0,content.indexOf(":"));
-                        java.lang.String namespaceUri = xmlStreamReader.getNamespaceContext().getNamespaceURI(prefix);
-                        return Decimal52.Factory.fromString(content,namespaceUri);
-                    } else {
-                       return Decimal52.Factory.fromString(content,"");
-                    }
-                }
-
-            
 
         /**
         * static method to create the object
@@ -363,9 +395,9 @@
         * Postcondition: If this object is an element, the reader is positioned at its end element
         *                If this object is a complex type, the reader is positioned at the end element of its outer element
         */
-        public static Decimal52 parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
-            Decimal52 object =
-                new Decimal52();
+        public static Y10_PASS_CHECKResponse parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
+            Y10_PASS_CHECKResponse object =
+                new Y10_PASS_CHECKResponse();
 
             int event;
             java.lang.String nillableValue = null;
@@ -377,6 +409,32 @@
                     reader.next();
 
                 
+                if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","type")!=null){
+                  java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
+                        "type");
+                  if (fullTypeName!=null){
+                    java.lang.String nsPrefix = null;
+                    if (fullTypeName.indexOf(":") > -1){
+                        nsPrefix = fullTypeName.substring(0,fullTypeName.indexOf(":"));
+                    }
+                    nsPrefix = nsPrefix==null?"":nsPrefix;
+
+                    java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":")+1);
+                    
+                            if (!"Y10_PASS_CHECKResponse".equals(type)){
+                                //find namespace for the prefix
+                                java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
+                                return (Y10_PASS_CHECKResponse)functions.rfc.sap.document.sap_com.ExtensionMapper.getTypeObject(
+                                     nsUri,type,reader);
+                              }
+                        
+
+                  }
+                
+
+                }
+
+                
 
                 
                 // Note all attributes that were handled. Used to differ normal attributes
@@ -384,35 +442,48 @@
                 java.util.Vector handledAttributes = new java.util.Vector();
                 
 
-                   
-                while(!reader.isEndElement()) {
-                    if (reader.isStartElement()  || reader.hasText()){
                 
-                                    if (reader.isStartElement()  || reader.hasText()){
+                    
+                    reader.next();
+                
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
-                                    if ("true".equals(nillableValue) || "1".equals(nillableValue)){
-                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"decimal5.2" +"  cannot be null");
-                                    }
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","ES_LOGIN_DATA").equals(reader.getName())){
+                                
+                                                object.setES_LOGIN_DATA(functions.rfc.sap.document.sap_com.Y10_STR_GW_LOGIN.Factory.parse(reader));
+                                              
+                                        reader.next();
                                     
-
-                                    java.lang.String content = reader.getElementText();
-                                    
-                                              object.setDecimal52(
-                                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToDecimal(content));
-                                            
                               }  // End of if for expected property start element
                                 
-                             else{
-                                        // A start element we are not expecting indicates an invalid parameter was passed
-                                        throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
-                             }
-                          
-                             } else {
+                                else{
+                                    // A start element we are not expecting indicates an invalid parameter was passed
+                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                                }
+                            
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","RETURN").equals(reader.getName())){
+                                
+                                                object.setRETURN(functions.rfc.sap.document.sap_com.TABLE_OF_BAPIRET2.Factory.parse(reader));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                    else {
+                                        
+                                    }
+                                  
+                            while (!reader.isStartElement() && !reader.isEndElement())
                                 reader.next();
-                             }  
-                           }  // end of while loop
-                        
+                            
+                                if (reader.isStartElement())
+                                // A start element we are not expecting indicates a trailing invalid property
+                                throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                            
 
 
 

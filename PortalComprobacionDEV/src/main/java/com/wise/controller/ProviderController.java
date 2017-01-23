@@ -14,7 +14,6 @@ import javax.xml.bind.JAXBException;
 import org.apache.axiom.attachments.ByteArrayDataSource;
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.databinding.ADBException;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +35,7 @@ import com.wise.dto.FullConfigDto;
 import com.wise.dto.TaxesDto;
 import com.wise.dto.ConfigDto;
 import com.wise.dto.AccStatusDto;
+import com.wise.dto.UserDto;
 import com.wise.model.Cfdi;
 import com.wise.model.Comprobante;
 import com.wise.service.ProviderService;
@@ -46,7 +46,7 @@ import functions.rfc.sap.document.sap_com.Y10_GET_CONF_DATA_FOR_EXPENResponse;
 import functions.rfc.sap.document.sap_com.Y10_GET_EXPENSE_STATEMENTResponse;
 import functions.rfc.sap.document.sap_com.Y10_SEARCH_DOCUMENT_IDResponse;
 import functions.rfc.sap.document.sap_com.Y10_STR_ACC_STATUS;
-import functions.rfc.sap.document.sap_com.Y10_STR_HEADER;
+import functions.rfc.sap.document.sap_com.Y10_STR_ALV_DATA_REQ;
 import functions.rfc.sap.document.sap_com.Y10_STR_PAYMENT_METHODS;
 import functions.rfc.sap.document.sap_com.Y10_STR_WBS_CONF_BUKRS;
 import functions.rfc.sap.document.sap_com.Y10_STR_WBS_CONF_CECOS;
@@ -55,7 +55,7 @@ import functions.rfc.sap.document.sap_com.Y10_STR_WBS_CONF_EXPCLASES;
 import functions.rfc.sap.document.sap_com.Y10_STR_WBS_CONF_TAXES;
 import functions.rfc.sap.document.sap_com.Y10_STR_WBS_EXP_STATEMENT;
 import functions.rfc.sap.document.sap_com.Y10_STR_WBS_VENDAT;
-import functions.rfc.sap.document.sap_com.Y10_TT_HEADER;
+import functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS;
 import functions.rfc.sap.document.sap_com.Y10_TT_WBS_EXP_STATEMENT;
 
 @Controller
@@ -71,12 +71,10 @@ public class ProviderController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> getConfDataForExpen(HttpServletRequest request, HttpSession session) throws AxisFault {
 		LOGGER.info("Getting Conf Data For Expen");
-		String str = getCurrentUser();
-		String lifnr = StringUtils.leftPad(str, 10, "0");
-		//String lifnr = String.format("%010d", Integer.parseInt(str));
-		if(lifnr != null){
+		UserDto user = (UserDto) session.getAttribute("UserDetails");
+		if(user != null){
 			try {
-				Y10_GET_CONF_DATA_FOR_EXPENResponse response = providerService.getConfDataForExpen(lifnr);
+				Y10_GET_CONF_DATA_FOR_EXPENResponse response = providerService.getConfDataForExpen(user.getI_LIFNR());
 				FullConfigDto fullConfigDto = new FullConfigDto();
 				for(Y10_STR_WBS_CONF_DOC_CLASSES doc : response.getIM_CONF_DATA().getEXPDOC_CONF().getItem()){
 					ExpDocConfDto dto = new ExpDocConfDto();
@@ -151,13 +149,11 @@ public class ProviderController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> getExpenseStatement(HttpServletRequest request, HttpSession session, String cmbRazonSocial, String fechaIni, String fechaFin, String cmbEstado, String expenseid) throws AxisFault {
 		LOGGER.info("Getting Expenses Statement");
-		String str = getCurrentUser();
-		String lifnr = StringUtils.leftPad(str, 10, "0");
-		//String lifnr = String.format("%010d", Integer.parseInt(str));
-		if(lifnr != null){
+		UserDto user = (UserDto) session.getAttribute("UserDetails");
+		if(user != null){
 			try {
 				List<ListExpenseDto> jsonResponse = new ArrayList<ListExpenseDto>();
-				Y10_GET_EXPENSE_STATEMENTResponse response = providerService.getExpenseStatement(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, lifnr, expenseid);
+				Y10_GET_EXPENSE_STATEMENTResponse response = providerService.getExpenseStatement(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, user.getI_LIFNR(), expenseid);
 				Y10_TT_WBS_EXP_STATEMENT header = response.getIM_EXP_STATEMENT();
 				Y10_STR_WBS_EXP_STATEMENT[] data = header.getItem();
 				if(data != null) {
@@ -241,55 +237,57 @@ public class ProviderController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> searchDocumentId(HttpServletRequest request, HttpSession session, String cmbRazonSocial, String fechaIni, String fechaFin, String cmbEstado) throws AxisFault {
 		LOGGER.info("Getting Requests List");
-		String str = getCurrentUser();
-		String lifnr = StringUtils.leftPad(str, 10, "0");
-		//String lifnr = String.format("%010d", Integer.parseInt(str));
-		if(lifnr != null){
+		UserDto user = (UserDto) session.getAttribute("UserDetails");
+		if(user != null){
 			try {
 				List<RequestDto> jsonResponse = new ArrayList<RequestDto>();
-				Y10_SEARCH_DOCUMENT_IDResponse response = providerService.searchDocumentId(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, lifnr);
-				Y10_TT_HEADER header = response.getIM_SEARCH_RESULT();
-				Y10_STR_HEADER[] data = header.getItem();
+				Y10_SEARCH_DOCUMENT_IDResponse response = providerService.searchDocumentId(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, user.getI_LIFNR());
+				Y10_TT_ALV_REQ_ROWS header = response.getIM_SEARCH_RESULT();
+				Y10_STR_ALV_DATA_REQ[] data = header.getItem();
 				if(data != null) {
-					for(Y10_STR_HEADER item : data) {
+					for(Y10_STR_ALV_DATA_REQ item : data) {
 						RequestDto dto = new RequestDto();
-						dto.setAdmin(item.getADMIN().toString());
 						dto.setAedat(item.getAEDAT().toString());
 						dto.setApprdate(item.getAPPRDATE().toString());
 						dto.setApprover(item.getAPPROVER().toString());
+						dto.setBelnr(item.getBELNR().toString());
 						dto.setBldat(item.getBLDAT().toString());
 						dto.setBudat(item.getBUDAT().toString());
 						dto.setBukrs(item.getBUKRS().toString());
-						dto.setBuktx(item.getBUKTX().toString());
+						dto.setButxt(item.getBUTXT().toString());
+						dto.setCpudt(item.getCPUDT().toString());
 						dto.setDeptcode(item.getDEPTCODE().toString());
-						dto.setDeptkostl(item.getDEPTKOSTL().toString());
-						dto.setDeptxt(item.getDEPTXT().toString());
+						dto.setDmbtr(item.getDMBTR().toString());
 						dto.setErdat(item.getERDAT().toString());
-						dto.setErnam(item.getERNAM().toString());
-						dto.setErzet(item.getERZET().toString());
+						dto.setEstatus_a(item.getESTATUS_A().toString());
+						dto.setEstatus_c(item.getESTATUS_C().toString());
 						dto.setExpensedoc(item.getEXPENSEDOC().toString());
-						dto.setExpensedocdes(item.getEXPENSEDOCDES().toString());
 						dto.setExpenseid(item.getEXPENSEID().toString());
 						dto.setExpind(item.getEXPIND().toString());
+						dto.setGjahr(item.getGJAHR().toString());
 						dto.setKursf(item.getKURSF().toString());
-						dto.setLifnam(item.getLIFNAM().toString());
+						dto.setLangu(item.getLANGU().toString());
 						dto.setLifnr(item.getLIFNR().toString());
-						dto.setNetamtexp(item.getNETAMTEXP().toString());
-						dto.setNetamtreq(item.getNETAMTREQ().toString());
+						dto.setName(item.getNAME().toString());
 						dto.setPostdate(item.getPOSTDATE().toString());
 						dto.setPostedby(item.getPOSTEDBY().toString());
 						dto.setPreldoc(item.getPRELDOC().toString());
 						dto.setPrelgjahr(item.getPRELGJAHR().toString());
+						dto.setReq_block_icon(item.getREQ_BLOCK_ICON().toString());
 						dto.setReqexpdat(item.getREQEXPDAT().toString());
 						dto.setReqind(item.getREQIND().toString());
-						dto.setStatus(item.getSTATUS().toString());
-						dto.setStat_descr(item.getSTAT_DESCR().toString());
+						dto.setReqlin(item.getREQLIN().toString());
+						dto.setStatus_a(item.getSTATUS_A().toString());
+						dto.setStatus_c(item.getSTATUS_C().toString());
 						dto.setSubdeptcode(item.getSUBDEPTCODE().toString());
-						dto.setSubdeptxt(item.getSUBDEPTXT().toString());
 						dto.setTcode(item.getTCODE().toString());
+						dto.setTexpensedoc(item.getTEXPENSEDOC().toString());
 						dto.setUserweb(item.getUSERWEB().toString());
+						dto.setUsnam(item.getUSNAM().toString());
+						dto.setVbelnr(item.getVBELNR().toString());
+						dto.setVgjahr(item.getVGJAHR().toString());
 						dto.setWaers(item.getWAERS().toString());
-						dto.setWwert(item.getWWERT().toString());
+						dto.setWrbtr(item.getWRBTR().toString());
 						jsonResponse.add(dto);
 						}
 				
@@ -313,14 +311,12 @@ public class ProviderController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> getAccStatus(HttpServletRequest request, HttpSession session, String cmbRazonSocial) {
 		LOGGER.info("Getting Account Status");
-		String str = getCurrentUser();
-		String lifnr = StringUtils.leftPad(str, 10, "0");
-		//String lifnr = String.format("%010d", Integer.parseInt(str));
+		UserDto user = (UserDto) session.getAttribute("UserDetails");
 		Locale locale = RequestContextUtils.getLocale(request);
 		String bad = "";
-		if(lifnr != null) {
+		if(user != null) {
 			try {
-				Y10_FG_ACC_STATUSResponse response = providerService.getAccStatus(lifnr, cmbRazonSocial, locale.getLanguage());				
+				Y10_FG_ACC_STATUSResponse response = providerService.getAccStatus(user.getI_LIFNR(), cmbRazonSocial, locale.getLanguage());				
 				if(response.getET_OPENITEMS() == null && response.getET_CLEAREDITEMS() == null){
 					BAPIRET2[] items = response.getRETURN().getItem();
 					if(items != null && items.length > 0) {

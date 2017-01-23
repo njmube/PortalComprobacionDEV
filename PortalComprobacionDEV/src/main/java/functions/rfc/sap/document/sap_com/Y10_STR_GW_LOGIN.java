@@ -1,6 +1,6 @@
 
 /**
- * Y10_STR_WBS_SEARCH_DOCUMENT.java
+ * Y10_STR_GW_LOGIN.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:34:40 IST)
@@ -11,374 +11,314 @@
             
 
             /**
-            *  Y10_STR_WBS_SEARCH_DOCUMENT bean class
+            *  Y10_STR_GW_LOGIN bean class
             */
             @SuppressWarnings({"unchecked","unused"})
         
-        public  class Y10_STR_WBS_SEARCH_DOCUMENT
+        public  class Y10_STR_GW_LOGIN
         implements org.apache.axis2.databinding.ADBBean{
         /* This type was generated from the piece of schema that had
-                name = Y10_STR_WBS_SEARCH_DOCUMENT
+                name = Y10_STR_GW_LOGIN
                 Namespace URI = urn:sap-com:document:sap:rfc:functions
                 Namespace Prefix = ns1
                 */
             
 
                         /**
-                        * field for BUKRS_RAN
+                        * field for USERWEB
                         */
 
                         
-                                    protected functions.rfc.sap.document.sap_com.BUKRS_RAN_ITAB localBUKRS_RAN ;
+                                    protected functions.rfc.sap.document.sap_com.Char12 localUSERWEB ;
                                 
 
                            /**
                            * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.BUKRS_RAN_ITAB
+                           * @return functions.rfc.sap.document.sap_com.Char12
                            */
-                           public  functions.rfc.sap.document.sap_com.BUKRS_RAN_ITAB getBUKRS_RAN(){
-                               return localBUKRS_RAN;
+                           public  functions.rfc.sap.document.sap_com.Char12 getUSERWEB(){
+                               return localUSERWEB;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param BUKRS_RAN
+                               * @param param USERWEB
                                */
-                               public void setBUKRS_RAN(functions.rfc.sap.document.sap_com.BUKRS_RAN_ITAB param){
+                               public void setUSERWEB(functions.rfc.sap.document.sap_com.Char12 param){
                             
-                                            this.localBUKRS_RAN=param;
+                                            this.localUSERWEB=param;
                                     
 
                                }
                             
 
                         /**
-                        * field for EXPENSEID_RAN
+                        * field for STATE
                         */
 
                         
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEID localEXPENSEID_RAN ;
-                                
-
-                           /**
-                           * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEID
-                           */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEID getEXPENSEID_RAN(){
-                               return localEXPENSEID_RAN;
-                           }
-
-                           
-                        
-                            /**
-                               * Auto generated setter method
-                               * @param param EXPENSEID_RAN
-                               */
-                               public void setEXPENSEID_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEID param){
-                            
-                                            this.localEXPENSEID_RAN=param;
-                                    
-
-                               }
-                            
-
-                        /**
-                        * field for LIFNR_RAN
-                        */
-
-                        
-                                    protected functions.rfc.sap.document.sap_com.LIFRE_RAN_ITAB localLIFNR_RAN ;
-                                
-
-                           /**
-                           * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.LIFRE_RAN_ITAB
-                           */
-                           public  functions.rfc.sap.document.sap_com.LIFRE_RAN_ITAB getLIFNR_RAN(){
-                               return localLIFNR_RAN;
-                           }
-
-                           
-                        
-                            /**
-                               * Auto generated setter method
-                               * @param param LIFNR_RAN
-                               */
-                               public void setLIFNR_RAN(functions.rfc.sap.document.sap_com.LIFRE_RAN_ITAB param){
-                            
-                                            this.localLIFNR_RAN=param;
-                                    
-
-                               }
-                            
-
-                        /**
-                        * field for USERWEB_RAN
-                        */
-
-                        
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_USERWEB_RAN_ITAB localUSERWEB_RAN ;
-                                
-
-                           /**
-                           * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_USERWEB_RAN_ITAB
-                           */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_USERWEB_RAN_ITAB getUSERWEB_RAN(){
-                               return localUSERWEB_RAN;
-                           }
-
-                           
-                        
-                            /**
-                               * Auto generated setter method
-                               * @param param USERWEB_RAN
-                               */
-                               public void setUSERWEB_RAN(functions.rfc.sap.document.sap_com.Y10_TT_USERWEB_RAN_ITAB param){
-                            
-                                            this.localUSERWEB_RAN=param;
-                                    
-
-                               }
-                            
-
-                        /**
-                        * field for EXPENSEDOC_RAN
-                        */
-
-                        
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEDOC localEXPENSEDOC_RAN ;
-                                
-
-                           /**
-                           * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEDOC
-                           */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEDOC getEXPENSEDOC_RAN(){
-                               return localEXPENSEDOC_RAN;
-                           }
-
-                           
-                        
-                            /**
-                               * Auto generated setter method
-                               * @param param EXPENSEDOC_RAN
-                               */
-                               public void setEXPENSEDOC_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEDOC param){
-                            
-                                            this.localEXPENSEDOC_RAN=param;
-                                    
-
-                               }
-                            
-
-                        /**
-                        * field for DEPTCODE_RAN
-                        */
-
-                        
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_RANGE_DEPTCODE localDEPTCODE_RAN ;
-                                
-
-                           /**
-                           * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_RANGE_DEPTCODE
-                           */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_RANGE_DEPTCODE getDEPTCODE_RAN(){
-                               return localDEPTCODE_RAN;
-                           }
-
-                           
-                        
-                            /**
-                               * Auto generated setter method
-                               * @param param DEPTCODE_RAN
-                               */
-                               public void setDEPTCODE_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_DEPTCODE param){
-                            
-                                            this.localDEPTCODE_RAN=param;
-                                    
-
-                               }
-                            
-
-                        /**
-                        * field for BLDAT_RAN
-                        */
-
-                        
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BLDAT localBLDAT_RAN ;
-                                
-
-                           /**
-                           * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BLDAT
-                           */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BLDAT getBLDAT_RAN(){
-                               return localBLDAT_RAN;
-                           }
-
-                           
-                        
-                            /**
-                               * Auto generated setter method
-                               * @param param BLDAT_RAN
-                               */
-                               public void setBLDAT_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BLDAT param){
-                            
-                                            this.localBLDAT_RAN=param;
-                                    
-
-                               }
-                            
-
-                        /**
-                        * field for BUDAT_RAN
-                        */
-
-                        
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BUDAT localBUDAT_RAN ;
-                                
-
-                           /**
-                           * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BUDAT
-                           */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BUDAT getBUDAT_RAN(){
-                               return localBUDAT_RAN;
-                           }
-
-                           
-                        
-                            /**
-                               * Auto generated setter method
-                               * @param param BUDAT_RAN
-                               */
-                               public void setBUDAT_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BUDAT param){
-                            
-                                            this.localBUDAT_RAN=param;
-                                    
-
-                               }
-                            
-
-                        /**
-                        * field for STATUS_RAN
-                        */
-
-                        
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_RANGE_STATUS localSTATUS_RAN ;
-                                
-
-                           /**
-                           * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_RANGE_STATUS
-                           */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_RANGE_STATUS getSTATUS_RAN(){
-                               return localSTATUS_RAN;
-                           }
-
-                           
-                        
-                            /**
-                               * Auto generated setter method
-                               * @param param STATUS_RAN
-                               */
-                               public void setSTATUS_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_STATUS param){
-                            
-                                            this.localSTATUS_RAN=param;
-                                    
-
-                               }
-                            
-
-                        /**
-                        * field for ERDAT_RAN
-                        */
-
-                        
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_RANGE_ERDAT localERDAT_RAN ;
-                                
-
-                           /**
-                           * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_RANGE_ERDAT
-                           */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_RANGE_ERDAT getERDAT_RAN(){
-                               return localERDAT_RAN;
-                           }
-
-                           
-                        
-                            /**
-                               * Auto generated setter method
-                               * @param param ERDAT_RAN
-                               */
-                               public void setERDAT_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_ERDAT param){
-                            
-                                            this.localERDAT_RAN=param;
-                                    
-
-                               }
-                            
-
-                        /**
-                        * field for REQIND
-                        */
-
-                        
-                                    protected functions.rfc.sap.document.sap_com.Char1 localREQIND ;
+                                    protected functions.rfc.sap.document.sap_com.Char1 localSTATE ;
                                 
 
                            /**
                            * Auto generated getter method
                            * @return functions.rfc.sap.document.sap_com.Char1
                            */
-                           public  functions.rfc.sap.document.sap_com.Char1 getREQIND(){
-                               return localREQIND;
+                           public  functions.rfc.sap.document.sap_com.Char1 getSTATE(){
+                               return localSTATE;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param REQIND
+                               * @param param STATE
                                */
-                               public void setREQIND(functions.rfc.sap.document.sap_com.Char1 param){
+                               public void setSTATE(functions.rfc.sap.document.sap_com.Char1 param){
                             
-                                            this.localREQIND=param;
+                                            this.localSTATE=param;
                                     
 
                                }
                             
 
                         /**
-                        * field for EXPIND
+                        * field for UIDDATE
                         */
 
                         
-                                    protected functions.rfc.sap.document.sap_com.Char1 localEXPIND ;
+                                    protected functions.rfc.sap.document.sap_com.Date10 localUIDDATE ;
                                 
 
                            /**
                            * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Char1
+                           * @return functions.rfc.sap.document.sap_com.Date10
                            */
-                           public  functions.rfc.sap.document.sap_com.Char1 getEXPIND(){
-                               return localEXPIND;
+                           public  functions.rfc.sap.document.sap_com.Date10 getUIDDATE(){
+                               return localUIDDATE;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param EXPIND
+                               * @param param UIDDATE
                                */
-                               public void setEXPIND(functions.rfc.sap.document.sap_com.Char1 param){
+                               public void setUIDDATE(functions.rfc.sap.document.sap_com.Date10 param){
                             
-                                            this.localEXPIND=param;
+                                            this.localUIDDATE=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for VALIDTO
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Date10 localVALIDTO ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Date10
+                           */
+                           public  functions.rfc.sap.document.sap_com.Date10 getVALIDTO(){
+                               return localVALIDTO;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param VALIDTO
+                               */
+                               public void setVALIDTO(functions.rfc.sap.document.sap_com.Date10 param){
+                            
+                                            this.localVALIDTO=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for LCNT
+                        */
+
+                        
+                                    protected org.apache.axis2.databinding.types.UnsignedByte localLCNT ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return org.apache.axis2.databinding.types.UnsignedByte
+                           */
+                           public  org.apache.axis2.databinding.types.UnsignedByte getLCNT(){
+                               return localLCNT;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param LCNT
+                               */
+                               public void setLCNT(org.apache.axis2.databinding.types.UnsignedByte param){
+                            
+                                            this.localLCNT=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for LDATE
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Date10 localLDATE ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Date10
+                           */
+                           public  functions.rfc.sap.document.sap_com.Date10 getLDATE(){
+                               return localLDATE;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param LDATE
+                               */
+                               public void setLDATE(functions.rfc.sap.document.sap_com.Date10 param){
+                            
+                                            this.localLDATE=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for LTIME
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Time localLTIME ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Time
+                           */
+                           public  functions.rfc.sap.document.sap_com.Time getLTIME(){
+                               return localLTIME;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param LTIME
+                               */
+                               public void setLTIME(functions.rfc.sap.document.sap_com.Time param){
+                            
+                                            this.localLTIME=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for UPDPASS
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Date10 localUPDPASS ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Date10
+                           */
+                           public  functions.rfc.sap.document.sap_com.Date10 getUPDPASS(){
+                               return localUPDPASS;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param UPDPASS
+                               */
+                               public void setUPDPASS(functions.rfc.sap.document.sap_com.Date10 param){
+                            
+                                            this.localUPDPASS=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for LIFNR
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Char10 localLIFNR ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Char10
+                           */
+                           public  functions.rfc.sap.document.sap_com.Char10 getLIFNR(){
+                               return localLIFNR;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param LIFNR
+                               */
+                               public void setLIFNR(functions.rfc.sap.document.sap_com.Char10 param){
+                            
+                                            this.localLIFNR=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for LIFNAM
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Char35 localLIFNAM ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Char35
+                           */
+                           public  functions.rfc.sap.document.sap_com.Char35 getLIFNAM(){
+                               return localLIFNAM;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param LIFNAM
+                               */
+                               public void setLIFNAM(functions.rfc.sap.document.sap_com.Char35 param){
+                            
+                                            this.localLIFNAM=param;
                                     
 
                                }
@@ -432,87 +372,87 @@
                    java.lang.String namespacePrefix = registerPrefix(xmlWriter,"urn:sap-com:document:sap:rfc:functions");
                    if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)){
                        writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                           namespacePrefix+":Y10_STR_WBS_SEARCH_DOCUMENT",
+                           namespacePrefix+":Y10_STR_GW_LOGIN",
                            xmlWriter);
                    } else {
                        writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                           "Y10_STR_WBS_SEARCH_DOCUMENT",
+                           "Y10_STR_GW_LOGIN",
                            xmlWriter);
                    }
 
                
                    }
                
-                                            if (localBUKRS_RAN==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("BUKRS_RAN cannot be null!!");
+                                            if (localUSERWEB==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("USERWEB cannot be null!!");
                                             }
-                                           localBUKRS_RAN.serialize(new javax.xml.namespace.QName("","BUKRS_RAN"),
+                                           localUSERWEB.serialize(new javax.xml.namespace.QName("","USERWEB"),
                                                xmlWriter);
                                         
-                                            if (localEXPENSEID_RAN==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("EXPENSEID_RAN cannot be null!!");
+                                            if (localSTATE==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("STATE cannot be null!!");
                                             }
-                                           localEXPENSEID_RAN.serialize(new javax.xml.namespace.QName("","EXPENSEID_RAN"),
+                                           localSTATE.serialize(new javax.xml.namespace.QName("","STATE"),
                                                xmlWriter);
                                         
-                                            if (localLIFNR_RAN==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("LIFNR_RAN cannot be null!!");
+                                            if (localUIDDATE==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("UIDDATE cannot be null!!");
                                             }
-                                           localLIFNR_RAN.serialize(new javax.xml.namespace.QName("","LIFNR_RAN"),
+                                           localUIDDATE.serialize(new javax.xml.namespace.QName("","UIDDATE"),
                                                xmlWriter);
                                         
-                                            if (localUSERWEB_RAN==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("USERWEB_RAN cannot be null!!");
+                                            if (localVALIDTO==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("VALIDTO cannot be null!!");
                                             }
-                                           localUSERWEB_RAN.serialize(new javax.xml.namespace.QName("","USERWEB_RAN"),
+                                           localVALIDTO.serialize(new javax.xml.namespace.QName("","VALIDTO"),
                                                xmlWriter);
                                         
-                                            if (localEXPENSEDOC_RAN==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("EXPENSEDOC_RAN cannot be null!!");
+                                    namespace = "";
+                                    writeStartElement(null, namespace, "LCNT", xmlWriter);
+                             
+
+                                          if (localLCNT==null){
+                                              // write the nil attribute
+                                              
+                                                     throw new org.apache.axis2.databinding.ADBException("LCNT cannot be null!!");
+                                                  
+                                          }else{
+
+                                        
+                                                   xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localLCNT));
+                                            
+                                          }
+                                    
+                                   xmlWriter.writeEndElement();
+                             
+                                            if (localLDATE==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("LDATE cannot be null!!");
                                             }
-                                           localEXPENSEDOC_RAN.serialize(new javax.xml.namespace.QName("","EXPENSEDOC_RAN"),
+                                           localLDATE.serialize(new javax.xml.namespace.QName("","LDATE"),
                                                xmlWriter);
                                         
-                                            if (localDEPTCODE_RAN==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("DEPTCODE_RAN cannot be null!!");
+                                            if (localLTIME==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("LTIME cannot be null!!");
                                             }
-                                           localDEPTCODE_RAN.serialize(new javax.xml.namespace.QName("","DEPTCODE_RAN"),
+                                           localLTIME.serialize(new javax.xml.namespace.QName("","LTIME"),
                                                xmlWriter);
                                         
-                                            if (localBLDAT_RAN==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("BLDAT_RAN cannot be null!!");
+                                            if (localUPDPASS==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("UPDPASS cannot be null!!");
                                             }
-                                           localBLDAT_RAN.serialize(new javax.xml.namespace.QName("","BLDAT_RAN"),
+                                           localUPDPASS.serialize(new javax.xml.namespace.QName("","UPDPASS"),
                                                xmlWriter);
                                         
-                                            if (localBUDAT_RAN==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("BUDAT_RAN cannot be null!!");
+                                            if (localLIFNR==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("LIFNR cannot be null!!");
                                             }
-                                           localBUDAT_RAN.serialize(new javax.xml.namespace.QName("","BUDAT_RAN"),
+                                           localLIFNR.serialize(new javax.xml.namespace.QName("","LIFNR"),
                                                xmlWriter);
                                         
-                                            if (localSTATUS_RAN==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("STATUS_RAN cannot be null!!");
+                                            if (localLIFNAM==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("LIFNAM cannot be null!!");
                                             }
-                                           localSTATUS_RAN.serialize(new javax.xml.namespace.QName("","STATUS_RAN"),
-                                               xmlWriter);
-                                        
-                                            if (localERDAT_RAN==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("ERDAT_RAN cannot be null!!");
-                                            }
-                                           localERDAT_RAN.serialize(new javax.xml.namespace.QName("","ERDAT_RAN"),
-                                               xmlWriter);
-                                        
-                                            if (localREQIND==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("REQIND cannot be null!!");
-                                            }
-                                           localREQIND.serialize(new javax.xml.namespace.QName("","REQIND"),
-                                               xmlWriter);
-                                        
-                                            if (localEXPIND==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("EXPIND cannot be null!!");
-                                            }
-                                           localEXPIND.serialize(new javax.xml.namespace.QName("","EXPIND"),
+                                           localLIFNAM.serialize(new javax.xml.namespace.QName("","LIFNAM"),
                                                xmlWriter);
                                         
                     xmlWriter.writeEndElement();
@@ -701,112 +641,94 @@
 
                 
                             elementList.add(new javax.xml.namespace.QName("",
-                                                                      "BUKRS_RAN"));
+                                                                      "USERWEB"));
                             
                             
-                                    if (localBUKRS_RAN==null){
-                                         throw new org.apache.axis2.databinding.ADBException("BUKRS_RAN cannot be null!!");
+                                    if (localUSERWEB==null){
+                                         throw new org.apache.axis2.databinding.ADBException("USERWEB cannot be null!!");
                                     }
-                                    elementList.add(localBUKRS_RAN);
+                                    elementList.add(localUSERWEB);
                                 
                             elementList.add(new javax.xml.namespace.QName("",
-                                                                      "EXPENSEID_RAN"));
+                                                                      "STATE"));
                             
                             
-                                    if (localEXPENSEID_RAN==null){
-                                         throw new org.apache.axis2.databinding.ADBException("EXPENSEID_RAN cannot be null!!");
+                                    if (localSTATE==null){
+                                         throw new org.apache.axis2.databinding.ADBException("STATE cannot be null!!");
                                     }
-                                    elementList.add(localEXPENSEID_RAN);
+                                    elementList.add(localSTATE);
                                 
                             elementList.add(new javax.xml.namespace.QName("",
-                                                                      "LIFNR_RAN"));
+                                                                      "UIDDATE"));
                             
                             
-                                    if (localLIFNR_RAN==null){
-                                         throw new org.apache.axis2.databinding.ADBException("LIFNR_RAN cannot be null!!");
+                                    if (localUIDDATE==null){
+                                         throw new org.apache.axis2.databinding.ADBException("UIDDATE cannot be null!!");
                                     }
-                                    elementList.add(localLIFNR_RAN);
+                                    elementList.add(localUIDDATE);
                                 
                             elementList.add(new javax.xml.namespace.QName("",
-                                                                      "USERWEB_RAN"));
+                                                                      "VALIDTO"));
                             
                             
-                                    if (localUSERWEB_RAN==null){
-                                         throw new org.apache.axis2.databinding.ADBException("USERWEB_RAN cannot be null!!");
+                                    if (localVALIDTO==null){
+                                         throw new org.apache.axis2.databinding.ADBException("VALIDTO cannot be null!!");
                                     }
-                                    elementList.add(localUSERWEB_RAN);
+                                    elementList.add(localVALIDTO);
+                                
+                                      elementList.add(new javax.xml.namespace.QName("",
+                                                                      "LCNT"));
+                                 
+                                        if (localLCNT != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localLCNT));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("LCNT cannot be null!!");
+                                        }
+                                    
+                            elementList.add(new javax.xml.namespace.QName("",
+                                                                      "LDATE"));
+                            
+                            
+                                    if (localLDATE==null){
+                                         throw new org.apache.axis2.databinding.ADBException("LDATE cannot be null!!");
+                                    }
+                                    elementList.add(localLDATE);
                                 
                             elementList.add(new javax.xml.namespace.QName("",
-                                                                      "EXPENSEDOC_RAN"));
+                                                                      "LTIME"));
                             
                             
-                                    if (localEXPENSEDOC_RAN==null){
-                                         throw new org.apache.axis2.databinding.ADBException("EXPENSEDOC_RAN cannot be null!!");
+                                    if (localLTIME==null){
+                                         throw new org.apache.axis2.databinding.ADBException("LTIME cannot be null!!");
                                     }
-                                    elementList.add(localEXPENSEDOC_RAN);
+                                    elementList.add(localLTIME);
                                 
                             elementList.add(new javax.xml.namespace.QName("",
-                                                                      "DEPTCODE_RAN"));
+                                                                      "UPDPASS"));
                             
                             
-                                    if (localDEPTCODE_RAN==null){
-                                         throw new org.apache.axis2.databinding.ADBException("DEPTCODE_RAN cannot be null!!");
+                                    if (localUPDPASS==null){
+                                         throw new org.apache.axis2.databinding.ADBException("UPDPASS cannot be null!!");
                                     }
-                                    elementList.add(localDEPTCODE_RAN);
+                                    elementList.add(localUPDPASS);
                                 
                             elementList.add(new javax.xml.namespace.QName("",
-                                                                      "BLDAT_RAN"));
+                                                                      "LIFNR"));
                             
                             
-                                    if (localBLDAT_RAN==null){
-                                         throw new org.apache.axis2.databinding.ADBException("BLDAT_RAN cannot be null!!");
+                                    if (localLIFNR==null){
+                                         throw new org.apache.axis2.databinding.ADBException("LIFNR cannot be null!!");
                                     }
-                                    elementList.add(localBLDAT_RAN);
+                                    elementList.add(localLIFNR);
                                 
                             elementList.add(new javax.xml.namespace.QName("",
-                                                                      "BUDAT_RAN"));
+                                                                      "LIFNAM"));
                             
                             
-                                    if (localBUDAT_RAN==null){
-                                         throw new org.apache.axis2.databinding.ADBException("BUDAT_RAN cannot be null!!");
+                                    if (localLIFNAM==null){
+                                         throw new org.apache.axis2.databinding.ADBException("LIFNAM cannot be null!!");
                                     }
-                                    elementList.add(localBUDAT_RAN);
-                                
-                            elementList.add(new javax.xml.namespace.QName("",
-                                                                      "STATUS_RAN"));
-                            
-                            
-                                    if (localSTATUS_RAN==null){
-                                         throw new org.apache.axis2.databinding.ADBException("STATUS_RAN cannot be null!!");
-                                    }
-                                    elementList.add(localSTATUS_RAN);
-                                
-                            elementList.add(new javax.xml.namespace.QName("",
-                                                                      "ERDAT_RAN"));
-                            
-                            
-                                    if (localERDAT_RAN==null){
-                                         throw new org.apache.axis2.databinding.ADBException("ERDAT_RAN cannot be null!!");
-                                    }
-                                    elementList.add(localERDAT_RAN);
-                                
-                            elementList.add(new javax.xml.namespace.QName("",
-                                                                      "REQIND"));
-                            
-                            
-                                    if (localREQIND==null){
-                                         throw new org.apache.axis2.databinding.ADBException("REQIND cannot be null!!");
-                                    }
-                                    elementList.add(localREQIND);
-                                
-                            elementList.add(new javax.xml.namespace.QName("",
-                                                                      "EXPIND"));
-                            
-                            
-                                    if (localEXPIND==null){
-                                         throw new org.apache.axis2.databinding.ADBException("EXPIND cannot be null!!");
-                                    }
-                                    elementList.add(localEXPIND);
+                                    elementList.add(localLIFNAM);
                                 
 
                 return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
@@ -832,9 +754,9 @@
         * Postcondition: If this object is an element, the reader is positioned at its end element
         *                If this object is a complex type, the reader is positioned at the end element of its outer element
         */
-        public static Y10_STR_WBS_SEARCH_DOCUMENT parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
-            Y10_STR_WBS_SEARCH_DOCUMENT object =
-                new Y10_STR_WBS_SEARCH_DOCUMENT();
+        public static Y10_STR_GW_LOGIN parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
+            Y10_STR_GW_LOGIN object =
+                new Y10_STR_GW_LOGIN();
 
             int event;
             java.lang.String nillableValue = null;
@@ -858,10 +780,10 @@
 
                     java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":")+1);
                     
-                            if (!"Y10_STR_WBS_SEARCH_DOCUMENT".equals(type)){
+                            if (!"Y10_STR_GW_LOGIN".equals(type)){
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
-                                return (Y10_STR_WBS_SEARCH_DOCUMENT)functions.rfc.sap.document.sap_com.ExtensionMapper.getTypeObject(
+                                return (Y10_STR_GW_LOGIN)functions.rfc.sap.document.sap_com.ExtensionMapper.getTypeObject(
                                      nsUri,type,reader);
                               }
                         
@@ -886,9 +808,9 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","BUKRS_RAN").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","USERWEB").equals(reader.getName())){
                                 
-                                                object.setBUKRS_RAN(functions.rfc.sap.document.sap_com.BUKRS_RAN_ITAB.Factory.parse(reader));
+                                                object.setUSERWEB(functions.rfc.sap.document.sap_com.Char12.Factory.parse(reader));
                                               
                                         reader.next();
                                     
@@ -902,9 +824,9 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","EXPENSEID_RAN").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","STATE").equals(reader.getName())){
                                 
-                                                object.setEXPENSEID_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEID.Factory.parse(reader));
+                                                object.setSTATE(functions.rfc.sap.document.sap_com.Char1.Factory.parse(reader));
                                               
                                         reader.next();
                                     
@@ -918,9 +840,9 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","LIFNR_RAN").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","UIDDATE").equals(reader.getName())){
                                 
-                                                object.setLIFNR_RAN(functions.rfc.sap.document.sap_com.LIFRE_RAN_ITAB.Factory.parse(reader));
+                                                object.setUIDDATE(functions.rfc.sap.document.sap_com.Date10.Factory.parse(reader));
                                               
                                         reader.next();
                                     
@@ -934,9 +856,9 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","USERWEB_RAN").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","VALIDTO").equals(reader.getName())){
                                 
-                                                object.setUSERWEB_RAN(functions.rfc.sap.document.sap_com.Y10_TT_USERWEB_RAN_ITAB.Factory.parse(reader));
+                                                object.setVALIDTO(functions.rfc.sap.document.sap_com.Date10.Factory.parse(reader));
                                               
                                         reader.next();
                                     
@@ -950,9 +872,18 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","EXPENSEDOC_RAN").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","LCNT").equals(reader.getName())){
                                 
-                                                object.setEXPENSEDOC_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_EXPENSEDOC.Factory.parse(reader));
+                                    nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
+                                    if ("true".equals(nillableValue) || "1".equals(nillableValue)){
+                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"LCNT" +"  cannot be null");
+                                    }
+                                    
+
+                                    java.lang.String content = reader.getElementText();
+                                    
+                                              object.setLCNT(
+                                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToUnsignedByte(content));
                                               
                                         reader.next();
                                     
@@ -966,9 +897,9 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","DEPTCODE_RAN").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","LDATE").equals(reader.getName())){
                                 
-                                                object.setDEPTCODE_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_DEPTCODE.Factory.parse(reader));
+                                                object.setLDATE(functions.rfc.sap.document.sap_com.Date10.Factory.parse(reader));
                                               
                                         reader.next();
                                     
@@ -982,9 +913,9 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","BLDAT_RAN").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","LTIME").equals(reader.getName())){
                                 
-                                                object.setBLDAT_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BLDAT.Factory.parse(reader));
+                                                object.setLTIME(functions.rfc.sap.document.sap_com.Time.Factory.parse(reader));
                                               
                                         reader.next();
                                     
@@ -998,9 +929,9 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","BUDAT_RAN").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","UPDPASS").equals(reader.getName())){
                                 
-                                                object.setBUDAT_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_BUDAT.Factory.parse(reader));
+                                                object.setUPDPASS(functions.rfc.sap.document.sap_com.Date10.Factory.parse(reader));
                                               
                                         reader.next();
                                     
@@ -1014,9 +945,9 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","STATUS_RAN").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","LIFNR").equals(reader.getName())){
                                 
-                                                object.setSTATUS_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_STATUS.Factory.parse(reader));
+                                                object.setLIFNR(functions.rfc.sap.document.sap_com.Char10.Factory.parse(reader));
                                               
                                         reader.next();
                                     
@@ -1030,41 +961,9 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","ERDAT_RAN").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","LIFNAM").equals(reader.getName())){
                                 
-                                                object.setERDAT_RAN(functions.rfc.sap.document.sap_com.Y10_TT_RANGE_ERDAT.Factory.parse(reader));
-                                              
-                                        reader.next();
-                                    
-                              }  // End of if for expected property start element
-                                
-                                else{
-                                    // A start element we are not expecting indicates an invalid parameter was passed
-                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
-                                }
-                            
-                                    
-                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
-                                
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","REQIND").equals(reader.getName())){
-                                
-                                                object.setREQIND(functions.rfc.sap.document.sap_com.Char1.Factory.parse(reader));
-                                              
-                                        reader.next();
-                                    
-                              }  // End of if for expected property start element
-                                
-                                else{
-                                    // A start element we are not expecting indicates an invalid parameter was passed
-                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
-                                }
-                            
-                                    
-                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
-                                
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","EXPIND").equals(reader.getName())){
-                                
-                                                object.setEXPIND(functions.rfc.sap.document.sap_com.Char1.Factory.parse(reader));
+                                                object.setLIFNAM(functions.rfc.sap.document.sap_com.Char35.Factory.parse(reader));
                                               
                                         reader.next();
                                     

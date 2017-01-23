@@ -53,7 +53,7 @@
                                                 this.localNumeric10=param;
                                             }
                                             else {
-                                            	this.localNumeric10=param;
+                                                throw new java.lang.RuntimeException();
                                             }
                                         
 

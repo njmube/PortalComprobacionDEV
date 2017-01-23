@@ -41,7 +41,7 @@
 	<body>
 		<c:if test="${not empty error}">
 			<div class="alert alert-danger">			
-					<strong>${error}</strong> 
+					<strong>Error: </strong> ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 			</div>
 		</c:if>
 		<!--login modal-->
@@ -54,6 +54,9 @@
 	        <input type="text" class="form-control" placeholder="Usuario / User" required autofocus  name="j_username">
 	        <input type="password" class="form-control" placeholder="Contraseña / Password" required  name="j_password">	        
 	        <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
+	        <div class="row text-center" style="margin-top: 10px;" >
+	        	<a class="text-center" href="<%= URL_AppRelative %>/ForgotPass"><b>Olvidé mi contraseña</b></a>
+	        </div>
 	      </form>
 
     	</div> <!-- /container -->

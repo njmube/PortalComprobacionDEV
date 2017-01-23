@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wise.dto.UserDto;
 import com.wise.service.TravelService;
 
 import functions.rfc.sap.document.sap_com.BAPIRET2;
@@ -37,11 +38,9 @@ public class TravelController extends BaseController{
 		HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper(responseServlet);
 		String good = "",bad = "";
 		wrapper.setContentType("text/html;charset=UTF-8");
-		String str = getCurrentUser();
-		String lifnr = StringUtils.leftPad(str, 10, "0");
-		//String lifnr = String.format("%010d", Integer.parseInt(str));
+		UserDto user = (UserDto) session.getAttribute("UserDetails");
 		try {
-			Y10_SAVE_TRAVEL_DATAResponse response = travelService.saveTravelData(hdnRazonSocial, hdnTipoDocumento, requestDate, createdDate, comments, waers, deptcode, subdeptcode, createdBy, lifnr);
+			Y10_SAVE_TRAVEL_DATAResponse response = travelService.saveTravelData(hdnRazonSocial, hdnTipoDocumento, requestDate, createdDate, comments, waers, deptcode, subdeptcode, createdBy, user.getI_LIFNR());
 			if(response != null) {
 				BAPIRET2[] items = response.getIM_RET_MSG().getItem();
 				if(items != null && items.length > 0) {

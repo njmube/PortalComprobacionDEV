@@ -8,30 +8,28 @@
         http://www.springframework.org/schema/security/spring-security.xsd">
 
         <http auto-config="true" use-expressions="true">
-	        <intercept-url pattern="/Login" access="permitAll" />	        
+	        <intercept-url pattern="/Login" access="permitAll" />
+	        <intercept-url pattern="/LoginEmp" access="permitAll" />
+	        <intercept-url pattern="/ForgotPass" access="permitAll" />
+	        <intercept-url pattern="/ValidateToken" access="permitAll" />
+	        <intercept-url pattern="/provider/forgotPassword.action" access="permitAll" />
+	        <intercept-url pattern="/provider/validateToken.action" access="permitAll" />
 	        <intercept-url pattern="/logout" access="permitAll" />
 	        <intercept-url pattern="/inactive" access="permitAll" />
 	        <intercept-url pattern="/accessdenied" access="permitAll" />
 	        <intercept-url pattern="/resources/**" access="permitAll" />
-	        <intercept-url pattern="/**" access="hasRole('Connect')" />
+	        <intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" />
 	        <form-login login-page="/Login" default-target-url="/Inicio"
-	            always-use-default-target="true"	                     
+	            always-use-default-target="true"
+	            authentication-details-source-ref="customWebAuthenticationDetailsSource"          
 	            authentication-failure-url="/Login?error" />
 	        <logout logout-success-url="/Login" logout-url="/logout" invalidate-session="false"/>
-	       	<session-management invalid-session-url="/inactive" />
+	       	<session-management invalid-session-url="/inactive" />       		        		       	
         </http>
 
         <authentication-manager>
-             <authentication-provider>
-                 <password-encoder hash="md5"/>
-                     <jdbc-user-service data-source-ref="theDataSource"
-                       users-by-username-query="select login, password_hash password, 'true' enabled from Usuario where login=?"
-                       authorities-by-username-query=" select u.Login,ur.rolNombre as Descripcion FROM Usuario u
-                                                                                           join UsuarioRol ur
-                                                                                           on u.id = ur.usuarioId                                                                                           
-                                                                                           where u.login = ?"
-               />
-             </authentication-provider>
-         </authentication-manager>
-                  
+          <authentication-provider ref="customAuthenticationProvider" />
+        </authentication-manager>
+        
+        
 </beans:beans>

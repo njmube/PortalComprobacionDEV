@@ -43,19 +43,19 @@ var sociedadDS = new Ext.data.JsonStore({
 
 var cecosArray = new Ext.data.JsonStore({
 	id: 'cecosDtoArray',
-	fields: ['appdmbtr', 'cost_PERCENT','kostl'],
+	fields: ['appdmbtr', 'cost_PERCENT', 'kostl'],
 	data: []
 });
 
 var dataContableArray = new Ext.data.JsonStore({
 	id: 'dataContableArray',
-	fields: ['hkont', 'wrbtr','mwskz','wmwst','txt20'],
+	fields: ['hkont', 'wrbtr', 'mwskz', 'wmwst', 'txt20'],
 	data: []
 });
 
 var doctypeArray = new Ext.data.JsonStore({
 	id: 'doctypeArray',
-	fields: ['expenseClass', 'expenseClassDes','unit'],
+	fields: ['expenseClass', 'expenseClassDes', 'unit'],
 	data: []
 });
 
@@ -68,18 +68,18 @@ var cecosDtoArray = new Ext.data.JsonStore({
 var dataStore = new Ext.data.Store({
 	data: [],
 	reader: new Ext.data.ArrayReader({id:'id'},
-    ['linea','tipodoc','clasegasto','Office'])
+    ['linea', 'tipodoc', 'clasegasto', 'Office'])
 });
 
 var paymethDS = new Ext.data.JsonStore({
 	id: 'paymethDS',
-	fields: ['paymet','paymetdes'],
+	fields: ['paymet', 'paymetdes'],
 	data: []
 });
 
 var dataContableCombo = new Ext.data.JsonStore({
 	id: 'dataContableCombo',
-	fields: ['name','kostl'],
+	fields: ['name', 'kostl', 'descript'],
 	data: []
 });
 
@@ -275,7 +275,7 @@ Ext.onReady(function(){
 					  {header: bundle.getMsg('label.expensenumber'), width: 45, dataIndex: 'expenseid', sortable: true, align: 'center', menuDisabled: true},
 					  {header: bundle.getMsg('label.documenttype'), width: 45, dataIndex: 'expensedoc', sortable: true, align: 'center', menuDisabled: true},
 					  {header: bundle.getMsg('label.documentdate'), width: 45, dataIndex: 'bldat', sortable: true, align: 'center', menuDisabled: true},
-					  {header: bundle.getMsg('label.postingdate'), width: 45, dataIndex: 'budat', sortable: true, align: 'center', menuDisabled: true},
+					  {header: bundle.getMsg('label.postdate'), width: 45, dataIndex: 'budat', sortable: true, align: 'center', menuDisabled: true},
 					  {header: bundle.getMsg('label.expenseamount'), width: 45, dataIndex: 'dmbtr', sortable: true, align: 'center', menuDisabled: true},
 					  {header: bundle.getMsg('label.approvedamount'), width: 45, dataIndex: 'appdmbtr', sortable: true, align: 'center', menuDisabled: true},
 					  {header: bundle.getMsg('label.balance'), width: 45, dataIndex: 'saldo', sortable: true, align: 'center', menuDisabled: true},
@@ -288,7 +288,7 @@ Ext.onReady(function(){
 			border: false,
 			stripeRows: true,
 			singleCheckSelect: true,
-			height: 300,
+			height: 275,
 			columnLines: true,
 			autoScroll: true,
 			loadMask: true,
@@ -341,9 +341,18 @@ Ext.onReady(function(){
 			buttonAlign: 'left',
 			buttons:[{
 				id: 'editarComprobacion',
-				text: bundle.getMsg('label.edit'),
+				text: bundle.getMsg('label.editexpense'),
 				type: 'button',
 				handler: editarComprobacion,
+				style: {
+					marginLeft : '15px',
+					width: 130
+				}
+			},{
+				id: 'enviarAprobacion',
+				text: bundle.getMsg('label.sendapproved'),
+				type: 'button',
+				handler: enviarAprobacion,
 				style: {
 					marginLeft : '15px',
 					width: 130
@@ -383,7 +392,7 @@ Ext.onReady(function(){
 			});
 
 			if(!record) {
-				Ext.Msg.alert('Aviso','Seleccione una comprobación de la lista');
+				Ext.Msg.alert('Aviso','Por favor seleccione una comprobación del listado');
 				return;
 			}
 
@@ -394,9 +403,9 @@ Ext.onReady(function(){
 
 			numcomps = arrayConfigData.length;
 			for(var ic = 0;ic<numcomps;ic++){
-				if (arrayConfigData[ic].bukrs===record.data.bukrs){
+				if (arrayConfigData[ic].bukrs === record.data.bukrs){
 					doctypeArray.loadData(arrayConfigData[ic].docTypes);
-					allCecosArray=arrayConfigData[ic].cecosDto;	    
+					allCecosArray = arrayConfigData[ic].cecosDto;	    
 				}
 			}
 		
@@ -417,7 +426,7 @@ Ext.onReady(function(){
 			});
 		
 			var createdDate = new Ext.form.DateField({
-				fieldLabel: bundle.getMsg('label.postingdate'),
+				fieldLabel: bundle.getMsg('label.postdate'),
 				id: 'createdDate',
 				name: 'createdDate',
 				allowBlank: false,
@@ -636,7 +645,7 @@ Ext.onReady(function(){
 				
 			numcomps = arrayConfigData.length;
 		    for(var ic = 0;ic<numcomps;ic++){
-				if (arrayConfigData[ic].bukrs===record.data.bukrs) {
+				if (arrayConfigData[ic].bukrs === record.data.bukrs){
 					doctypeArray.loadData(arrayConfigData[ic].docTypes);
 		        }
 		    }
@@ -666,7 +675,7 @@ Ext.onReady(function(){
 				width: 250,
 				listeners: {
 					select: function(combo, record, index) {
-						if (combo.getValue()==1) {
+						if (combo.getValue() == 1) {
 							Ext.getCmp('quantity').setVisible(true);
 							Ext.getCmp('quantity').setValue("1");
 							Ext.getCmp('rfc').setVisible(false);
@@ -679,7 +688,7 @@ Ext.onReady(function(){
 							Ext.getCmp('cargarpdf').setVisible(true);
 						}
 							
-						if (combo.getValue()==2) {
+						if (combo.getValue() == 2) {
 							Ext.getCmp('quantity').setVisible(true);
 							Ext.getCmp('quantity').setValue("1");
 							Ext.getCmp('rfc').setVisible(true);
@@ -694,7 +703,7 @@ Ext.onReady(function(){
 							Ext.getCmp('cargarpdf').setVisible(true);
 						}
 						
-						if (combo.getValue()==3) {
+						if (combo.getValue() == 3) {
 							Ext.getCmp('quantity').setVisible(true);
 							Ext.getCmp('quantity').setValue("1");
 							Ext.getCmp('rfc').setVisible(true);
@@ -730,16 +739,15 @@ Ext.onReady(function(){
 				hiddenName: 'unit',
 				listeners: {
 					select: function(combo, record, index) {
-						unitClass=record.data.unit;
+						unitClass = record.data.unit;
 					}
 				}
 			});
 			
-			var cargarXmlField = new Ext.form.TextField({
+			var cargarxml = new Ext.form.TextField({
 				fieldLabel: bundle.getMsg('label.xmlfile'),
 				id: 'cargarxml',
 				name: 'cargarxml',
-				allowBlank: true,
 				regex: /^.*\.(xml|XML)$/,
                 vtype: 'xmlFile', 
 				regexText: 'Solo archivos XML',
@@ -749,13 +757,12 @@ Ext.onReady(function(){
                 width: 350
 			});
 			
-			var cargarPdfField = new Ext.form.TextField({
+			var cargarpdf = new Ext.form.TextField({
 				fieldLabel: bundle.getMsg('label.pdffile'),
 				id: 'cargarpdf',
 				name: 'cargarpdf',
-				allowBlank: true,
 				regex: /^.*\.(pdf|PDF)$/,
-				regexText:'Solo archivos PDF',
+				regexText: 'Solo archivos PDF',
 				inputType: 'file',
                 width: 350
 			});
@@ -907,8 +914,8 @@ Ext.onReady(function(){
 							items:[
 								docTypeCmb,
 								gastosCmb,
-								cargarXmlField,
-								cargarPdfField,
+								cargarxml,
+								cargarpdf,
 								quantityField,
 								moneyCmb,
 								metodoPagoCmb,
@@ -942,272 +949,229 @@ Ext.onReady(function(){
 		function getBase64Xml(file1){
 			var reader = new FileReader();
 			var fileUpload = file1.files[0];
-			reader.onload = function(event) {
+			reader.onload = function(event){
 				contentsXml = btoa(event.target.result);
 			};
-		    reader.readAsBinaryString(fileUpload);
+			reader.readAsBinaryString(fileUpload);
 		}
 		
 		function getBase64Pdf(file1){
 			var reader = new FileReader();
 			var fileUpload = file1.files[0];
 			reader.onload = function(event){
-			  	contentsPdf = btoa(event.target.result);
+				contentsPdf = btoa(event.target.result);
 			};
 			reader.readAsBinaryString(fileUpload);
 		}
 		
-        function functionOne(){
+		function functionOne(){
 			var pdfFile = document.getElementById('cargarpdf');
-	        getBase64Pdf(pdfFile);               	
+			getBase64Pdf(pdfFile);
 	    };
  
-        function functionTwo(params){
-			console.log("pdf new "+contentsPdf);
+		function functionTwo(params){
+			console.log("pdf new " + contentsPdf);
 		};
-		
-        function addLineToTable(){
-			console.log(Ext.getCmp('cargarxml').getValue()+" "+Ext.getCmp('cargarpdf').getValue());
+
+		function addLineToTable(){
 			var confirmExtensionXml=/^.*.(xml|XML)$/.test(Ext.getCmp('cargarxml').getValue());
 			var confirmExtensionPDF=/^.*.(pdf|PDF)$/.test(Ext.getCmp('cargarpdf').getValue());
 
-			if(( Ext.getCmp('cargarxml').getValue()=="" || Ext.getCmp('cargarpdf').getValue()=="")&&Ext.getCmp('docType').getValue()=="01"){
-					msg="";
-					if (Ext.getCmp('cargarxml').getValue()=="") msg="Debe Ingresar Xml "+"\n";
-					if (Ext.getCmp('cargarpdf').getValue()=="") msg=msg+"Debe Ingresar PDF ";
-					alert(msg);
-					return false;
-				}
-				if(Ext.getCmp('cargarpdf').getValue()=="" && Ext.getCmp('docType').getValue()!="01"){				 
-					msg="Debe Ingresar PDF ";
-					alert(msg);
-					return false;
-				}
-				if(!confirmExtensionXml && Ext.getCmp('cargarxml').getValue()!="") {				 
-					 msg="Debe Subir archivo en formato XML ";
-					alert(msg);
-					return false;
-				}
-				if(!confirmExtensionPDF && Ext.getCmp('cargarpdf').getValue()!="") {				 
-					 msg="Debe subir archivo en formato PDF";
-					alert(msg);
-					return false;
-				}
-				 numcomps = arrayConfigData.length; //get number of elements in store
-		    		for(var ic = 0;ic<numcomps;ic++){		        		
-		        		if (arrayConfigData[ic].bukrs===record.data.bukrs){		        				
-		        				//doctypeArray.loadData(arrayConfigData[ic].docTypes);
-		        				arrayDocType=arrayConfigData[ic].docTypes;
-		        				//cecosArray.loadData(arrayConfigData[ic].cecosDto);
-		        				//arrayCeco=arrayConfigData[ic].cecosDto;
-		        				
-		        		}
-		   		 	}
+			if((Ext.getCmp('cargarxml').getValue() == "" || Ext.getCmp('cargarpdf').getValue() == "") && Ext.getCmp('docType').getValue() == "01"){
+				msg = "";
+				if (Ext.getCmp('cargarxml').getValue() == "") msg = "Debe Ingresar Xml" + "\n";
+				if (Ext.getCmp('cargarpdf').getValue() == "") msg = msg + "Debe Ingresar PDF";
+				alert(msg);
+				return false;
+			}
+			
+			if(Ext.getCmp('cargarpdf').getValue() == "" && Ext.getCmp('docType').getValue() != "01"){				 
+				msg = "Debe Ingresar PDF";
+				alert(msg);
+				return false;
+			}
+			
+			if(!confirmExtensionXml && Ext.getCmp('cargarxml').getValue() != ""){				 
+				msg = "Debe Subir archivo en formato XML";
+				alert(msg);
+				return false;
+			}
+			
+			if(!confirmExtensionPDF && Ext.getCmp('cargarpdf').getValue() != ""){				 
+			    msg = "Debe subir archivo en formato PDF";
+				alert(msg);
+				return false;
+			}
+			
+			numcomps = arrayConfigData.length;
+		    for(var ic = 0;ic<numcomps;ic++){
+				if (arrayConfigData[ic].bukrs === record.data.bukrs){
+					arrayDocType = arrayConfigData[ic].docTypes;
+		        }
+			}
 				
-				 
-				 	
-	                TopicRecord = Ext.data.Record.create([  
-					{name: 'expenseline', mapping: 'expenseline'},
-			    	{name: 'expenseclass', mapping: 'expenseclass'},
-			    	{name: 'expenseclassdes', mapping: 'expenseclassdes'},
-			    	{name: 'expenquan', mapping: 'expenquan'},
-			    	{name: 'wrbtr', mapping: 'wrbtr'},
-			    	{name: 'waers_xml', mapping: 'waers_xml'},
-			    	{name: 'mwskz_xml', mapping: 'mwskz_xml'},
-			    	{name: 'paymet', mapping: 'paymet'},
-			    	{name: 'bldat', mapping: 'bldat'},
-			    	{name: 'bukrs', mapping: 'bukrs'},
-			    	{name: 'kostl', mapping: 'kostl'},
-			    	{name: 'uuid', mapping: 'uuid'},
-			    	{name: 'rfc', mapping: 'rfc'},
-			    	{name: 'numfact', mapping: 'numfact'},
-			    	{name: 'xml', mapping: 'xml'},
-			     	{name: 'pdf', mapping: 'pdf'},
-			     	{name: 'xmlxstring', mapping: 'xmlxstring'},
-			     	{name: 'pdfxstring', mapping: 'pdfxstring'},
-			     	{name: 'dmbtr', mapping: 'dmbtr'},
-			     	{name: 'available_DMBTR', mapping: 'available_DMBTR'}
-
-			     	 
-
-			      ]
-				);
-	            arrayDataFromXml="";
-	            var paymetValue=Ext.getCmp('metodopago').getValue();
-	            var expenseClassDesValue=Ext.getCmp('gastos').getRawValue();
-	            var expenseClassValue=Ext.getCmp('gastos').getValue();
-	            var doctypeValue=Ext.getCmp('docType').getValue();
-	            var pdfValue=Ext.getCmp('cargarpdf').getValue();
-	            var xmlValue=Ext.getCmp('cargarxml').getValue();
-	            var quantityValue=Ext.getCmp('quantity').getValue();
-	            var bukrs=response.data.headerExpenseDto.bukrs;
-	            //var pdfFile=document.getElementById('cargarpdf').files[0];
+			TopicRecord = Ext.data.Record.create([
+			{name: 'expenseline', mapping: 'expenseline'},
+			{name: 'expenseclass', mapping: 'expenseclass'},
+			{name: 'expenseclassdes', mapping: 'expenseclassdes'},
+			{name: 'expenquan', mapping: 'expenquan'},
+			{name: 'wrbtr', mapping: 'wrbtr'},
+			{name: 'waers_xml', mapping: 'waers_xml'},
+			{name: 'mwskz_xml', mapping: 'mwskz_xml'},
+			{name: 'paymet', mapping: 'paymet'},
+			{name: 'bldat', mapping: 'bldat'},
+			{name: 'bukrs', mapping: 'bukrs'},
+			{name: 'kostl', mapping: 'kostl'},
+			{name: 'uuid', mapping: 'uuid'},
+			{name: 'rfc', mapping: 'rfc'},
+			{name: 'numfact', mapping: 'numfact'},
+			{name: 'xml', mapping: 'xml'},
+			{name: 'pdf', mapping: 'pdf'},
+			{name: 'xmlxstring', mapping: 'xmlxstring'},
+			{name: 'pdfxstring', mapping: 'pdfxstring'},
+			{name: 'dmbtr', mapping: 'dmbtr'},
+			{name: 'available_DMBTR', mapping: 'available_DMBTR'}
+			]);
+			
+	        arrayDataFromXml = "";
+	        var paymetValue = Ext.getCmp('metodopago').getValue();
+	        var expenseClassDesValue = Ext.getCmp('gastos').getRawValue();
+	        var expenseClassValue = Ext.getCmp('gastos').getValue();
+	        var doctypeValue = Ext.getCmp('docType').getValue();
+	        var pdfValue = Ext.getCmp('cargarpdf').getValue();
+	        var xmlValue = Ext.getCmp('cargarxml').getValue();
+	        var quantityValue = Ext.getCmp('quantity').getValue();
+	        var bukrs = response.data.headerExpenseDto.bukrs;
 	           
-	            if(confirmExtensionXml){
-	            	console.log("cfdi");
-	            	var xmlFile=document.getElementById('cargarxml');
+	        if(confirmExtensionXml){
+				var xmlFile = document.getElementById('cargarxml');
 	            getBase64Xml(xmlFile);
-	            var pdfFile=document.getElementById('cargarpdf');
+	            var pdfFile = document.getElementById('cargarpdf');
 	            getBase64Pdf(pdfFile);
-	            	var formData = new FormData();
-	                formData.append("file", $("#cargarxml")[0].files[0]);
-	                $.ajax({
-	                    url: contextrootpath+'/provider/getFieldsFromXml.action', //Server script to process data
-	                    type: 'POST',
-	                    
-	                    //Ajax events
-	                    beforeSend:  function(){
-	                    	
-	                    },
-	                    contentType: false,
-	                    error : function(jqXHR, textStatus, errorThrown) {
+	            var formData = new FormData();
+	            formData.append("file", $("#cargarxml")[0].files[0]);
+	            $.ajax({
+					url: contextrootpath + '/provider/getFieldsFromXml.action',
+	                type: 'POST',
+	                beforeSend: function(){
+					
+	                },
+	                contentType: false,
+	                error: function(jqXHR, textStatus, errorThrown){
 							 
-						},
-	                    // Form data
-	                    data: formData,
-	                    //Options to tell jQuery not to process data or worry about content-type.
-	                    cache: false,
-	                    contentType: false,
-	                    processData: false,
-	                    success: function (data) {
-	                    	arrayDataFromXml=data.data;
-	                    	var str = "" + (parseInt(arrayItemData[arrayItemData.length-1].expenseline)+1);
-							var pad = "0000"
-							expenseLineString = pad.substring(0, pad.length - str.length) + str
-	                    	 var params={
-					    			expenseline: expenseLineString,
-					        		expensetype: doctypeValue,
-					        		expenseclass:expenseClassValue,
-					        		expenseclassdes: expenseClassDesValue,
-					        		expenquan: quantityValue,
-					        		wrbtr: arrayDataFromXml.wrbtr,
-					         		mwskz_xml: arrayDataFromXml.mwskz,
-					         		uuid: arrayDataFromXml.uuid,
-					         		paymet: paymetValue,
-					         		waers_xml:  arrayDataFromXml.waers,
-					         		rfc: arrayDataFromXml.rfc,
-					         		pdf: pdfValue==""? "No":"Si",
-					         		xml: xmlValue=="" ? "No":"Si",
-					         		bldat: arrayDataFromXml.bldat.split("T")[0],					         		
-					         		kursf:arrayDataFromXml.kursf,
-					         		numfact: arrayDataFromXml.numFact,
-					         		bukrs: bukrs,
-					         		kostl: "",
-					         		costdist:"",
-					         		pdfxstring:contentsPdf,
-					         		xmlxstring:contentsXml,
-					         		unit:unitClass
-					         		
-					    		};
-							myNewRecord = new TopicRecord(params   		
-															);
-							console.log("xmlxstring "+contentsXml);
-							
+					},
+	                data: formData,
+	                cache: false,
+	                contentType: false,
+	                processData: false,
+	                success: function (data){
+						arrayDataFromXml = data.data;
+						var str = "" + (parseInt(arrayItemData[arrayItemData.length-1].expenseline)+1);
+						var pad = "0000"
+						expenseLineString = pad.substring(0, pad.length - str.length) + str
+						var params = {
+							expenseline: expenseLineString,
+							expensetype: doctypeValue,
+							expenseclass: expenseClassValue,
+					        expenseclassdes: expenseClassDesValue,
+					        expenquan: quantityValue,
+					        wrbtr: arrayDataFromXml.wrbtr,
+					        mwskz_xml: arrayDataFromXml.mwskz,
+					        uuid: arrayDataFromXml.uuid,
+					        paymet: paymetValue,
+					        waers_xml: arrayDataFromXml.waers,
+					        rfc: arrayDataFromXml.rfc,
+					        pdf: pdfValue == ""? "No":"Si",
+					        xml: xmlValue == "" ? "No":"Si",
+					        bldat: arrayDataFromXml.bldat.split("T")[0],					         		
+					        kursf: arrayDataFromXml.kursf,
+					        numfact: arrayDataFromXml.numFact,
+					        bukrs: bukrs,
+					        kostl: "",
+					        costdist: "",
+					        pdfxstring: contentsPdf,
+					        xmlxstring: contentsXml,
+					        unit: unitClass
+					    };
+						myNewRecord = new TopicRecord(params);
 						detalleComprobacionDS.add(myNewRecord);
-						//params.costdist=arrayCeco;						
 						arrayItemData.push(params);
-						console.log("$('#metodopago').val() "+paymetValue);
-						arrayDataFromXml="";
-			 			}
-			                });
-	                
-	           
-	        }
-	        else{
-	        		 console.log('Function Two');
- 					var todaysDate = new Date();
- 					var str = "" + (parseInt(arrayItemData[arrayItemData.length-1].expenseline)+1);
-					var pad = "0000";
-					expenseLineString = pad.substring(0, pad.length - str.length) + str
- 						function convertDate(date) {
-						  var yyyy = date.getFullYear().toString();
-						  var mm = (date.getMonth()+1).toString();
-						  var dd  = date.getDate().toString();
-
-						  var mmChars = mm.split('');
-						  var ddChars = dd.split('');
-
-						  return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
-						}
+						arrayDataFromXml = "";
+			 		}
+			    });
+			}else{
+				var todaysDate = new Date();
+ 				var str = "" + (parseInt(arrayItemData[arrayItemData.length-1].expenseline)+1);
+				var pad = "0000";
+				expenseLineString = pad.substring(0, pad.length - str.length) + str
+ 				function convertDate(date){
+					var yyyy = date.getFullYear().toString();
+					var mm = (date.getMonth()+1).toString();
+					var dd = date.getDate().toString();
+				    var mmChars = mm.split('');
+					var ddChars = dd.split('');
+				    return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+				}
 						
-
-						var paymetValue=Ext.getCmp('metodopago').getValue();
-	            		var expenseClassDesValue=Ext.getCmp('gastos').getRawValue();
-	            		var expenseClassValue=Ext.getCmp('gastos').getValue();
-	            		var doctypeValue=Ext.getCmp('docType').getValue();
-	            		var pdfValue=Ext.getCmp('cargarpdf').getValue();
-	            		var xmlValue=Ext.getCmp('cargarxml').getValue();
-	            		var quantityValue=Ext.getCmp('quantity').getValue();
-	            		var bukrs=response.data.headerExpenseDto.bukrs; 	
-	            		var rfcValue=Ext.getCmp('rfc').getValue();
-	            		var numfactValue=Ext.getCmp('numfact').getValue();
-	            		var ivaValue=Ext.getCmp('iva').getValue();
-	            		var montoValue=Ext.getCmp('monto').getValue();
-	            		var moneyValue=Ext.getCmp('money').getValue();
-	        			var pdfFile=document.getElementById('cargarpdf');
-	     				getBase64Pdf(pdfFile);   
-	            		$.ajax({
-	            			url: contextrootpath+'/provider/getFieldsFromXml.action', //Server script to process data
-	                    type: 'POST',
-	            			beforeSend:  function(){
-	                    			var pdfFile=document.getElementById('cargarpdf');
-	     								getBase64Pdf(pdfFile); 
-	                    		},
-	                    		data: formData,
-	                    //Options to tell jQuery not to process data or worry about content-type.
-	                    cache: false,
-	                    contentType: false,
-	                    processData: false,
-	            			complete: function(){
-	            				var params={		
-						   				expenseline:expenseLineString,
-						        		expensetype: doctypeValue,				        					         		 
-						         		pdf: pdfValue=="" ? "No":"Si",
-						        		xml: xmlValue=="" ? "No":"Si",
-						        		paymet:paymetValue,
-						        		expenquan:quantityValue,
-						        		rfc: rfcValue,
-						        		uuid: "",
-						        		expenseclass:expenseClassValue,
-						        		expenseclassdes: expenseClassDesValue,
-						        		numfact:numfactValue,
-						        		mwskz_xml: ivaValue,
-						         		wrbtr: montoValue,
-						         		waers_xml: moneyValue,
-						         		bukrs: bukrs,
-						         		bldat: convertDate(todaysDate),
-						         		
-						         		unit: unitClass, 
-						         		kostl: "",
-						         		costdist:"",
-							         	pdfxstring: ""
-							         	
-
-						  		  };
-						  		  params.pdfxstring=contentsPdf;
-						  		   
-						  		  console.table(params);
-									myNewRecord = new TopicRecord(params
-							   		
-									);
-								detalleComprobacionDS.add(myNewRecord);
-								//params.costdist=arrayCeco;						
-								arrayItemData.push(params);
-	            			}
-	            		});
-						
-						 
-	        				
-
-
-	    				 
-						
-					}
-				
-				arrayDataFromXml="";
-				Ext.getCmp('detalleComprobacionesGrd').getView().refresh();
-				winAnticipo.close();
-
+				var paymetValue = Ext.getCmp('metodopago').getValue();
+	            var expenseClassDesValue = Ext.getCmp('gastos').getRawValue();
+	            var expenseClassValue = Ext.getCmp('gastos').getValue();
+	            var doctypeValue = Ext.getCmp('docType').getValue();
+	            var pdfValue = Ext.getCmp('cargarpdf').getValue();
+	            var xmlValue = Ext.getCmp('cargarxml').getValue();
+	            var quantityValue = Ext.getCmp('quantity').getValue();
+	            var bukrs = response.data.headerExpenseDto.bukrs; 	
+	            var rfcValue = Ext.getCmp('rfc').getValue();
+	            var numfactValue = Ext.getCmp('numfact').getValue();
+	            var ivaValue = Ext.getCmp('iva').getValue();
+	            var montoValue = Ext.getCmp('monto').getValue();
+	            var moneyValue = Ext.getCmp('money').getValue();
+	        	var pdfFile = document.getElementById('cargarpdf');
+	     		getBase64Pdf(pdfFile);   
+	            $.ajax({
+					url: contextrootpath+'/provider/getFieldsFromXml.action',
+	                type: 'POST',
+	            	beforeSend: function(){
+						var pdfFile = document.getElementById('cargarpdf');
+	     				getBase64Pdf(pdfFile); 
+	                },
+					data: formData,
+	                cache: false,
+	                contentType: false,
+	                processData: false,
+	            	complete: function(){
+						var params = {
+							expenseline: expenseLineString,
+						    expensetype: doctypeValue,				        					         		 
+						    pdf: pdfValue == "" ? "No":"Si",
+						    xml: xmlValue == "" ? "No":"Si",
+						    paymet: paymetValue,
+						    expenquan: quantityValue,
+						    rfc: rfcValue,
+						    uuid: "",
+						    expenseclass: expenseClassValue,
+						    expenseclassdes: expenseClassDesValue,
+						    numfact: numfactValue,
+						    mwskz_xml: ivaValue,
+						    wrbtr: montoValue,
+						    waers_xml: moneyValue,
+						    bukrs: bukrs,
+						    bldat: convertDate(todaysDate),
+						    unit: unitClass, 
+						    kostl: "",
+						    costdist:"",
+							pdfxstring: ""
+						};
+						params.pdfxstring = contentsPdf;
+						myNewRecord = new TopicRecord(params);
+						detalleComprobacionDS.add(myNewRecord);
+						arrayItemData.push(params);
+	            	}
+	           	});
+			}
+			arrayDataFromXml = "";
+			Ext.getCmp('detalleComprobacionesGrd').getView().refresh();
+			winAnticipo.close();
 		}
 		
 		function printLineInTable(arrayDataFromXml){
@@ -1216,56 +1180,47 @@ Ext.onReady(function(){
 		
 		function showDistribuirCeco(){
 			var detalleComprobacionesGrd = Ext.getCmp('detalleComprobacionesGrd').getStore();
-				var record;
-				var Cecosnulled=[
-				        {kostl: '', cost_PERCENT: '', appdmbtr:''},
-				        {kostl: '', cost_PERCENT: '', appdmbtr:''},
-				        {kostl: '', cost_PERCENT: '', appdmbtr:''},
-				        {kostl: '', cost_PERCENT: '', appdmbtr:''},
-				        {kostl: '', cost_PERCENT: '', appdmbtr:''},
-				        {kostl: '', cost_PERCENT: '', appdmbtr:''},
-				        {kostl: '', cost_PERCENT: '', appdmbtr:''},
-				        {kostl: '', cost_PERCENT: '', appdmbtr:''},
-				        {kostl: '', cost_PERCENT: '', appdmbtr:''},
-				        {kostl: '', cost_PERCENT: '', appdmbtr:''}
-				]
-				detalleComprobacionesGrd.each(function(rec){
-					 
-					if(rec.data.select) {
-						record = rec;
-						  
-						//console.table();
-						itemSelectedArray=arrayItemData[detalleComprobacionesGrd.indexOf(record)];
+			var record;
+			var Cecosnulled = [
+			        {kostl: '', cost_PERCENT: '', appdmbtr:''},
+				    {kostl: '', cost_PERCENT: '', appdmbtr:''},
+				    {kostl: '', cost_PERCENT: '', appdmbtr:''},
+				    {kostl: '', cost_PERCENT: '', appdmbtr:''},
+				    {kostl: '', cost_PERCENT: '', appdmbtr:''},
+				    {kostl: '', cost_PERCENT: '', appdmbtr:''},
+				    {kostl: '', cost_PERCENT: '', appdmbtr:''},
+				    {kostl: '', cost_PERCENT: '', appdmbtr:''},
+				    {kostl: '', cost_PERCENT: '', appdmbtr:''},
+				    {kostl: '', cost_PERCENT: '', appdmbtr:''}
+			]
+			detalleComprobacionesGrd.each(function(rec){
+				if(rec.data.select){
+					record = rec;
+					itemSelectedArray = arrayItemData[detalleComprobacionesGrd.indexOf(record)];
+					if(itemSelectedArray.costdist === undefined || itemSelectedArray.costdist == "")
+						expenseidCurrent = cecosArray.loadData(Cecosnulled);
+					else{
+						$.each(itemSelectedArray.costdist,function(index,val){
 						
-						if(itemSelectedArray.costdist===undefined || itemSelectedArray.costdist=="")
-							expenseidCurrent=
-						cecosArray.loadData(Cecosnulled);
-						else{ 
-							$.each(itemSelectedArray.costdist,function(index,val){
-								console.log("itemSelectedArray "+val.kostl);
-							});
-							
-							var lengthCecos=itemSelectedArray.costdist.length;
-							if(lengthCecos<10){
-								var countCecos;
-								for(countCecos=lengthCecos;countCecos<10;countCecos++){
-									itemSelectedArray.costdist.push({kostl: '', cost_PERCENT: '', appdmbtr:''});
-								}
-								cecosArray.loadData(itemSelectedArray.costdist);
+						});
+						var lengthCecos = itemSelectedArray.costdist.length;
+						if(lengthCecos<10){
+							var countCecos;
+							for(countCecos = lengthCecos;countCecos<10;countCecos++){
+								itemSelectedArray.costdist.push({kostl: '', cost_PERCENT: '', appdmbtr:''});
 							}
-							else cecosArray.loadData(itemSelectedArray.costdist);
-
-						}
-
+							cecosArray.loadData(itemSelectedArray.costdist);
+						}else cecosArray.loadData(itemSelectedArray.costdist);
 					}
-				});
-				
-				if(!record) {
-					Ext.Msg.alert('Aviso','Seleccione una Comprobación de la lista');
-					return;
 				}
+			});
 				
-				var cecoFormPanel = Ext.getCmp('cecoFormPanel') || new Ext.FormPanel({
+		    if(!record){
+				Ext.Msg.alert('Aviso','Por favor seleccione una comprobación del listado');
+				return;
+			}
+				
+			var cecoFormPanel = Ext.getCmp('cecoFormPanel') || new Ext.FormPanel({
 					id: 'cecoFormPanel',
 					bodyStyle:'padding:15px 0px 10px 5px',
 				    anchor: '100% 100%',    
@@ -1373,17 +1328,16 @@ Ext.onReady(function(){
 					   		         {
 					                   header: 'Centro Coste', width: 45, sortable: true, dataIndex: 'kostl', menuDisabled: true,
 					                    editor: new Ext.form.ComboBox({
-									    
-									    displayField:'name',
-									    valueField:'kostl',
-									    store:dataContableCombo,
+									    displayField: 'descript',
+									    //displayField: 'name',
+									    valueField: 'kostl',
+									    store: dataContableCombo,
 									    typeAhead: true,
 									    mode: 'local',
 									    forceSelection: true,
 									    triggerAction: 'all',
-									    emptyText:'Select a state...',
-									    selectOnFocus:true,
-									    
+									    emptyText: 'Select a state...',
+									    selectOnFocus: true
 									    })
 					                },
 				             		//{header: 'Centro Coste', width: 45, sortable: true, dataIndex: 'kostl', menuDisabled: true},
@@ -1391,12 +1345,10 @@ Ext.onReady(function(){
                     						allowBlank : false ,
                     						listeners: {
 										       	change: function(field, newVal, oldVal){
-									     		         console.log("newVal "+ newVal);
 									     		        newValueCurrent=newVal;
 									     		        fieldNameCell= gridCellCurrent.getColumnModel().getDataIndex(columnIndexCurrent+1);					     		       
 									     		       var rowCurrent=gridCellCurrent.getStore().getAt(rowIndexCurrent);
 									     		       rowCurrent.set(fieldNameCell, mathRound(parseFloat(newVal)* parseFloat(Ext.getCmp("importeComprobacionCeco").getValue())/100));
-									     		       	console.log(newVal);
 									     		       	rowIndexCurrent=rowIndexCurrent+1;	
 
 										  		},
@@ -1407,8 +1359,6 @@ Ext.onReady(function(){
 										            	var rowCurrent=gridCellCurrent.getStore().getAt(rowIndexCurrent);
 										            	fieldNameCellPercentage= gridCellCurrent.getColumnModel().getDataIndex(columnIndexCurrent);
 									     		       var data = rowCurrent.get(fieldNameCellPercentage);
-									     		       console.log("field "+field.getValue()+" newValueCurrent "+newValueCurrent+" newValueCurrent1 "+" "+rowIndexCurrent+" "+columnIndexCurrent+" data "+data);
-									     		       console.log("porcentaje1 "+field.getValue()+" "+ (parseFloat(field.getValue())* parseFloat(Ext.getCmp("importeComprobacionCeco").getValue())/100));
 									     		       rowCurrent.set(fieldNameCell,mathRound(parseFloat(field.getValue())* parseFloat(Ext.getCmp("importeComprobacionCeco").getValue())/100));	
 									     		       rowIndexCurrent=rowIndexCurrent+1;
 										            }
@@ -1417,13 +1367,11 @@ Ext.onReady(function(){
 
 									        changeHandler: function(field, newValue) {
 									           
-									            console.log("newValue"+ newValue);
 									        }
 
                 								}),listeners: {
 										    change : function(field, newValue,o ,e) {
 									        var text = field.value;
-									        console.log("text "+text);
 									    }
 									}
 
@@ -1441,7 +1389,6 @@ Ext.onReady(function(){
 								        columnIndexCurrent=columnIndex;
 								        gridCellCurrent=grid;
 									    rowIndexCurrent=rowIndex;
-									    console.log("click"+rowIndex+" "+columnIndex);
 								        
 								    },
 								    specialkey: function(field, e){
@@ -1518,27 +1465,25 @@ Ext.onReady(function(){
 									labelStyle : 'margin-left: 15px;'
 								},
 								width : 86
-										 
-				    		}]
-				    	}]
+				        }]
 				    }]
-				});
-				dataContableCombo.loadData(allCecosArray);
-				winCeco = Ext.getCmp('winCeco') || new Ext.Window({
-					id: 'winCeco',					
-					closeAction: 'destroy',
-					width: '950',		
-					items: [cecoFormPanel]
-				});
-				Ext.getCmp('comprobacionIdCeco').setValue(Ext.getCmp('numcomprobacion').getValue());
-				Ext.getCmp('lineaComprobacionCeco').setValue(itemSelectedArray.expenseline);
-				Ext.getCmp('importeComprobacionCeco').setValue(itemSelectedArray.wrbtr);
-				Ext.getCmp('moneyCeco').setValue(itemSelectedArray.waers_xml);
-				Ext.getCmp('clasegatosComprobacionCeco').setValue(itemSelectedArray.expenseclassdes);
-				winCeco.show();
-
-
+				}]
+			});
+			dataContableCombo.loadData(allCecosArray);
+			winCeco = Ext.getCmp('winCeco') || new Ext.Window({
+				id: 'winCeco',					
+				closeAction: 'destroy',
+				width: '950',		
+				items: [cecoFormPanel]
+			});
+			Ext.getCmp('comprobacionIdCeco').setValue(Ext.getCmp('numcomprobacion').getValue());
+			Ext.getCmp('lineaComprobacionCeco').setValue(itemSelectedArray.expenseline);
+			Ext.getCmp('importeComprobacionCeco').setValue(itemSelectedArray.wrbtr);
+			Ext.getCmp('moneyCeco').setValue(itemSelectedArray.waers_xml);
+			Ext.getCmp('clasegatosComprobacionCeco').setValue(itemSelectedArray.expenseclassdes);
+			winCeco.show();
 		}
+		
 		getSelectedRowIndex =  function(grid){
 			var r = grid.getSelectionModel().getSelection();
 			var s = grid.getStore();
@@ -1559,7 +1504,7 @@ Ext.onReady(function(){
 					cecoArrayCurrent.push(rec.data);
 				}
 			});
-			console.log("sumPercentege "+sumPercentege);
+			
 			if(Math.round(sumPercentege) != 100 ){
 				Ext.Msg.alert('Aviso','La distribución debe sumar 100%');
 				return;
@@ -1572,58 +1517,53 @@ Ext.onReady(function(){
 					itemSelectedArray = arrayItemData[detalleComprobacionesGrd.indexOf(record2)];		 
 					arrayItemData[detalleComprobacionesGrd.indexOf(record2)].costdist = [];	
 					arrayItemData[detalleComprobacionesGrd.indexOf(record2)].costdist = cecoArrayCurrent;
-					console.log("detalleComprobacionesGrd.indexOf(record) "+detalleComprobacionesGrd.indexOf(record2));
-					console.log(cecoArrayCurrent);
 				}
 			});
-			
 			arrayItemData[detalleComprobacionesGrd.indexOf(record2)].kostl = cecoArrayCurrent[0].kostl;
 			TopicRecord = Ext.data.Record.create([
 			{name: 'expenseline', mapping: 'expenseline'},
 			{name: 'expenseclass', mapping: 'expenseclass'},
 			{name: 'expenseclassdes', mapping: 'expenseclassdes'},
-			    	{name: 'expenquan', mapping: 'expenquan'},
-			    	{name: 'wrbtr', mapping: 'wrbtr'},
-			    	{name: 'waers_xml', mapping: 'waers_xml'},
-			    	{name: 'mwskz_xml', mapping: 'mwskz_xml'},
-			    	{name: 'paymet', mapping: 'paymet'},
-			    	{name: 'bldat', mapping: 'bldat'},
-			    	{name: 'bukrs', mapping: 'bukrs'},
-			    	{name: 'kostl', mapping: 'kostl'},
-			    	{name: 'uuid', mapping: 'uuid'},
-			    	{name: 'rfc', mapping: 'rfc'},
-			    	{name: 'numfact', mapping: 'numfact'},
-			    	{name: 'xml', mapping: 'xml'},
-			     	{name: 'pdf', mapping: 'pdf'},
-			     	{name: 'xmlxstring', mapping: 'xmlxstring'},
-			     	{name: 'pdfxstring', mapping: 'pdfxstring'},
-			     	{name: 'dmbtr', mapping: 'dmbtr'},
-			     	{name: 'available_DMBTR', mapping: 'available_DMBTR'}
+			{name: 'expenquan', mapping: 'expenquan'},
+			{name: 'wrbtr', mapping: 'wrbtr'},
+			{name: 'waers_xml', mapping: 'waers_xml'},
+			{name: 'mwskz_xml', mapping: 'mwskz_xml'},
+			{name: 'paymet', mapping: 'paymet'},
+			{name: 'bldat', mapping: 'bldat'},
+			{name: 'bukrs', mapping: 'bukrs'},
+			{name: 'kostl', mapping: 'kostl'},
+			{name: 'uuid', mapping: 'uuid'},
+			{name: 'rfc', mapping: 'rfc'},
+			{name: 'numfact', mapping: 'numfact'},
+			{name: 'xml', mapping: 'xml'},
+			{name: 'pdf', mapping: 'pdf'},
+			{name: 'xmlxstring', mapping: 'xmlxstring'},
+			{name: 'pdfxstring', mapping: 'pdfxstring'},
+			{name: 'dmbtr', mapping: 'dmbtr'},
+			{name: 'available_DMBTR', mapping: 'available_DMBTR'}
 			]);
 			myNewRecord = new TopicRecord(arrayItemData[detalleComprobacionesGrd.indexOf(record2)]);
-			detalleComprobacionDS[detalleComprobacionesGrd.indexOf(record2)]=myNewRecord;		
+			detalleComprobacionDS[detalleComprobacionesGrd.indexOf(record2)] = myNewRecord;		
 			Ext.getCmp('detalleComprobacionesGrd').getView().refresh();
 			$.each(arrayItemData[detalleComprobacionesGrd.indexOf(record2)].costdist,function(index,val){
-				console.log("cecos nuevo "+val.kostl);	
-		});
-		winCeco.close();
+
+			});
+			winCeco.close();
 		}
 		
 		function equalsPercentage(){
 			var cecoGrd = Ext.getCmp('cecoGrd').getStore();
 			var count = 0;
 			cecoGrd.each(function(rec){
-				if(rec.data.kostl! = ""){
+				if(rec.data.kostl != ""){
 					count++;
 				}
 			});
-			console.log("count " +count);
 			var percentageEqual = 100/count;
 			cecoGrd.each(function(rec){
 				if(count>0){
 					row = cecoGrd.getAt(count-1);
-					console.log("row equals "+row.get("cost_PERCENT")+" "+row.get("appdmbtr"));
-					row.set("cost_PERCENT",mathRound(percentageEqual));
+					row.set("cost_PERCENT", mathRound(percentageEqual));
 					row.set("appdmbtr", mathRound((parseFloat(Ext.getCmp("importeComprobacionCeco").getValue())*percentageEqual)/100));
 					count--;
 				}
@@ -1631,23 +1571,22 @@ Ext.onReady(function(){
 		}
 
 		function showDatowContables(){
-				var detalleComprobacionesGrd = Ext.getCmp('detalleComprobacionesGrd').getStore();
-				var record;
-				detalleComprobacionesGrd.each(function(rec){
-					console.log(rec);
-					if(rec.data.select) {
-						record = rec;
-						itemSelectedArray=arrayItemData[detalleComprobacionesGrd.indexOf(record)];				 
-						 
-						dataContableArray.loadData(itemSelectedArray.accdata);
-					}
-				});
-				
-				if(!record) {
-					Ext.Msg.alert('Aviso','Seleccione una Comprobación de la lista');
-					return;
+			var detalleComprobacionesGrd = Ext.getCmp('detalleComprobacionesGrd').getStore();
+			var record;
+			detalleComprobacionesGrd.each(function(rec){
+				if(rec.data.select){
+					record = rec;
+					itemSelectedArray = arrayItemData[detalleComprobacionesGrd.indexOf(record)];				 
+					dataContableArray.loadData(itemSelectedArray.accdata);
 				}
-				var datosContablesFormPanel = Ext.getCmp('datosContablesFormPanel') || new Ext.FormPanel({
+			});
+				
+			if(!record) {
+				Ext.Msg.alert('Aviso','Por favor seleccione una comprobación del listado');
+				return;
+			}
+			
+			var datosContablesFormPanel = Ext.getCmp('datosContablesFormPanel') || new Ext.FormPanel({
 					id: 'datosContablesFormPanel',
 					bodyStyle:'padding:15px 0px 10px 5px',
 				    anchor: '100% 100%',    
@@ -1756,28 +1695,24 @@ Ext.onReady(function(){
 				             		{header: 'Iva', width: 45, sortable: true, dataIndex: 'mwskz', menuDisabled: true},				             		 
 				             		{header: 'Importe impuesto', width: 45, sortable: true, dataIndex: 'wmwst', menuDisabled: true},				             		 
 				             		{header: 'Texto', width: 45, sortable: true, dataIndex: 'txt20', menuDisabled: true}
-				             		
-				                ]		   							   	    
-					   		}]
-
-
-
-				    	}]
+				            ]		   							   	    
+					   	}]
 				    }]
-				});
+			    }]
+			});
 				
-				var winDatos = Ext.getCmp('winDatos') || new Ext.Window({
-					id: 'winDatos',					
-					closeAction: 'destroy',
-					width: '950',		
-					items: [datosContablesFormPanel]
-				});
-				Ext.getCmp('solicitudIdData').setValue(Ext.getCmp('numcomprobacion').getValue());
-				Ext.getCmp('lineaData').setValue(itemSelectedArray.expenseline);
-				Ext.getCmp('importeData').setValue(itemSelectedArray.wrbtr);
-				Ext.getCmp('moneyData').setValue(itemSelectedArray.waers_xml);
-				Ext.getCmp('clasegastoData').setValue(itemSelectedArray.expenseclassdes);
-				winDatos.show();
+			var winDatos = Ext.getCmp('winDatos') || new Ext.Window({
+				id: 'winDatos',					
+				closeAction: 'destroy',
+				width: '950',		
+				items: [datosContablesFormPanel]
+			});
+			Ext.getCmp('solicitudIdData').setValue(Ext.getCmp('numcomprobacion').getValue());
+			Ext.getCmp('lineaData').setValue(itemSelectedArray.expenseline);
+			Ext.getCmp('importeData').setValue(itemSelectedArray.wrbtr);
+			Ext.getCmp('moneyData').setValue(itemSelectedArray.waers_xml);
+			Ext.getCmp('clasegastoData').setValue(itemSelectedArray.expenseclassdes);
+			winDatos.show();
 		}
 		
 		function enviarDataContable(){
@@ -1795,6 +1730,21 @@ Ext.onReady(function(){
 			Ext.getCmp('cargarpdf').setVisible(true);
 		}
 		
+		function enviarAprobacion(){
+			var comprobaciones = Ext.getCmp('comprobacionesGrd').getStore();
+			var record;
+			comprobaciones.each(function(rec){
+				if(rec.data.select){
+					record = rec;
+				}
+			});
+
+			if(!record){
+				Ext.Msg.alert('Aviso','Por favor seleccione una comprobación del listado');
+				return;
+			}
+		}
+		
 		function saveComprobacion(){
 			var frm = Ext.getCmp('listaComprobacionesForm').getForm();
 			var flatWithoutCecos = 0;
@@ -1805,6 +1755,7 @@ Ext.onReady(function(){
 					return;
 				}
 			});
+			
 			if(flatWithoutCecos == 1){
 				return;
 			}
@@ -1815,9 +1766,8 @@ Ext.onReady(function(){
 			}
 
 			var detalleComprobacionesGrd = Ext.getCmp('detalleComprobacionesGrd').getStore();
-			newErzet=response.data.headerExpenseDto.erzet.split(".");
-			response.data.headerExpenseDto.erzet=newErzet[0];
-
+			newErzet = response.data.headerExpenseDto.erzet.split(".");
+			response.data.headerExpenseDto.erzet = newErzet[0];
 			params = {};
 			params.headerExpenseDto = response.data.headerExpenseDto;
 			params.headerTextList = response.data.headerTextList;
@@ -1829,7 +1779,6 @@ Ext.onReady(function(){
 					if(result.responseText.indexOf("login")>=0) {
 						Ext.MessageBox.alert('Alerta', 'La sesión expiró, favor de ingresar nuevamente',relogin);					
 					} else {
-						console.log(response);
 						response = [];
 						arrayItemData = [];
 						itemSelectedArray = [];
@@ -1922,28 +1871,27 @@ Ext.onReady(function(){
 	
 		function sendComprobacion(){
 			var frm = Ext.getCmp('listaComprobacionesForm').getForm();
-			var flatWithoutCecos=0;
-			$.each(arrayItemData,function(i,item){
-				if(item.costdist==""){
+			var flatWithoutCecos = 0;
+			$.each(arrayItemData, function(i,item){
+				if(item.costdist == ""){
 					Ext.Msg.alert('Aviso','Debe agregar centros de coste');
-					flatWithoutCecos=1;
+					flatWithoutCecos = 1;
 					return;
 				}
 			});
 		
-			if(flatWithoutCecos==1){
+			if(flatWithoutCecos == 1){
 				return;
 			}
-			response.data.headerExpenseDto.status="02";
-
-			var detalleComprobacionesGrd = Ext.getCmp('detalleComprobacionesGrd').getStore();
-			newErzet=response.data.headerExpenseDto.erzet.split(".");
-			response.data.headerExpenseDto.erzet=newErzet[0];
 			
-			params={};
-			params.headerExpenseDto=response.data.headerExpenseDto;
-			params.headerTextList=response.data.headerTextList;
-			params.itemDataExpenseDtoList=arrayItemData;
+			response.data.headerExpenseDto.status = "02";
+			var detalleComprobacionesGrd = Ext.getCmp('detalleComprobacionesGrd').getStore();
+			newErzet = response.data.headerExpenseDto.erzet.split(".");
+			response.data.headerExpenseDto.erzet = newErzet[0];
+			params = {};
+			params.headerExpenseDto = response.data.headerExpenseDto;
+			params.headerTextList = response.data.headerTextList;
+			params.itemDataExpenseDtoList = arrayItemData;
 			
 			Ext.Ajax.request({
 				url: contextrootpath + '/sessionStatus.action',
@@ -1960,7 +1908,6 @@ Ext.onReady(function(){
 						record = [];
 						contentsPdf = "";
 						contentsXml = "";
-						
 						var waitBox = Ext.MessageBox.wait(bundle.getMsg('label.sendingexpense'), 'Please Wait...');
 						Ext.Ajax.request({
 							url: contextrootpath + '/expense/saveExpenseData.action',

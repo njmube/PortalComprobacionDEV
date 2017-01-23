@@ -53,7 +53,7 @@
                                                 this.localLang=param;
                                             }
                                             else {
-                                            	this.localLang=param;
+                                                throw new java.lang.RuntimeException();
                                             }
                                         
 

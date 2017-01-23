@@ -5,17 +5,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.axis2.AxisFault;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wise.dto.FullConfigDto;
+import com.wise.dto.UserDto;
 import com.wise.controller.BaseController;
 import com.wise.service.ProviderService;
+import com.wise.service.UserService;
 
 import functions.rfc.sap.document.sap_com.Y10_GET_CONF_DATA_FOR_EXPENResponse;
 import functions.rfc.sap.document.sap_com.Y10_STR_WBS_VENDAT;
@@ -27,6 +30,9 @@ public class LoginController extends BaseController{
 	
 	@Autowired
 	private ProviderService providerService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value="/Login", method = RequestMethod.GET)
     public String login(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
@@ -41,11 +47,11 @@ public class LoginController extends BaseController{
 	
 	@RequestMapping(value="/Inicio", method = RequestMethod.GET)
 	public String inicio(HttpSession session){
+		UserDto userDTO = new UserDto();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		userDTO.setUsername(auth.getName());
 		try {
-			String str = getCurrentUser();
-			String lifnr = StringUtils.leftPad(str, 10, "0");
-			//String lifnr = String.format("%010d", Integer.parseInt(str));
-			Y10_GET_CONF_DATA_FOR_EXPENResponse providerData =  providerService.getConfDataForExpen(lifnr);
+			Y10_GET_CONF_DATA_FOR_EXPENResponse providerData =  providerService.getConfDataForExpen(userDTO.getUsername());
 			FullConfigDto fullConfigDto = new FullConfigDto();
 			Y10_STR_WBS_VENDAT vendorData = providerData.getIM_CONF_DATA().getVENDOR_DATA(); 
 			fullConfigDto.setLifrn(vendorData.getLIFNR().toString());

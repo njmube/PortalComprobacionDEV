@@ -13,12 +13,12 @@ Ext.onReady(function(){
 			border: false,
 			items:[{
 					xtype: 'textfield',
-					fieldLabel: 'C贸digo de Proveedor',
+					fieldLabel: 'C骴igo de Proveedor',
 					name: 'providerCode',
 					allowBlank: false					
 				},{
 					xtype: 'textfield',
-					fieldLabel: 'Correo electr贸nico',					
+					fieldLabel: 'Correo electr髇ico',					
 					name: 'email',
 					allowBlank: false,
 					vtype: 'email'
@@ -27,20 +27,20 @@ Ext.onReady(function(){
 		buttonAlign: 'left',
 		buttons:[{
 			id: 'sendCode',
-			text: 'Solicitar c贸digo de seguridad',
+			text: 'Solicitar c骴igo de seguridad',
 			type: 'button',
 			handler: function(){
 				var frm = form.getForm();
 				if(frm.isValid()) {
 					frm.submit({
 						url: contextrootpath + '/provider/forgotPassword.action',
-						waitMsg: 'Solicitando C贸digo...',
+						waitMsg: 'Solicitando C骴igo...',
 						success: function(form,action){
 							frm.reset();
 							win.close();
 							validateCodeWin.show();
 							Ext.MessageBox.show({
-								title: '脡xito',
+								title: '蓌ito',
 								msg: action.result.msg,
 								buttons: Ext.MessageBox.OK,
 								icon: Ext.MessageBox.INFO
@@ -51,11 +51,11 @@ Ext.onReady(function(){
 						failure: function(form,action){
 							switch (action.failureType) {
 							  case Ext.form.Action.CLIENT_INVALID:
-								 Ext.Msg.alert('Error', 'Valores inv谩lidos');
+								 Ext.Msg.alert('Error', 'Valores inv醠idos');
 								 frm.reset();								 
 								 break;
 							  case Ext.form.Action.CONNECT_FAILURE:
-								 Ext.Msg.alert('Error', 'Falla de comunicaci贸n con el servidor');
+								 Ext.Msg.alert('Error', 'Falla de comunicaci髇 con el servidor');
 								 frm.reset();								 
 								 break;
 							  case Ext.form.Action.SERVER_INVALID:
@@ -104,29 +104,29 @@ Ext.onReady(function(){
 			border: false,
 			items:[{
 					xtype: 'textfield',
-					fieldLabel: 'C贸digo de Proveedor',
+					fieldLabel: 'C骴igo de Proveedor',
 					name: 'providerCode',
 					allowBlank: false,					
 				},{
 					xtype: 'textfield',
-					fieldLabel: 'Correo electr贸nico',					
+					fieldLabel: 'Correo electr髇ico',					
 					name: 'email',
 					allowBlank: false,
 					vtype: 'email'
 				},{
 					xtype: 'textfield',
-					fieldLabel: 'C贸digo de seguridad',					
+					fieldLabel: 'C骴igo de seguridad',					
 					name: 'token',
 					allowBlank: false					
 				},{
 					xtype: 'textfield',
 					name: 'newPass',
-					fieldLabel: 'Contrase帽a nueva',
+					fieldLabel: 'Contrase馻 nueva',
 					inputType: 'password',
 					allowBlank: false
 				},{
 					xtype: 'textfield',
-					fieldLabel: 'Confirmar contrase帽a',
+					fieldLabel: 'Confirmar contrase馻',
 					inputType: 'password',
 					name: 'newPassReview',
 					allowBlank: false
@@ -141,10 +141,10 @@ Ext.onReady(function(){
 				if(frm.isValid()) {
 					frm.submit({
 						url: contextrootpath + '/provider/validateToken.action',
-						waitMsg: 'Enviando C贸digo...',
+						waitMsg: 'Enviando C骴igo...',
 						success: function(form,action){
 							Ext.MessageBox.show({
-								title: '脡xito',
+								title: '蓌ito',
 								msg: action.result.msg,
 								buttons: Ext.MessageBox.OK,								
 								fn: function(){
@@ -157,11 +157,11 @@ Ext.onReady(function(){
 						failure: function(form,action){
 							switch (action.failureType) {
 							  case Ext.form.Action.CLIENT_INVALID:
-								 Ext.Msg.alert('Error', 'Valores inv谩lidos');
+								 Ext.Msg.alert('Error', 'Valores inv醠idos');
 								 frm.reset();								 
 								 break;
 							  case Ext.form.Action.CONNECT_FAILURE:
-								 Ext.Msg.alert('Error', 'Falla de comunicaci贸n con el servidor');
+								 Ext.Msg.alert('Error', 'Falla de comunicaci髇 con el servidor');
 								 frm.reset();								 
 								 break;
 							  case Ext.form.Action.SERVER_INVALID:
@@ -201,7 +201,7 @@ Ext.onReady(function(){
 	
 	var win = Ext.getCmp('forgotWin') || new Ext.Window({
 		id: 'forgotWin',
-		title: 'Recordar Contrase帽a',
+		title: 'Recordar Contrase馻',
 		frame: true,
 		layout: 'form',		
 		width: 500,
@@ -212,7 +212,7 @@ Ext.onReady(function(){
 	
 	var validateCodeWin = Ext.getCmp('validateCodeWin') || new Ext.Window({
 		id : 'validateCodeWin',
-		title: 'Validaci贸n de c贸digo de seguridad',
+		title: 'Validaci髇 de c骴igo de seguridad',
 		frame: true,
 		layout: 'form',
 		width: 500,

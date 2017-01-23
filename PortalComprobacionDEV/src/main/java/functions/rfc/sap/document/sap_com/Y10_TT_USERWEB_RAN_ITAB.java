@@ -1,6 +1,6 @@
 
 /**
- * Y10_SEARCH_DOCUMENT_IDResponse.java
+ * Y10_TT_USERWEB_RAN_ITAB.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:34:40 IST)
@@ -11,49 +11,98 @@
             
 
             /**
-            *  Y10_SEARCH_DOCUMENT_IDResponse bean class
+            *  Y10_TT_USERWEB_RAN_ITAB bean class
             */
             @SuppressWarnings({"unchecked","unused"})
         
-        public  class Y10_SEARCH_DOCUMENT_IDResponse
+        public  class Y10_TT_USERWEB_RAN_ITAB
         implements org.apache.axis2.databinding.ADBBean{
-        
-                public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName(
-                "urn:sap-com:document:sap:rfc:functions",
-                "Y10_SEARCH_DOCUMENT_IDResponse",
-                "ns1");
-
+        /* This type was generated from the piece of schema that had
+                name = Y10_TT_USERWEB_RAN_ITAB
+                Namespace URI = urn:sap-com:document:sap:rfc:functions
+                Namespace Prefix = ns1
+                */
             
 
                         /**
-                        * field for IM_SEARCH_RESULT
+                        * field for Item
+                        * This was an Array!
                         */
 
                         
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS localIM_SEARCH_RESULT ;
+                                    protected functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG[] localItem ;
                                 
+                           /*  This tracker boolean wil be used to detect whether the user called the set method
+                          *   for this attribute. It will be used to determine whether to include this field
+                           *   in the serialized XML
+                           */
+                           protected boolean localItemTracker = false ;
+
+                           public boolean isItemSpecified(){
+                               return localItemTracker;
+                           }
+
+                           
 
                            /**
                            * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS
+                           * @return functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG[]
                            */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS getIM_SEARCH_RESULT(){
-                               return localIM_SEARCH_RESULT;
+                           public  functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG[] getItem(){
+                               return localItem;
                            }
 
                            
                         
-                            /**
-                               * Auto generated setter method
-                               * @param param IM_SEARCH_RESULT
-                               */
-                               public void setIM_SEARCH_RESULT(functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS param){
-                            
-                                            this.localIM_SEARCH_RESULT=param;
-                                    
 
-                               }
+
+                               
+                              /**
+                               * validate the array for Item
+                               */
+                              protected void validateItem(functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG[] param){
+                             
+                              }
+
+
+                             /**
+                              * Auto generated setter method
+                              * @param param Item
+                              */
+                              public void setItem(functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG[] param){
+                              
+                                   validateItem(param);
+
+                               localItemTracker = param != null;
+                                      
+                                      this.localItem=param;
+                              }
+
+                               
+                             
+                             /**
+                             * Auto generated add method for the array for convenience
+                             * @param param functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG
+                             */
+                             public void addItem(functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG param){
+                                   if (localItem == null){
+                                   localItem = new functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG[]{};
+                                   }
+
                             
+                                 //update the setting tracker
+                                localItemTracker = true;
+                            
+
+                               java.util.List list =
+                            org.apache.axis2.databinding.utils.ConverterUtil.toList(localItem);
+                               list.add(param);
+                               this.localItem =
+                             (functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG[])list.toArray(
+                            new functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG[list.size()]);
+
+                             }
+                             
 
      
      
@@ -70,8 +119,8 @@
 
         
                org.apache.axiom.om.OMDataSource dataSource =
-                       new org.apache.axis2.databinding.ADBDataSource(this,MY_QNAME);
-               return factory.createOMElement(dataSource,MY_QNAME);
+                       new org.apache.axis2.databinding.ADBDataSource(this,parentQName);
+               return factory.createOMElement(dataSource,parentQName);
             
         }
 
@@ -103,23 +152,35 @@
                    java.lang.String namespacePrefix = registerPrefix(xmlWriter,"urn:sap-com:document:sap:rfc:functions");
                    if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)){
                        writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                           namespacePrefix+":Y10_SEARCH_DOCUMENT_IDResponse",
+                           namespacePrefix+":Y10_TT_USERWEB_RAN_ITAB",
                            xmlWriter);
                    } else {
                        writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                           "Y10_SEARCH_DOCUMENT_IDResponse",
+                           "Y10_TT_USERWEB_RAN_ITAB",
                            xmlWriter);
                    }
 
                
                    }
-               
-                                            if (localIM_SEARCH_RESULT==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("IM_SEARCH_RESULT cannot be null!!");
+                if (localItemTracker){
+                                       if (localItem!=null){
+                                            for (int i = 0;i < localItem.length;i++){
+                                                if (localItem[i] != null){
+                                                 localItem[i].serialize(new javax.xml.namespace.QName("","item"),
+                                                           xmlWriter);
+                                                } else {
+                                                   
+                                                        // we don't have to do any thing since minOccures is zero
+                                                    
+                                                }
+
                                             }
-                                           localIM_SEARCH_RESULT.serialize(new javax.xml.namespace.QName("","IM_SEARCH_RESULT"),
-                                               xmlWriter);
+                                     } else {
                                         
+                                               throw new org.apache.axis2.databinding.ADBException("item cannot be null!!");
+                                        
+                                    }
+                                 }
                     xmlWriter.writeEndElement();
                
 
@@ -304,16 +365,28 @@
                  java.util.ArrayList elementList = new java.util.ArrayList();
                  java.util.ArrayList attribList = new java.util.ArrayList();
 
-                
-                            elementList.add(new javax.xml.namespace.QName("",
-                                                                      "IM_SEARCH_RESULT"));
-                            
-                            
-                                    if (localIM_SEARCH_RESULT==null){
-                                         throw new org.apache.axis2.databinding.ADBException("IM_SEARCH_RESULT cannot be null!!");
+                 if (localItemTracker){
+                             if (localItem!=null) {
+                                 for (int i = 0;i < localItem.length;i++){
+
+                                    if (localItem[i] != null){
+                                         elementList.add(new javax.xml.namespace.QName("",
+                                                                          "item"));
+                                         elementList.add(localItem[i]);
+                                    } else {
+                                        
+                                                // nothing to do
+                                            
                                     }
-                                    elementList.add(localIM_SEARCH_RESULT);
-                                
+
+                                 }
+                             } else {
+                                 
+                                        throw new org.apache.axis2.databinding.ADBException("item cannot be null!!");
+                                    
+                             }
+
+                        }
 
                 return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
             
@@ -338,9 +411,9 @@
         * Postcondition: If this object is an element, the reader is positioned at its end element
         *                If this object is a complex type, the reader is positioned at the end element of its outer element
         */
-        public static Y10_SEARCH_DOCUMENT_IDResponse parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
-            Y10_SEARCH_DOCUMENT_IDResponse object =
-                new Y10_SEARCH_DOCUMENT_IDResponse();
+        public static Y10_TT_USERWEB_RAN_ITAB parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
+            Y10_TT_USERWEB_RAN_ITAB object =
+                new Y10_TT_USERWEB_RAN_ITAB();
 
             int event;
             java.lang.String nillableValue = null;
@@ -364,10 +437,10 @@
 
                     java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":")+1);
                     
-                            if (!"Y10_SEARCH_DOCUMENT_IDResponse".equals(type)){
+                            if (!"Y10_TT_USERWEB_RAN_ITAB".equals(type)){
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
-                                return (Y10_SEARCH_DOCUMENT_IDResponse)functions.rfc.sap.document.sap_com.ExtensionMapper.getTypeObject(
+                                return (Y10_TT_USERWEB_RAN_ITAB)functions.rfc.sap.document.sap_com.ExtensionMapper.getTypeObject(
                                      nsUri,type,reader);
                               }
                         
@@ -389,22 +462,54 @@
                     
                     reader.next();
                 
+                        java.util.ArrayList list1 = new java.util.ArrayList();
+                    
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","IM_SEARCH_RESULT").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","item").equals(reader.getName())){
                                 
-                                                object.setIM_SEARCH_RESULT(functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS.Factory.parse(reader));
-                                              
-                                        reader.next();
                                     
+                                    
+                                    // Process the array and step past its final element's end.
+                                    list1.add(functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG.Factory.parse(reader));
+                                                                
+                                                        //loop until we find a start element that is not part of this array
+                                                        boolean loopDone1 = false;
+                                                        while(!loopDone1){
+                                                            // We should be at the end element, but make sure
+                                                            while (!reader.isEndElement())
+                                                                reader.next();
+                                                            // Step out of this element
+                                                            reader.next();
+                                                            // Step to next element event.
+                                                            while (!reader.isStartElement() && !reader.isEndElement())
+                                                                reader.next();
+                                                            if (reader.isEndElement()){
+                                                                //two continuous end elements means we are exiting the xml structure
+                                                                loopDone1 = true;
+                                                            } else {
+                                                                if (new javax.xml.namespace.QName("","item").equals(reader.getName())){
+                                                                    list1.add(functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG.Factory.parse(reader));
+                                                                        
+                                                                }else{
+                                                                    loopDone1 = true;
+                                                                }
+                                                            }
+                                                        }
+                                                        // call the converter utility  to convert and set the array
+                                                        
+                                                        object.setItem((functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG[])
+                                                            org.apache.axis2.databinding.utils.ConverterUtil.convertToArray(
+                                                                functions.rfc.sap.document.sap_com.Y10_STR_USERWEB_RANG.class,
+                                                                list1));
+                                                            
                               }  // End of if for expected property start element
                                 
-                                else{
-                                    // A start element we are not expecting indicates an invalid parameter was passed
-                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
-                                }
-                              
+                                    else {
+                                        
+                                    }
+                                  
                             while (!reader.isStartElement() && !reader.isEndElement())
                                 reader.next();
                             

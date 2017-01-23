@@ -156,6 +156,38 @@
             public void receiveErrory10_GET_CONF_DATA_FOR_EXPEN(java.lang.Exception e) {
             }
                 
+           /**
+            * auto generated Axis2 call back method for y10_PASS_CHECK method
+            * override this method for handling normal response from y10_PASS_CHECK operation
+            */
+           public void receiveResulty10_PASS_CHECK(
+                    functions.rfc.sap.document.sap_com.Y10_PASS_CHECKResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from y10_PASS_CHECK operation
+           */
+            public void receiveErrory10_PASS_CHECK(java.lang.Exception e) {
+            }
+                
+           /**
+            * auto generated Axis2 call back method for y10_PASS_CHANGE method
+            * override this method for handling normal response from y10_PASS_CHANGE operation
+            */
+           public void receiveResulty10_PASS_CHANGE(
+                    functions.rfc.sap.document.sap_com.Y10_PASS_CHANGEResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from y10_PASS_CHANGE operation
+           */
+            public void receiveErrory10_PASS_CHANGE(java.lang.Exception e) {
+            }
+                
 
 
     }

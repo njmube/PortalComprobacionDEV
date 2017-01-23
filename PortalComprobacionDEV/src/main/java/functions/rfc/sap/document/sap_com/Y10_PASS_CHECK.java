@@ -1,6 +1,6 @@
 
 /**
- * Y10_SEARCH_DOCUMENT_IDResponse.java
+ * Y10_PASS_CHECK.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:34:40 IST)
@@ -11,45 +11,159 @@
             
 
             /**
-            *  Y10_SEARCH_DOCUMENT_IDResponse bean class
+            *  Y10_PASS_CHECK bean class
             */
             @SuppressWarnings({"unchecked","unused"})
         
-        public  class Y10_SEARCH_DOCUMENT_IDResponse
+        public  class Y10_PASS_CHECK
         implements org.apache.axis2.databinding.ADBBean{
         
                 public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName(
                 "urn:sap-com:document:sap:rfc:functions",
-                "Y10_SEARCH_DOCUMENT_IDResponse",
+                "Y10_PASS_CHECK",
                 "ns1");
 
             
 
                         /**
-                        * field for IM_SEARCH_RESULT
+                        * field for IV_LANGUAGE
                         */
 
                         
-                                    protected functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS localIM_SEARCH_RESULT ;
+                                    protected functions.rfc.sap.document.sap_com.Lang localIV_LANGUAGE ;
                                 
+                           /*  This tracker boolean wil be used to detect whether the user called the set method
+                          *   for this attribute. It will be used to determine whether to include this field
+                           *   in the serialized XML
+                           */
+                           protected boolean localIV_LANGUAGETracker = false ;
+
+                           public boolean isIV_LANGUAGESpecified(){
+                               return localIV_LANGUAGETracker;
+                           }
+
+                           
 
                            /**
                            * Auto generated getter method
-                           * @return functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS
+                           * @return functions.rfc.sap.document.sap_com.Lang
                            */
-                           public  functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS getIM_SEARCH_RESULT(){
-                               return localIM_SEARCH_RESULT;
+                           public  functions.rfc.sap.document.sap_com.Lang getIV_LANGUAGE(){
+                               return localIV_LANGUAGE;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param IM_SEARCH_RESULT
+                               * @param param IV_LANGUAGE
                                */
-                               public void setIM_SEARCH_RESULT(functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS param){
+                               public void setIV_LANGUAGE(functions.rfc.sap.document.sap_com.Lang param){
+                            localIV_LANGUAGETracker = param != null;
+                                   
+                                            this.localIV_LANGUAGE=param;
+                                    
+
+                               }
                             
-                                            this.localIM_SEARCH_RESULT=param;
+
+                        /**
+                        * field for IV_PASSWORD
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Char16 localIV_PASSWORD ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Char16
+                           */
+                           public  functions.rfc.sap.document.sap_com.Char16 getIV_PASSWORD(){
+                               return localIV_PASSWORD;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param IV_PASSWORD
+                               */
+                               public void setIV_PASSWORD(functions.rfc.sap.document.sap_com.Char16 param){
+                            
+                                            this.localIV_PASSWORD=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for IV_USERWEB
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.Char12 localIV_USERWEB ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.Char12
+                           */
+                           public  functions.rfc.sap.document.sap_com.Char12 getIV_USERWEB(){
+                               return localIV_USERWEB;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param IV_USERWEB
+                               */
+                               public void setIV_USERWEB(functions.rfc.sap.document.sap_com.Char12 param){
+                            
+                                            this.localIV_USERWEB=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for RETURN
+                        */
+
+                        
+                                    protected functions.rfc.sap.document.sap_com.TABLE_OF_BAPIRET2 localRETURN ;
+                                
+                           /*  This tracker boolean wil be used to detect whether the user called the set method
+                          *   for this attribute. It will be used to determine whether to include this field
+                           *   in the serialized XML
+                           */
+                           protected boolean localRETURNTracker = false ;
+
+                           public boolean isRETURNSpecified(){
+                               return localRETURNTracker;
+                           }
+
+                           
+
+                           /**
+                           * Auto generated getter method
+                           * @return functions.rfc.sap.document.sap_com.TABLE_OF_BAPIRET2
+                           */
+                           public  functions.rfc.sap.document.sap_com.TABLE_OF_BAPIRET2 getRETURN(){
+                               return localRETURN;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param RETURN
+                               */
+                               public void setRETURN(functions.rfc.sap.document.sap_com.TABLE_OF_BAPIRET2 param){
+                            localRETURNTracker = param != null;
+                                   
+                                            this.localRETURN=param;
                                     
 
                                }
@@ -103,23 +217,41 @@
                    java.lang.String namespacePrefix = registerPrefix(xmlWriter,"urn:sap-com:document:sap:rfc:functions");
                    if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)){
                        writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                           namespacePrefix+":Y10_SEARCH_DOCUMENT_IDResponse",
+                           namespacePrefix+":Y10_PASS_CHECK",
                            xmlWriter);
                    } else {
                        writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                           "Y10_SEARCH_DOCUMENT_IDResponse",
+                           "Y10_PASS_CHECK",
                            xmlWriter);
                    }
 
                
                    }
-               
-                                            if (localIM_SEARCH_RESULT==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("IM_SEARCH_RESULT cannot be null!!");
+                if (localIV_LANGUAGETracker){
+                                            if (localIV_LANGUAGE==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("IV_LANGUAGE cannot be null!!");
                                             }
-                                           localIM_SEARCH_RESULT.serialize(new javax.xml.namespace.QName("","IM_SEARCH_RESULT"),
+                                           localIV_LANGUAGE.serialize(new javax.xml.namespace.QName("","IV_LANGUAGE"),
+                                               xmlWriter);
+                                        }
+                                            if (localIV_PASSWORD==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("IV_PASSWORD cannot be null!!");
+                                            }
+                                           localIV_PASSWORD.serialize(new javax.xml.namespace.QName("","IV_PASSWORD"),
                                                xmlWriter);
                                         
+                                            if (localIV_USERWEB==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("IV_USERWEB cannot be null!!");
+                                            }
+                                           localIV_USERWEB.serialize(new javax.xml.namespace.QName("","IV_USERWEB"),
+                                               xmlWriter);
+                                         if (localRETURNTracker){
+                                            if (localRETURN==null){
+                                                 throw new org.apache.axis2.databinding.ADBException("RETURN cannot be null!!");
+                                            }
+                                           localRETURN.serialize(new javax.xml.namespace.QName("","RETURN"),
+                                               xmlWriter);
+                                        }
                     xmlWriter.writeEndElement();
                
 
@@ -304,16 +436,43 @@
                  java.util.ArrayList elementList = new java.util.ArrayList();
                  java.util.ArrayList attribList = new java.util.ArrayList();
 
-                
+                 if (localIV_LANGUAGETracker){
                             elementList.add(new javax.xml.namespace.QName("",
-                                                                      "IM_SEARCH_RESULT"));
+                                                                      "IV_LANGUAGE"));
                             
                             
-                                    if (localIM_SEARCH_RESULT==null){
-                                         throw new org.apache.axis2.databinding.ADBException("IM_SEARCH_RESULT cannot be null!!");
+                                    if (localIV_LANGUAGE==null){
+                                         throw new org.apache.axis2.databinding.ADBException("IV_LANGUAGE cannot be null!!");
                                     }
-                                    elementList.add(localIM_SEARCH_RESULT);
+                                    elementList.add(localIV_LANGUAGE);
+                                }
+                            elementList.add(new javax.xml.namespace.QName("",
+                                                                      "IV_PASSWORD"));
+                            
+                            
+                                    if (localIV_PASSWORD==null){
+                                         throw new org.apache.axis2.databinding.ADBException("IV_PASSWORD cannot be null!!");
+                                    }
+                                    elementList.add(localIV_PASSWORD);
                                 
+                            elementList.add(new javax.xml.namespace.QName("",
+                                                                      "IV_USERWEB"));
+                            
+                            
+                                    if (localIV_USERWEB==null){
+                                         throw new org.apache.axis2.databinding.ADBException("IV_USERWEB cannot be null!!");
+                                    }
+                                    elementList.add(localIV_USERWEB);
+                                 if (localRETURNTracker){
+                            elementList.add(new javax.xml.namespace.QName("",
+                                                                      "RETURN"));
+                            
+                            
+                                    if (localRETURN==null){
+                                         throw new org.apache.axis2.databinding.ADBException("RETURN cannot be null!!");
+                                    }
+                                    elementList.add(localRETURN);
+                                }
 
                 return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
             
@@ -338,9 +497,9 @@
         * Postcondition: If this object is an element, the reader is positioned at its end element
         *                If this object is a complex type, the reader is positioned at the end element of its outer element
         */
-        public static Y10_SEARCH_DOCUMENT_IDResponse parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
-            Y10_SEARCH_DOCUMENT_IDResponse object =
-                new Y10_SEARCH_DOCUMENT_IDResponse();
+        public static Y10_PASS_CHECK parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
+            Y10_PASS_CHECK object =
+                new Y10_PASS_CHECK();
 
             int event;
             java.lang.String nillableValue = null;
@@ -364,10 +523,10 @@
 
                     java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":")+1);
                     
-                            if (!"Y10_SEARCH_DOCUMENT_IDResponse".equals(type)){
+                            if (!"Y10_PASS_CHECK".equals(type)){
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
-                                return (Y10_SEARCH_DOCUMENT_IDResponse)functions.rfc.sap.document.sap_com.ExtensionMapper.getTypeObject(
+                                return (Y10_PASS_CHECK)functions.rfc.sap.document.sap_com.ExtensionMapper.getTypeObject(
                                      nsUri,type,reader);
                               }
                         
@@ -392,9 +551,24 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","IM_SEARCH_RESULT").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","IV_LANGUAGE").equals(reader.getName())){
                                 
-                                                object.setIM_SEARCH_RESULT(functions.rfc.sap.document.sap_com.Y10_TT_ALV_REQ_ROWS.Factory.parse(reader));
+                                                object.setIV_LANGUAGE(functions.rfc.sap.document.sap_com.Lang.Factory.parse(reader));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                    else {
+                                        
+                                    }
+                                
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","IV_PASSWORD").equals(reader.getName())){
+                                
+                                                object.setIV_PASSWORD(functions.rfc.sap.document.sap_com.Char16.Factory.parse(reader));
                                               
                                         reader.next();
                                     
@@ -404,7 +578,38 @@
                                     // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
-                              
+                            
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","IV_USERWEB").equals(reader.getName())){
+                                
+                                                object.setIV_USERWEB(functions.rfc.sap.document.sap_com.Char12.Factory.parse(reader));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                else{
+                                    // A start element we are not expecting indicates an invalid parameter was passed
+                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                                }
+                            
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","RETURN").equals(reader.getName())){
+                                
+                                                object.setRETURN(functions.rfc.sap.document.sap_com.TABLE_OF_BAPIRET2.Factory.parse(reader));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                    else {
+                                        
+                                    }
+                                  
                             while (!reader.isStartElement() && !reader.isEndElement())
                                 reader.next();
                             
