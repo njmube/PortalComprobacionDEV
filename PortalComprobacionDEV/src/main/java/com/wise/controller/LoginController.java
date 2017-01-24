@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.axis2.AxisFault;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -47,11 +48,13 @@ public class LoginController extends BaseController{
 	
 	@RequestMapping(value="/Inicio", method = RequestMethod.GET)
 	public String inicio(HttpSession session){
-		UserDto userDTO = new UserDto();
+		UserDto userDto = new UserDto();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		userDTO.setUsername(auth.getName());
+		String principal = (String) auth.getPrincipal();
+		String lifnr = StringUtils.leftPad(principal, 10, "0");
+		userDto.setLifnr(lifnr);
 		try {
-			Y10_GET_CONF_DATA_FOR_EXPENResponse providerData =  providerService.getConfDataForExpen(userDTO.getUsername());
+			Y10_GET_CONF_DATA_FOR_EXPENResponse providerData =  providerService.getConfDataForExpen(userDto.getLifnr());
 			FullConfigDto fullConfigDto = new FullConfigDto();
 			Y10_STR_WBS_VENDAT vendorData = providerData.getIM_CONF_DATA().getVENDOR_DATA(); 
 			fullConfigDto.setLifrn(vendorData.getLIFNR().toString());

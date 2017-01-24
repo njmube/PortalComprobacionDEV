@@ -1,35 +1,77 @@
 package com.wise.dto;
 
 public class UserDto {
+
+	private String lcnt;
+	private String ldate;
+	private String lifnam;
+	private String lifnr;
+	private String ltime;
+	private String state;
+	private String uiddate;
+	private String updpass;
+	private String userweb;
+	private String validto;
 	
-	private String username;
-	private String providerName;
-	private String rfc;
-	private String I_LIFNR;
-	
-	public String getUsername() {
-		return username;
+	public String getLcnt() {
+		return lcnt;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLcnt(String lcnt) {
+		this.lcnt = lcnt;
 	}
-	public String getProviderName() {
-		return providerName;
+	public String getLdate() {
+		return ldate;
 	}
-	public void setProviderName(String providerName) {
-		this.providerName = providerName;
+	public void setLdate(String ldate) {
+		this.ldate = ldate;
 	}
-	public String getRfc() {
-		return rfc;
+	public String getLifnam() {
+		return lifnam;
 	}
-	public void setRfc(String rfc) {
-		this.rfc = rfc;
+	public void setLifnam(String lifnam) {
+		this.lifnam = lifnam;
 	}
-	public String getI_LIFNR() {
-		return I_LIFNR;
+	public String getLifnr() {
+		return lifnr;
 	}
-	public void setI_LIFNR(String i_LIFNR) {
-		I_LIFNR = i_LIFNR;
+	public void setLifnr(String lifnr) {
+		this.lifnr = lifnr;
+	}
+	public String getLtime() {
+		return ltime;
+	}
+	public void setLtime(String ltime) {
+		this.ltime = ltime;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getUiddate() {
+		return uiddate;
+	}
+	public void setUiddate(String uiddate) {
+		this.uiddate = uiddate;
+	}
+	public String getUpdpass() {
+		return updpass;
+	}
+	public void setUpdpass(String updpass) {
+		this.updpass = updpass;
+	}
+	public String getUserweb() {
+		return userweb;
+	}
+	public void setUserweb(String userweb) {
+		this.userweb = userweb;
+	}
+	public String getValidto() {
+		return validto;
+	}
+	public void setValidto(String validto) {
+		this.validto = validto;
 	}
 
 }

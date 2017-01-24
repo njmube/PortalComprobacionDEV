@@ -14,8 +14,11 @@ import javax.xml.bind.JAXBException;
 import org.apache.axiom.attachments.ByteArrayDataSource;
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.databinding.ADBException;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -71,76 +74,75 @@ public class ProviderController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> getConfDataForExpen(HttpServletRequest request, HttpSession session) throws AxisFault {
 		LOGGER.info("Getting Conf Data For Expen");
-		UserDto user = (UserDto) session.getAttribute("UserDetails");
-		if(user != null){
-			try {
-				Y10_GET_CONF_DATA_FOR_EXPENResponse response = providerService.getConfDataForExpen(user.getI_LIFNR());
-				FullConfigDto fullConfigDto = new FullConfigDto();
-				for(Y10_STR_WBS_CONF_DOC_CLASSES doc : response.getIM_CONF_DATA().getEXPDOC_CONF().getItem()){
-					ExpDocConfDto dto = new ExpDocConfDto();
-					dto.setExpenseDoc(doc.getEXPENSEDOC().toString());
-					dto.setExpenseDocAbre(doc.getEXPENSEDOCABRE().toString());
-					dto.setExpenseDocDesc(doc.getEXPENSEDOCDESC().toString());
-					fullConfigDto.getExpenseDocConf().add(dto);
-				}
-				for(Y10_STR_WBS_CONF_BUKRS burk : response.getIM_CONF_DATA().getBUKRS_CONF().getItem()) {
-					ConfigDto configDto = new ConfigDto();
-					configDto.setBukrs(burk.getBUKRS().toString());
-					configDto.setButxt(burk.getBUTXT().toString());
-					for(Y10_STR_WBS_CONF_EXPCLASES item : burk.getEXPCLASSES().getItem()) {
-						GastoDto gasto = new GastoDto();
-						gasto.setExpenseClass(item.getEXPENSECLASS().toString());
-						gasto.setExpenseClassDes(item.getEXPENSECLASSDES().toString());
-						gasto.setHkont(item.getHKONT().toString());
-						gasto.setRultypbus(item.getRULTYPBUS().toString());
-						gasto.setRultypsat(item.getRULTYPSAT().toString());
-						gasto.setUnit(item.getUNIT().toString());
-						configDto.getDocTypes().add(gasto);
-					}
-					for(Y10_STR_WBS_CONF_TAXES tax : burk.getTAXES().getItem()) {
-						TaxesDto taxesDto = new TaxesDto();
-						taxesDto.setActive(tax.getACTIVE().toString());
-						taxesDto.setKalsm(tax.getKALSM().toString());
-						taxesDto.setMwskz(tax.getMWSKZ().toString());
-						configDto.getTaxesDto().add(taxesDto);
-					}
-					for(Y10_STR_WBS_CONF_CECOS cecos : burk.getCOSTCENTERS().getItem()){
-						CecosDto cecosDto = new CecosDto();
-						cecosDto.setAct_state(cecos.getACT_STATE().toString());
-						cecosDto.setCo_area(cecos.getCO_AREA().toString());
-						cecosDto.setKostl(cecos.getCOSTCENTER().toString());
-						cecosDto.setDescript(cecos.getDESCRIPT().toString());
-						cecosDto.setName(cecos.getNAME().toString());
-						configDto.getCecosDto().add(cecosDto);
-					}
-					fullConfigDto.getConfigData().add(configDto);
-				}				
-				for(Y10_STR_PAYMENT_METHODS paymets : response.getIM_CONF_DATA().getPAYMETHD().getItem()){
-					PaymethdDto paymethd = new PaymethdDto();
-					paymethd.setDOCCAT(paymets.getDOCCAT().toString());
-					paymethd.setPAYMET(paymets.getPAYMET().toString());
-					paymethd.setPAYMETDES(paymets.getPAYMETDES().toString());
-					paymethd.setUMSKZ(paymets.getUMSKZ().toString());
-					fullConfigDto.getPaymethd().add(paymethd);
-				}
-				Y10_STR_WBS_VENDAT vendorData = response.getIM_CONF_DATA().getVENDOR_DATA(); 
-				fullConfigDto.setLifrn(vendorData.getLIFNR().toString());
-				fullConfigDto.setDeptcode(vendorData.getDEPTCODE().toString());
-				fullConfigDto.setDeptdesc(vendorData.getDEPTDESC().toString());
-				fullConfigDto.setName1(vendorData.getNAME1().toString());
-				fullConfigDto.setSubdeptcode(vendorData.getSUBDEPTCODE().toString());
-				fullConfigDto.setSubdeptdesc(vendorData.getSUBDEPTDESC().toString());
-				fullConfigDto.setSubdeptkostl(vendorData.getSUBDEPTKOSTL().toString());
-				
-				return getResponseMapFromObject(fullConfigDto);
-				
-			} catch (Exception e) {
-				LOGGER.error("Error Getting Conf Data For Expen: " + e.getMessage(), e);
-				return getModelMapError(e.getMessage());
+		UserDto userDto = new UserDto();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String principal = (String) auth.getPrincipal();
+		String lifnr = StringUtils.leftPad(principal, 10, "0");
+		userDto.setLifnr(lifnr);
+		try {
+			Y10_GET_CONF_DATA_FOR_EXPENResponse response = providerService.getConfDataForExpen(userDto.getLifnr());
+			FullConfigDto fullConfigDto = new FullConfigDto();
+			for(Y10_STR_WBS_CONF_DOC_CLASSES doc : response.getIM_CONF_DATA().getEXPDOC_CONF().getItem()){
+				ExpDocConfDto dto = new ExpDocConfDto();
+				dto.setExpenseDoc(doc.getEXPENSEDOC().toString());
+				dto.setExpenseDocAbre(doc.getEXPENSEDOCABRE().toString());
+				dto.setExpenseDocDesc(doc.getEXPENSEDOCDESC().toString());
+				fullConfigDto.getExpenseDocConf().add(dto);
 			}
+			for(Y10_STR_WBS_CONF_BUKRS burk : response.getIM_CONF_DATA().getBUKRS_CONF().getItem()) {
+				ConfigDto configDto = new ConfigDto();
+				configDto.setBukrs(burk.getBUKRS().toString());
+				configDto.setButxt(burk.getBUTXT().toString());
+				for(Y10_STR_WBS_CONF_EXPCLASES item : burk.getEXPCLASSES().getItem()) {
+					GastoDto gasto = new GastoDto();
+					gasto.setExpenseClass(item.getEXPENSECLASS().toString());
+					gasto.setExpenseClassDes(item.getEXPENSECLASSDES().toString());
+					gasto.setHkont(item.getHKONT().toString());
+					gasto.setRultypbus(item.getRULTYPBUS().toString());
+					gasto.setRultypsat(item.getRULTYPSAT().toString());
+					gasto.setUnit(item.getUNIT().toString());
+					configDto.getDocTypes().add(gasto);
+				}
+				for(Y10_STR_WBS_CONF_TAXES tax : burk.getTAXES().getItem()) {
+					TaxesDto taxesDto = new TaxesDto();
+					taxesDto.setActive(tax.getACTIVE().toString());
+					taxesDto.setKalsm(tax.getKALSM().toString());
+					taxesDto.setMwskz(tax.getMWSKZ().toString());
+					configDto.getTaxesDto().add(taxesDto);
+				}
+				for(Y10_STR_WBS_CONF_CECOS cecos : burk.getCOSTCENTERS().getItem()){
+					CecosDto cecosDto = new CecosDto();
+					cecosDto.setAct_state(cecos.getACT_STATE().toString());
+					cecosDto.setCo_area(cecos.getCO_AREA().toString());
+					cecosDto.setKostl(cecos.getCOSTCENTER().toString());
+					cecosDto.setDescript(cecos.getDESCRIPT().toString());
+					cecosDto.setName(cecos.getNAME().toString());
+					configDto.getCecosDto().add(cecosDto);
+				}
+				fullConfigDto.getConfigData().add(configDto);
+			}				
+			for(Y10_STR_PAYMENT_METHODS paymets : response.getIM_CONF_DATA().getPAYMETHD().getItem()){
+				PaymethdDto paymethd = new PaymethdDto();
+				paymethd.setDOCCAT(paymets.getDOCCAT().toString());
+				paymethd.setPAYMET(paymets.getPAYMET().toString());
+				paymethd.setPAYMETDES(paymets.getPAYMETDES().toString());
+				paymethd.setUMSKZ(paymets.getUMSKZ().toString());
+				fullConfigDto.getPaymethd().add(paymethd);
+			}
+			Y10_STR_WBS_VENDAT vendorData = response.getIM_CONF_DATA().getVENDOR_DATA(); 
+			fullConfigDto.setLifrn(vendorData.getLIFNR().toString());
+			fullConfigDto.setDeptcode(vendorData.getDEPTCODE().toString());
+			fullConfigDto.setDeptdesc(vendorData.getDEPTDESC().toString());
+			fullConfigDto.setName1(vendorData.getNAME1().toString());
+			fullConfigDto.setSubdeptcode(vendorData.getSUBDEPTCODE().toString());
+			fullConfigDto.setSubdeptdesc(vendorData.getSUBDEPTDESC().toString());
+			fullConfigDto.setSubdeptkostl(vendorData.getSUBDEPTKOSTL().toString());
 			
-		} else {
-			return getModelMapError("Error de sesión");
+			return getResponseMapFromObject(fullConfigDto);
+			
+		} catch (Exception e) {
+			LOGGER.error("Error Getting Conf Data For Expen: " + e.getMessage(), e);
+			return getModelMapError(e.getMessage());
 		}
 		
 	}
@@ -149,45 +151,44 @@ public class ProviderController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> getExpenseStatement(HttpServletRequest request, HttpSession session, String cmbRazonSocial, String fechaIni, String fechaFin, String cmbEstado, String expenseid) throws AxisFault {
 		LOGGER.info("Getting Expenses Statement");
-		UserDto user = (UserDto) session.getAttribute("UserDetails");
-		if(user != null){
-			try {
-				List<ListExpenseDto> jsonResponse = new ArrayList<ListExpenseDto>();
-				Y10_GET_EXPENSE_STATEMENTResponse response = providerService.getExpenseStatement(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, user.getI_LIFNR(), expenseid);
-				Y10_TT_WBS_EXP_STATEMENT header = response.getIM_EXP_STATEMENT();
-				Y10_STR_WBS_EXP_STATEMENT[] data = header.getItem();
-				if(data != null) {
-					for(Y10_STR_WBS_EXP_STATEMENT item : data) {
-						ListExpenseDto dto = new ListExpenseDto();
-						dto.setAppdmbtr(item.getAPPDMBTR().toString());
-						dto.setBldat(item.getBLDAT().toString());
-						dto.setBudat(item.getBUDAT().toString());
-						dto.setBukrs(item.getBUKRS().toString());
-						dto.setDeptcode(item.getDEPTCODE().toString());
-						dto.setDmbtr(item.getDMBTR().toString());
-						dto.setExpensedoc(item.getEXPENSEDOC().toString());
-						dto.setExpenseid(item.getEXPENSEID().toString());
-						dto.setLifnam(item.getLIFNAM().toString());
-						dto.setLifnr(item.getLIFNR().toString());
-						dto.setSaldo(item.getSALDO().toString());
-						dto.setStat_descr(item.getSTAT_DESCR().toString());
-						dto.setStatus(item.getSTATUS().toString());
-						dto.setSubdeptcode(item.getSUBDEPTCODE().toString());
-						dto.setWaers(item.getWAERS().toString());
-						jsonResponse.add(dto);
-					}
-					return getResponseMap(jsonResponse);
-				} else {
-					return getModelMapSuccess("No se encontró información con los criterios seleccionados");
+		UserDto userDto = new UserDto();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String principal = (String) auth.getPrincipal();
+		String lifnr = StringUtils.leftPad(principal, 10, "0");
+		userDto.setLifnr(lifnr);
+		try {
+			List<ListExpenseDto> jsonResponse = new ArrayList<ListExpenseDto>();
+			Y10_GET_EXPENSE_STATEMENTResponse response = providerService.getExpenseStatement(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, userDto.getLifnr(), expenseid);
+			Y10_TT_WBS_EXP_STATEMENT header = response.getIM_EXP_STATEMENT();
+			Y10_STR_WBS_EXP_STATEMENT[] data = header.getItem();
+			if(data != null) {
+				for(Y10_STR_WBS_EXP_STATEMENT item : data) {
+					ListExpenseDto dto = new ListExpenseDto();
+					dto.setAppdmbtr(item.getAPPDMBTR().toString());
+					dto.setBldat(item.getBLDAT().toString());
+					dto.setBudat(item.getBUDAT().toString());
+					dto.setBukrs(item.getBUKRS().toString());
+					dto.setDeptcode(item.getDEPTCODE().toString());
+					dto.setDmbtr(item.getDMBTR().toString());
+					dto.setExpensedoc(item.getEXPENSEDOC().toString());
+					dto.setExpenseid(item.getEXPENSEID().toString());
+					dto.setLifnam(item.getLIFNAM().toString());
+					dto.setLifnr(item.getLIFNR().toString());
+					dto.setSaldo(item.getSALDO().toString());
+					dto.setStat_descr(item.getSTAT_DESCR().toString());
+					dto.setStatus(item.getSTATUS().toString());
+					dto.setSubdeptcode(item.getSUBDEPTCODE().toString());
+					dto.setWaers(item.getWAERS().toString());
+					jsonResponse.add(dto);
 				}
-				
-			} catch (Exception e) {
-				LOGGER.error("Error Getting Expense Statement: " + e.getMessage(), e);
-				return getModelMapError(e.getMessage());
+				return getResponseMap(jsonResponse);
+			} else {
+				return getModelMapSuccess("No se encontró información con los criterios seleccionados");
 			}
 			
-		} else {
-			return getModelMapError("Error de sesión");
+		} catch (Exception e) {
+			LOGGER.error("Error Getting Expense Statement: " + e.getMessage(), e);
+			return getModelMapError(e.getMessage());
 		}
 	
 	}
@@ -237,72 +238,71 @@ public class ProviderController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> searchDocumentId(HttpServletRequest request, HttpSession session, String cmbRazonSocial, String fechaIni, String fechaFin, String cmbEstado) throws AxisFault {
 		LOGGER.info("Getting Requests List");
-		UserDto user = (UserDto) session.getAttribute("UserDetails");
-		if(user != null){
-			try {
-				List<RequestDto> jsonResponse = new ArrayList<RequestDto>();
-				Y10_SEARCH_DOCUMENT_IDResponse response = providerService.searchDocumentId(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, user.getI_LIFNR());
-				Y10_TT_ALV_REQ_ROWS header = response.getIM_SEARCH_RESULT();
-				Y10_STR_ALV_DATA_REQ[] data = header.getItem();
-				if(data != null) {
-					for(Y10_STR_ALV_DATA_REQ item : data) {
-						RequestDto dto = new RequestDto();
-						dto.setAedat(item.getAEDAT().toString());
-						dto.setApprdate(item.getAPPRDATE().toString());
-						dto.setApprover(item.getAPPROVER().toString());
-						dto.setBelnr(item.getBELNR().toString());
-						dto.setBldat(item.getBLDAT().toString());
-						dto.setBudat(item.getBUDAT().toString());
-						dto.setBukrs(item.getBUKRS().toString());
-						dto.setButxt(item.getBUTXT().toString());
-						dto.setCpudt(item.getCPUDT().toString());
-						dto.setDeptcode(item.getDEPTCODE().toString());
-						dto.setDmbtr(item.getDMBTR().toString());
-						dto.setErdat(item.getERDAT().toString());
-						dto.setEstatus_a(item.getESTATUS_A().toString());
-						dto.setEstatus_c(item.getESTATUS_C().toString());
-						dto.setExpensedoc(item.getEXPENSEDOC().toString());
-						dto.setExpenseid(item.getEXPENSEID().toString());
-						dto.setExpind(item.getEXPIND().toString());
-						dto.setGjahr(item.getGJAHR().toString());
-						dto.setKursf(item.getKURSF().toString());
-						dto.setLangu(item.getLANGU().toString());
-						dto.setLifnr(item.getLIFNR().toString());
-						dto.setName(item.getNAME().toString());
-						dto.setPostdate(item.getPOSTDATE().toString());
-						dto.setPostedby(item.getPOSTEDBY().toString());
-						dto.setPreldoc(item.getPRELDOC().toString());
-						dto.setPrelgjahr(item.getPRELGJAHR().toString());
-						dto.setReq_block_icon(item.getREQ_BLOCK_ICON().toString());
-						dto.setReqexpdat(item.getREQEXPDAT().toString());
-						dto.setReqind(item.getREQIND().toString());
-						dto.setReqlin(item.getREQLIN().toString());
-						dto.setStatus_a(item.getSTATUS_A().toString());
-						dto.setStatus_c(item.getSTATUS_C().toString());
-						dto.setSubdeptcode(item.getSUBDEPTCODE().toString());
-						dto.setTcode(item.getTCODE().toString());
-						dto.setTexpensedoc(item.getTEXPENSEDOC().toString());
-						dto.setUserweb(item.getUSERWEB().toString());
-						dto.setUsnam(item.getUSNAM().toString());
-						dto.setVbelnr(item.getVBELNR().toString());
-						dto.setVgjahr(item.getVGJAHR().toString());
-						dto.setWaers(item.getWAERS().toString());
-						dto.setWrbtr(item.getWRBTR().toString());
-						jsonResponse.add(dto);
-						}
-				
-					return getResponseMap(jsonResponse);
-				} else {
-					return getModelMapSuccess("No se encontró información con los criterios seleccionados");
-				}
-				
-			} catch (Exception e) {
-				LOGGER.error("Error Getting Requests List: " + e.getMessage(), e);
-				return getModelMapError(e.getMessage());
+		UserDto userDto = new UserDto();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String principal = (String) auth.getPrincipal();
+		String lifnr = StringUtils.leftPad(principal, 10, "0");
+		userDto.setLifnr(lifnr);
+		try {
+			List<RequestDto> jsonResponse = new ArrayList<RequestDto>();
+			Y10_SEARCH_DOCUMENT_IDResponse response = providerService.searchDocumentId(cmbRazonSocial, fechaIni, fechaFin, cmbEstado, userDto.getLifnr());
+			Y10_TT_ALV_REQ_ROWS header = response.getIM_SEARCH_RESULT();
+			Y10_STR_ALV_DATA_REQ[] data = header.getItem();
+			if(data != null) {
+				for(Y10_STR_ALV_DATA_REQ item : data) {
+					RequestDto dto = new RequestDto();
+					dto.setAedat(item.getAEDAT().toString());
+					dto.setApprdate(item.getAPPRDATE().toString());
+					dto.setApprover(item.getAPPROVER().toString());
+					dto.setBelnr(item.getBELNR().toString());
+					dto.setBldat(item.getBLDAT().toString());
+					dto.setBudat(item.getBUDAT().toString());
+					dto.setBukrs(item.getBUKRS().toString());
+					dto.setButxt(item.getBUTXT().toString());
+					dto.setCpudt(item.getCPUDT().toString());
+					dto.setDeptcode(item.getDEPTCODE().toString());
+					dto.setDmbtr(item.getDMBTR().toString());
+					dto.setErdat(item.getERDAT().toString());
+					dto.setEstatus_a(item.getESTATUS_A().toString());
+					dto.setEstatus_c(item.getESTATUS_C().toString());
+					dto.setExpensedoc(item.getEXPENSEDOC().toString());
+					dto.setExpenseid(item.getEXPENSEID().toString());
+					dto.setExpind(item.getEXPIND().toString());
+					dto.setGjahr(item.getGJAHR().toString());
+					dto.setKursf(item.getKURSF().toString());
+					dto.setLangu(item.getLANGU().toString());
+					dto.setLifnr(item.getLIFNR().toString());
+					dto.setName(item.getNAME().toString());
+					dto.setPostdate(item.getPOSTDATE().toString());
+					dto.setPostedby(item.getPOSTEDBY().toString());
+					dto.setPreldoc(item.getPRELDOC().toString());
+					dto.setPrelgjahr(item.getPRELGJAHR().toString());
+					dto.setReq_block_icon(item.getREQ_BLOCK_ICON().toString());
+					dto.setReqexpdat(item.getREQEXPDAT().toString());
+					dto.setReqind(item.getREQIND().toString());
+					dto.setReqlin(item.getREQLIN().toString());
+					dto.setStatus_a(item.getSTATUS_A().toString());
+					dto.setStatus_c(item.getSTATUS_C().toString());
+					dto.setSubdeptcode(item.getSUBDEPTCODE().toString());
+					dto.setTcode(item.getTCODE().toString());
+					dto.setTexpensedoc(item.getTEXPENSEDOC().toString());
+					dto.setUserweb(item.getUSERWEB().toString());
+					dto.setUsnam(item.getUSNAM().toString());
+					dto.setVbelnr(item.getVBELNR().toString());
+					dto.setVgjahr(item.getVGJAHR().toString());
+					dto.setWaers(item.getWAERS().toString());
+					dto.setWrbtr(item.getWRBTR().toString());
+					jsonResponse.add(dto);
+					}
+			
+				return getResponseMap(jsonResponse);
+			} else {
+				return getModelMapSuccess("No se encontró información con los criterios seleccionados");
 			}
 			
-		} else {
-			return getModelMapError("Error de sesión");
+		} catch (Exception e) {
+			LOGGER.error("Error Getting Requests List: " + e.getMessage(), e);
+			return getModelMapError(e.getMessage());
 		}
 	
 	}
@@ -311,68 +311,67 @@ public class ProviderController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> getAccStatus(HttpServletRequest request, HttpSession session, String cmbRazonSocial) {
 		LOGGER.info("Getting Account Status");
-		UserDto user = (UserDto) session.getAttribute("UserDetails");
+		UserDto userDto = new UserDto();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String principal = (String) auth.getPrincipal();
+		String lifnr = StringUtils.leftPad(principal, 10, "0");
+		userDto.setLifnr(lifnr);
 		Locale locale = RequestContextUtils.getLocale(request);
 		String bad = "";
-		if(user != null) {
-			try {
-				Y10_FG_ACC_STATUSResponse response = providerService.getAccStatus(user.getI_LIFNR(), cmbRazonSocial, locale.getLanguage());				
-				if(response.getET_OPENITEMS() == null && response.getET_CLEAREDITEMS() == null){
-					BAPIRET2[] items = response.getRETURN().getItem();
-					if(items != null && items.length > 0) {
-						for(BAPIRET2 item : items) {
-							if("E".equals(item.getTYPE().toString().toLowerCase())) {
-								bad += item.getMESSAGE().toString().replace("'", "\"");
-							}
+		try {
+			Y10_FG_ACC_STATUSResponse response = providerService.getAccStatus(userDto.getLifnr(), cmbRazonSocial, locale.getLanguage());				
+			if(response.getET_OPENITEMS() == null && response.getET_CLEAREDITEMS() == null){
+				BAPIRET2[] items = response.getRETURN().getItem();
+				if(items != null && items.length > 0) {
+					for(BAPIRET2 item : items) {
+						if("E".equals(item.getTYPE().toString().toLowerCase())) {
+							bad += item.getMESSAGE().toString().replace("'", "\"");
 						}
 					}
-					return getModelMapError(bad);
-				} else {
-					Y10_STR_ACC_STATUS[] data = response.getET_OPENITEMS().getItem();
-					Y10_STR_ACC_STATUS[] dataCompensada = response.getET_CLEAREDITEMS().getItem();
-					
-					List<AccStatusDto> abierta = new ArrayList<AccStatusDto>();
-					List<AccStatusDto> compensada = new ArrayList<AccStatusDto>();
-					if(data != null && data.length > 0)
-					for(Y10_STR_ACC_STATUS item : data) {
-						AccStatusDto dto = new AccStatusDto();
-						dto.setAugbl(item.getAUGBL().toString());
-						dto.setAugdt(item.getAUGDT().toString());
-						dto.setBelnr(item.getBELNR().toString());
-						dto.setBlart(item.getBLART().toString());
-						dto.setBudat(item.getBUDAT().toString());
-						dto.setDmbtr(item.getDMBTR().toString());
-						dto.setGjahr(item.getGJAHR().toString());
-						dto.setWaers(item.getWAERS().toString());
-						dto.setXblnr(item.getXBLNR().toString());
-						dto.setZfbdt(item.getZFBDT().toString());
-						abierta.add(dto);
-					}
-					if(dataCompensada != null && dataCompensada.length > 0)
-					for(Y10_STR_ACC_STATUS item : dataCompensada) {
-						AccStatusDto dto = new AccStatusDto();
-						dto.setAugbl(item.getAUGBL().toString());
-						dto.setAugdt(item.getAUGDT().toString());
-						dto.setBelnr(item.getBELNR().toString());
-						dto.setBlart(item.getBLART().toString());
-						dto.setBudat(item.getBUDAT().toString());
-						dto.setDmbtr(item.getDMBTR().toString());
-						dto.setGjahr(item.getGJAHR().toString());
-						dto.setWaers(item.getWAERS().toString());
-						dto.setXblnr(item.getXBLNR().toString());
-						dto.setZfbdt(item.getZFBDT().toString());
-						compensada.add(dto);
-					}
-					return getTwoList(abierta, compensada);
 				}
+				return getModelMapError(bad);
+			} else {
+				Y10_STR_ACC_STATUS[] data = response.getET_OPENITEMS().getItem();
+				Y10_STR_ACC_STATUS[] dataCompensada = response.getET_CLEAREDITEMS().getItem();
 				
-			} catch (Exception e) {
-				LOGGER.error("Error Getting Account Status: " + e.getMessage(), e);
-				return getModelMapError(e.getMessage());
+				List<AccStatusDto> abierta = new ArrayList<AccStatusDto>();
+				List<AccStatusDto> compensada = new ArrayList<AccStatusDto>();
+				if(data != null && data.length > 0)
+				for(Y10_STR_ACC_STATUS item : data) {
+					AccStatusDto dto = new AccStatusDto();
+					dto.setAugbl(item.getAUGBL().toString());
+					dto.setAugdt(item.getAUGDT().toString());
+					dto.setBelnr(item.getBELNR().toString());
+					dto.setBlart(item.getBLART().toString());
+					dto.setBudat(item.getBUDAT().toString());
+					dto.setDmbtr(item.getDMBTR().toString());
+					dto.setGjahr(item.getGJAHR().toString());
+					dto.setWaers(item.getWAERS().toString());
+					dto.setXblnr(item.getXBLNR().toString());
+					dto.setZfbdt(item.getZFBDT().toString());
+					abierta.add(dto);
+				}
+				if(dataCompensada != null && dataCompensada.length > 0)
+				for(Y10_STR_ACC_STATUS item : dataCompensada) {
+					AccStatusDto dto = new AccStatusDto();
+					dto.setAugbl(item.getAUGBL().toString());
+					dto.setAugdt(item.getAUGDT().toString());
+					dto.setBelnr(item.getBELNR().toString());
+					dto.setBlart(item.getBLART().toString());
+					dto.setBudat(item.getBUDAT().toString());
+					dto.setDmbtr(item.getDMBTR().toString());
+					dto.setGjahr(item.getGJAHR().toString());
+					dto.setWaers(item.getWAERS().toString());
+					dto.setXblnr(item.getXBLNR().toString());
+					dto.setZfbdt(item.getZFBDT().toString());
+					compensada.add(dto);
+				}
+				return getTwoList(abierta, compensada);
 			}
 			
-		} else {
-			return getModelMapError("Error de sesión");
+		} catch (Exception e) {
+			LOGGER.error("Error Getting Account Status: " + e.getMessage(), e);
+			return getModelMapError(e.getMessage());
 		}
 	}
 	

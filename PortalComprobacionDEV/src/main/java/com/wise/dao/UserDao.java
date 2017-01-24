@@ -23,6 +23,7 @@ public class UserDao {
 	public final static Logger LOGGER = Logger.getLogger(UserDao.class);
 	
 	public Y10_PASS_CHECKResponse findUserFromWS(Authentication authentication) {
+		int timeOutInMilliSeconds = 3 * 60 * 1000; // Three minutes
 		try {
 			ZWS_EXPENSE_UTILS_METHODSStub stub = new ZWS_EXPENSE_UTILS_METHODSStub();
 			Options options = stub._getServiceClient().getOptions();
@@ -31,19 +32,20 @@ public class UserDao {
 			auth.setUsername(Constants.WISE_WSDL_USER);
 			auth.setPassword(Constants.WISE_WSDL_PASS);
 			options.setProperty(HTTPConstants.AUTHENTICATE,auth);
+			stub._getServiceClient().getOptions().setTimeOutInMilliSeconds(timeOutInMilliSeconds);
 			Y10_PASS_CHECK user = new Y10_PASS_CHECK();
-			Char12 iv_userweb = new Char12();
-			Char16 iv_password = new Char16();
-			Lang iv_language = new Lang();
+			Char12 username = new Char12();
+			Char16 passwd = new Char16();
+			Lang langu = new Lang();			
 			TABLE_OF_BAPIRET2 _return = new TABLE_OF_BAPIRET2();
 			
-			iv_userweb.setChar12(authentication.getName());
-			iv_password.setChar16((String)authentication.getCredentials());
-			iv_language.setLang("");
+			username.setChar12(authentication.getName());
+			passwd.setChar16((String)authentication.getCredentials());
+			langu.setLang("");
 			
-			user.setIV_USERWEB(iv_userweb);
-			user.setIV_PASSWORD(iv_password);
-			user.setIV_LANGUAGE(iv_language);
+			user.setIV_USERWEB(username);
+			user.setIV_PASSWORD(passwd);
+			user.setIV_LANGUAGE(langu);
 			user.setRETURN(_return);
 			Y10_PASS_CHECKResponse response = stub.y10_PASS_CHECK(user);
 			
@@ -55,4 +57,5 @@ public class UserDao {
 		}
 		
 	}
+	
 }

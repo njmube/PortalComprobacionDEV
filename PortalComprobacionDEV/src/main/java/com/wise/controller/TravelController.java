@@ -12,6 +12,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,9 +40,13 @@ public class TravelController extends BaseController{
 		HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper(responseServlet);
 		String good = "",bad = "";
 		wrapper.setContentType("text/html;charset=UTF-8");
-		UserDto user = (UserDto) session.getAttribute("UserDetails");
+		UserDto userDto = new UserDto();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String principal = (String) auth.getPrincipal();
+		String lifnr = StringUtils.leftPad(principal, 10, "0");
+		userDto.setLifnr(lifnr);
 		try {
-			Y10_SAVE_TRAVEL_DATAResponse response = travelService.saveTravelData(hdnRazonSocial, hdnTipoDocumento, requestDate, createdDate, comments, waers, deptcode, subdeptcode, createdBy, user.getI_LIFNR());
+			Y10_SAVE_TRAVEL_DATAResponse response = travelService.saveTravelData(hdnRazonSocial, hdnTipoDocumento, requestDate, createdDate, comments, waers, deptcode, subdeptcode, createdBy, userDto.getLifnr());
 			if(response != null) {
 				BAPIRET2[] items = response.getIM_RET_MSG().getItem();
 				if(items != null && items.length > 0) {
